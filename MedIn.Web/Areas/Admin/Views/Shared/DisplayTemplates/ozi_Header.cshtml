@@ -1,0 +1,61 @@
+﻿@using MedIn.Web
+@ViewData.TemplateInfo.FormattedModelValue
+
+@{
+    ColSettings settings = ViewBag.ColSettings;
+    var order = settings.GetOrderField();
+    string desc = null;
+    var curOrder = Request.QueryString["order"];
+    var curDesc = Request.QueryString["desc"] != null;
+    if (curOrder == order && !curDesc)
+    {
+        desc = "true";
+    }
+}
+@if (order != null)
+{
+    <div class="header-panel">
+        <a href="javascript:void(0)" class="get-click" data-order="@order" data-desc="@desc">
+            @if (curOrder != order)
+            {
+                <img width="20" src="/Areas/Admin/Images/Default/down_g.png" />
+            }
+            else if (curDesc)
+            {
+                <img width="20" src="/Areas/Admin/Images/Default/up.png" />
+            }
+            else
+            {
+                <img width="20" src="/Areas/Admin/Images/Default/down.png" />
+            }
+        </a>
+    </div>
+}
+@{
+    var filter = settings.GetFilterField();
+}
+
+@if (filter != null)
+{
+    var curValue = Request.QueryString[filter];
+    <div class="header-panel">
+        
+        @if (curValue != null)
+        {
+            string d = "data-" + filter + "=''";
+            
+            <input type="text" class="hidden get-blur" value="@curValue" id="@filter" name="@(filter)"/>
+            <a href="javascript:void(0)" data-hide="true" data-target-show="@(filter)">@curValue</a>
+            <a href="javascript:void(0)" class="get-click" @Html.Raw(d)>
+                <img width="20" src="/Areas/Admin/Images/Default/filter_delete.png" />
+            </a>
+        }
+        else
+        {
+            <input type="text" class="hidden get-blur" value="@curValue" name="@filter" id="@filter"/>
+            <a href="javascript:void(0)" data-target-show="@filter">
+                <img width="20" src="/Areas/Admin/Images/Default/filter_add.png" />
+            </a>
+        }
+    </div>
+}

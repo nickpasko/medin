@@ -1,0 +1,71 @@
+﻿@using System.Net.Mail
+@using MedIn.Web
+@using MedIn.Web
+@model System.Net.Configuration.SmtpSection
+
+@{
+    
+}
+
+@using (Html.BeginForm(MVC.Admin.SiteSettings.Emails()))
+{
+    <div class="form-save-buttons"><input type="submit" class="save-button" value="Сохранить"></div>
+    <h2>Настройки почты</h2>
+    <fieldset>
+        <legend></legend>
+        <input @ByCondition(Model.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory, "checked") type="radio" name="DeliveryMethod" id="DeliveryMethod_SpecifiedPickupDirectory" data-target="SpecifiedPickupDirectory" value="SpecifiedPickupDirectory" />
+        <label for="DeliveryMethod_SpecifiedPickupDirectory">Складывать письма в папку</label>
+        <fieldset id="SpecifiedPickupDirectory" class="mailsettings" @ByCondition(Model.DeliveryMethod != SmtpDeliveryMethod.SpecifiedPickupDirectory, "disabled")>
+            <legend></legend>
+            <label for="folder">Путь к отправленным письмам</label>@Html.EditorFor(model => model.SpecifiedPickupDirectory.PickupDirectoryLocation)
+        </fieldset>
+    </fieldset>
+    
+    <fieldset>
+        <legend></legend>
+        <input @ByCondition(Model.DeliveryMethod == SmtpDeliveryMethod.Network, "checked") type="radio" name="DeliveryMethod" id="DeliveryMethod_Network" data-target="Network" value="Network" />
+        <label for="DeliveryMethod_Network">Отправка по сети</label>
+        <fieldset id="Network" class="mailsettings" @ByCondition(Model.DeliveryMethod != SmtpDeliveryMethod.Network, "disabled")>
+            <legend></legend>
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Network.ClientDomain)</td>
+                    <td>@Html.EditorFor(model => model.Network.ClientDomain)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Network.DefaultCredentials)</td>
+                    <td>@Html.EditorFor(model => model.Network.DefaultCredentials)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Network.EnableSsl)</td>
+                    <td>@Html.EditorFor(model => model.Network.EnableSsl)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Network.Host)</td>
+                    <td>@Html.EditorFor(model => model.Network.Host)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Network.Port)</td>
+                    <td>@Html.EditorFor(model => model.Network.Port)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Network.UserName)</td>
+                    <td>@Html.EditorFor(model => model.Network.UserName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Network.Password)</td>
+                    <td>@Html.EditorFor(model => model.Network.Password)</td>
+                </tr>
+            </table>
+        </fieldset>
+    </fieldset>
+
+    <div class="form-save-buttons"><input type="submit" class="save-button" value="Сохранить"></div>
+}
+
+<script>
+    $("input[name=DeliveryMethod]").click(function () {
+        $(".mailsettings").attr("disabled", "disabled");
+        $("#" + $(this).data("target")).removeAttr("disabled");
+    });
+</script>

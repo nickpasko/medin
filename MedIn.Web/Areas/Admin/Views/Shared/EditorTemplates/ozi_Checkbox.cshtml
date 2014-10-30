@@ -1,0 +1,13 @@
+﻿@using System.Diagnostics
+@using MedIn.Web
+
+@{
+    var fieldSettings = WebContext.FieldSettings;
+    var htmlAttrs = new Dictionary<string, object> { { "class","ozi-checkbox" } };
+	Debug.Assert(fieldSettings != null);
+	if(fieldSettings.Disabled)
+    {
+        htmlAttrs.Add("disabled","disabled");
+    }
+}
+@Html.CheckBox("", (bool)(ViewData.Model != null && Boolean.Parse(ViewData.TemplateInfo.FormattedModelValue.ToString())), htmlAttrs)

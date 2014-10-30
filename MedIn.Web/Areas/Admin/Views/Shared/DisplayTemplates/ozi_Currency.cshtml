@@ -1,0 +1,5 @@
+﻿@{
+    var colSettings = ViewData["ColSettings"] as CurrencySettings;
+    string format = colSettings.Format != null ? colSettings.Format : "#,#.00";
+}
+@decimal.Parse(ViewData.TemplateInfo.FormattedModelValue.ToString()).ToString(format)

@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+		   targetNamespace="urn:settings" 
+		   xmlns="urn:settings" 
+		   elementFormDefault="qualified" 
+		   attributeFormDefault="unqualified">
+	<xs:element name="settings">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="list" type="ListSettings" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="form" type="FormSettings" minOccurs="1" maxOccurs="1"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ListSettings">
+		<xs:all>
+			<xs:element name="global" type="GlobalSettings" maxOccurs="1"/>
+			<xs:element name="actions" type="ActionSettings" maxOccurs="1"/>
+			<xs:element name="cols" type="ColSettings" minOccurs="1" maxOccurs="1"/>
+		</xs:all>
+		<xs:attribute name="orderAsc" type="xs:string" />
+		<xs:attribute name="orderDesc" type="xs:string" />
+		<xs:attribute name="levels" type="xs:string" />
+		<xs:attribute name="pageSize" type="xs:int" />
+	</xs:complexType>
+	<xs:complexType name="FormSettings">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name ="tab" type="TabSettings" minOccurs="1" />
+		</xs:choice>
+		<xs:attribute name="localizable" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="GlobalSettings">
+		<xs:all maxOccurs="1">
+			<xs:element name="create" maxOccurs="1" minOccurs="0" />
+			<xs:element name="localize" maxOccurs="1" minOccurs="0" />
+			<xs:element name="custom" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="control" type="xs:string" />
+					<xs:attribute name="action" type="xs:string" />
+					<xs:attribute name="text" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ActionSettings">
+		<xs:all maxOccurs="1">
+			<xs:element name="visibility" minOccurs="0"/>
+			<xs:element name="sort" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="field" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="edit" minOccurs="0"/>
+			<xs:element name="delete" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ColSettings">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="string" type="DataColSettings" />
+			<xs:element name="filter" type="FilterColSettings" />
+			<xs:element name="date" type="DateColSettings" />
+			<xs:element name="currency" type="CurrencyColSettings" />
+			<xs:element name="checkbox" type="DataColSettings" />
+			<xs:element name="custom" type="CustomColSettings" />
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="FilterColSettings">
+		<xs:complexContent>
+			<xs:extension base="DataColSettings">
+				<xs:attribute name="field" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DateColSettings">
+		<xs:complexContent>
+			<xs:extension base="DataColSettings">
+				<xs:attribute name="format" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CurrencyColSettings">
+		<xs:complexContent>
+			<xs:extension base="DataColSettings">
+				<xs:attribute name="format" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CustomColSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseColSettings">
+				<xs:attribute name="name" type="xs:string"/>
+				<xs:attribute name="control" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DataColSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseColSettings">
+				<xs:attribute name="name" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BaseColSettings">
+		<xs:attribute name="title" type="xs:string"/>
+		<xs:attribute name="localizable" type="xs:boolean"/>
+		<xs:attribute name="levels" type="xs:boolean"/>
+	</xs:complexType>
+	
+	<xs:complexType name="TabSettings">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="string" type="StringSettings"/>
+			<xs:element name="select" type="SelectSettings" />
+			<xs:element name="checkbox" type="CheckboxSettings" />
+			<xs:element name="code" type="CodeSettings" />
+			<xs:element name="collection" type="CollectionSettings" />
+			<xs:element name="currency" type="CurrencySettings" />
+			<xs:element name="date" type="DateSettings" />
+			<xs:element name="hidden" type="HiddenSettings" />
+			<xs:element name="file" type="FileSettings" />
+			<xs:element name="static" type="StaticSettigns" />
+			<xs:element name="textarea" type="TextareaSettings" />
+			<xs:element name="wysiwyg" type="WysiwygSettings" />
+			<xs:element name="custom" type="CustomFormSettings" />
+		</xs:choice>
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="sort" type="xs:int" />
+	</xs:complexType>
+	<xs:complexType name="CustomFormSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings">
+				<xs:attribute name="control" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BaseFormSettings">
+		<xs:attribute name="name" use="required" />
+		<xs:attribute name="title" />
+		<xs:attribute name="info" />
+		<xs:attribute name="disabled" type="xs:boolean" />
+		<xs:attribute name="skipTitle" type="xs:boolean" />
+		<xs:attribute name="readonly" type="xs:boolean" />
+		<xs:attribute name="prevalue" type="xs:boolean" />
+		<xs:attribute name="localizable" type="xs:boolean" />
+		<xs:attribute name="rolename" />
+	</xs:complexType>
+	<xs:complexType name="StringSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings"></xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SelectSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings">
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="option" minOccurs="0">
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:extension base="xs:string">
+									<xs:attribute name="value" />
+								</xs:extension>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				<xs:attribute name="data" />
+				<xs:attribute name="optionTitle" default="Name" />
+				<xs:attribute name="optionValue" default="Id" />
+				<xs:attribute name="dependsOn" type="xs:string" />
+				<xs:attribute name="multiple" type="xs:boolean" />
+				<xs:attribute name="height" type="xs:int" />
+				<xs:attribute name="levels" type="xs:boolean" />
+				<xs:attribute name="editable" type="xs:boolean" />
+				<xs:attribute name="reference" type="xs:string" />
+				<xs:attribute name="type" type="xs:string" />
+				<xs:attribute name="property" type="xs:string" />
+				<xs:attribute name="method" type="xs:string" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CheckboxSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings"></xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CodeSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings">
+				<xs:attribute name="type">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="css" />
+							<xs:enumeration value="javascript" />
+							<xs:enumeration value="xml" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CurrencySettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings">
+				<xs:attribute name="format" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DateSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings">
+				<xs:attribute name="format"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="HiddenSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings"></xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="StaticSettigns">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings"></xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TextareaSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings">
+				<xs:attribute name="rows" type="xs:int" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="WysiwygSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings">
+				<xs:attribute name="rows" type="xs:int" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FileSettings">
+		<xs:complexContent>
+			<xs:extension base="BaseFormSettings">
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="watermark">
+						<xs:complexType>
+							<xs:attribute name="left" default="0" type="xs:int" />
+							<xs:attribute name="top" default="0" type="xs:int" />
+							<xs:attribute name="width" default="0" type="xs:int" />
+							<xs:attribute name="height" default="0" type="xs:int" />
+							<xs:attribute name="reduceWidth" type="xs:int" />
+							<xs:attribute name="reduceHeight" type="xs:int" />
+							<xs:attribute name="reduceFactor" type="xs:float" />
+							<xs:attribute name="path" type="xs:string" />
+							<xs:attribute name="filltype">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="None" />
+										<xs:enumeration value="Custom" />
+										<xs:enumeration value="TopLeft" />
+										<xs:enumeration value="TopRight" />
+										<xs:enumeration value="BottomLeft" />
+										<xs:enumeration value="BottomRight" />
+										<xs:enumeration value="Center" />
+										<xs:enumeration value="Mosaic" />
+										<xs:enumeration value="Stretch" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="margins">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="[0-9]+(, [0-9])[0,3]" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				<xs:attribute name="path" type="xs:string" />
+				<xs:attribute name="isImage" type="xs:boolean" />
+				<xs:attribute name="showTitle" type="xs:boolean" />
+				<xs:attribute name="showSourceName" type="xs:boolean" />
+				<xs:attribute name="sortable" type="xs:boolean" />
+				<xs:attribute name="visibility" type="xs:boolean" />
+				<xs:attribute name="showDescription" type="xs:boolean" />
+				<xs:attribute name="showDate" type="xs:boolean" />
+				<xs:attribute name="display" type="xs:string" />
+				<xs:attribute name="size" type="xs:int" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CollectionSettings">
+		<xs:complexContent>
+			<xs:extension base="TabSettings">
+				<xs:attribute name="sortable" type="xs:boolean" />
+				<xs:attribute name="showDelete" type="xs:boolean" />
+				<xs:attribute name="showAdd" type="xs:boolean" />
+				<xs:attribute name="itemTitle" type="xs:string" />
+				<xs:attribute name="title" type="xs:string" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

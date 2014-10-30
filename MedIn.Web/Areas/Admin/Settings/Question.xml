@@ -1,0 +1,32 @@
+﻿<?xml version="1.0"?>
+<settings xmlns="urn:settings" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:settings Settings.xsd">
+	<list orderDesc="PublishDate" pageSize="50">
+
+		<global>
+			<create/>
+		</global>
+
+		<actions>
+			<visibility />
+			<edit/>
+			<delete/>
+		</actions>
+
+		<cols>
+			<string name="UserName" title="Имя" />
+			<string name="Email" title="Email" />
+			<string name="PublishDate" title="Дата"/>
+		</cols>
+
+	</list>
+
+	<form>
+		<tab name="General">
+			<string name="UserName" title="Имя" />
+			<string name="Email" title="Email" />
+			<date name="PublishDate" title="Дата обращения" />
+			<textarea name="QuestionText" title="Вопрос" />
+			<wysiwyg name="Response" title="Ответ" />
+		</tab>
+	</form>
+</settings>

@@ -1,0 +1,4 @@
+﻿@{
+    var colSettings = ViewData["ColSettings"] as DateSettings;
+}
+@DateTime.Parse(ViewData.TemplateInfo.FormattedModelValue.ToString()).ToString(colSettings.Format)

@@ -1,0 +1,17 @@
+﻿@using MedIn.OziCms.PagesSettings
+@using MedIn.Libs
+@model string
+@{
+	var column = (FilterSettings)ViewData["ColSettings"];
+	var settings = (Settings)ViewData["Settings"];
+	var curval = Request[column.FilterField];
+	var formName = "form" + column.FilterField;
+}
+	<select class="get-change filter-select" name="@column.FilterField">
+		<option value="@string.Empty">@(column.Title ?? column.Name)</option>
+		@foreach (var item in column.FilterValues.Where(entity => entity != null).OrderBy(entity => entity.ToString()))
+  {
+	  var val = TypeHelpers.GetPropertyValue(item, "Id").ToString();
+			<option value="@val"@Html.Raw(val == curval ? " selected='selected'" : string.Empty)>@item.ToString()</option>
+  }
+	</select>

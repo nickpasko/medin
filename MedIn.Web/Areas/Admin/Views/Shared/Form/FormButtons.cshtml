@@ -1,0 +1,14 @@
+﻿@using MedIn.Web
+<div class="form-save-buttons">
+    <input type="submit" id="save-button" name="_save" class="save-button" value="Сохранить" />
+    <input type="submit" id="apply-button" class="apply-button" name="_apply" value="Применить" id="_apply" />
+    <input type="hidden" name="ozi_backlink" value="@WebContext.ReturnUrl"/>
+    @if (WebContext.ReturnUrl != null)
+    {
+        <span class="form-back-link"><span class="arrow">&larr;</span><a href="@WebContext.ReturnUrl">Вернуться</a></span>
+    }
+    else
+    {
+        <span class="form-back-link"><span class="arrow">&larr;</span><a href="@Url.Action(Actions.Index)">Назад к списку</a></span>
+    }
+</div>

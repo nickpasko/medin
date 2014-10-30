@@ -1,0 +1,35 @@
+﻿<?xml version="1.0"?>
+<settings xmlns="urn:settings" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:settings Settings.xsd">
+	<list orderDesc="PublishDate">
+		<!--selectRowProperty="IsDefault"-->
+		<global>
+			<create/>
+		</global>
+
+		<actions>
+			<visibility/>
+			<edit/>
+			<delete/>
+		</actions>
+
+		<cols>
+			<string name="Teaser" title="Название"/>
+			<string name="PublishDate" title="Дата публикации" />
+		</cols>
+
+	</list>
+
+	<form>
+		<tab name="General">
+			<string name="Name" title="Название" />
+			<date name="PublishDate" title="Дата публикации" />
+			<textarea name="Teaser" title="Краткое описание новости" />
+			<wysiwyg name="Content" title="Новость целиком" />
+		</tab>
+		<tab name="Metadata">
+			<string name="MetaTitle" title="MetaTitle" />
+			<string name="MetaKeywords" title="MetaKeywords" />
+			<textarea name="MetaDescription" title="MetaDescription" />
+		</tab>
+	</form>
+</settings>

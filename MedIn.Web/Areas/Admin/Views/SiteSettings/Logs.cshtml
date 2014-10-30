@@ -1,0 +1,60 @@
+﻿@model List<MedIn.Domain.Entities.EmailLog>
+
+@{
+    var index = 0;
+}
+
+@if (Model.Any())
+{
+    <style>
+        tr.error, tr.error td.form-table-label { background: lightpink; }
+        .hidden { display: none; }
+    </style>
+
+    <table class="form-table">
+        @foreach (var item in Model)
+        {
+            index++;
+            <tr class="form-table-row @ByCondition(!item.Status, "error")">
+                <td class="form-table-label">@index</td>
+                <td class="form-table-label"><label>@item.Date</label></td>
+                <td class="form-table-label"><label>@item.From</label></td>
+                <td class="form-table-label"><label>@item.To</label></td>
+                <td class="form-table-label"><label>@item.Subject</label></td>
+                <td class="form-table-label"><a class="expander" href="javascript:void(0)" target-id="row-details-@index">Детали</a></td>
+            </tr>
+            <tr class="form-table-row hidden" id="row-details-@index">
+                <td>&nbsp;</td>
+                <td colspan="5">
+                    <p>Тема письма: @item.Subject</p>
+                    <p>Содержимое</p>
+                    <p>@item.Content</p>
+                </td>
+            </tr>
+            if (!item.Status)
+            {
+                <tr>
+                    <td colspan="5">
+                        <p>Тип ошибки: @item.Type</p>
+                        <p>Сообщение: @item.Message</p>
+                        <p>Стек</p>
+                        <p>@item.StackTrace</p>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+    <script>
+        $(function() {
+            $(".expander").click(function() {
+                var id = $(this).attr("target-id");
+                $("#" + id).toggle();
+            });
+        });
+    </script>
+}
+else
+{
+    <p>В логах нет записей</p>
+}

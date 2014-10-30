@@ -1,0 +1,12 @@
+﻿@using MedIn.OziCms.PagesSettings.Forms
+@using MedIn.Web
+@{
+    var value = ViewData.TemplateInfo.FormattedModelValue;
+    var field = (TextareaSettings)WebContext.FieldSettings;
+}
+<textarea name="@ViewData.TemplateInfo.HtmlFieldPrefix" 
+    @if(field.Disabled) { <text>disabled="disabled"</text> } 
+    @if (field.Readonly) { <text>readonly="readonly"</text> }  
+          class="ozi-textarea" 
+    @if (field.Rows != 0)
+    {<text> rows="@field.Rows" </text>} else {<text> rows="10" </text>}>@value</textarea>

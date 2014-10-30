@@ -1,0 +1,6 @@
+﻿@using MedIn.Web
+@model MedIn.OziCms.PagesSettings.Forms.StringSettings
+@{
+    var bind = string.Format("{{value: {0}, attr: {{ name: generateName() + '.{0}' }}}}", Model.Name);
+}
+<input type="text" class="ozi-string" data-bind="@Html.Raw(bind)"/>

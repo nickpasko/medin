@@ -1,0 +1,70 @@
+﻿@using MedIn.Web
+@model MedIn.Web.Areas.Admin.ViewModels.Accounts.CreateModel
+
+@{
+    ViewBag.OziPageTitle = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Main.cshtml";
+}
+
+<form action="@Url.Action("Create")" id="edit-form" method="post">
+
+    <table class="form-table">
+        <tr><th>Создание нового пользователя</th></tr>
+    </table>
+    
+    <div class="form-save-button">
+        <input type="submit" name="_save" value="Сохранить" /> <input type="submit" name="_apply" value="Применить" /> <span class="form-back-link"><span class="arrow">&larr;</span><a href="@Url.Action("Index")">Назад к списку</a></span>
+    </div>
+    
+    @Html.ValidationSummary(true)
+    
+    <table class="form-table"  id="edit-user">
+        <tr>
+            <td class="form-table-label">
+                Имя пользователя
+            </td>
+            <td class="form-table-data">
+                @Html.EditorFor(m=>m.UserName)
+                <div>@Html.ValidationMessageFor(m => m.UserName)</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="form-table-label">
+                Эл. почта
+            </td>
+            <td class="form-table-data">
+                @Html.EditorFor(m => m.Email)
+                <div>@Html.ValidationMessageFor(m => m.Email)</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="form-table-label">
+                Роль
+            </td>
+            <td class="form-table-data">
+                @Html.ListBoxFor(m=>m.UserRoles, Model.RolesSelectList)
+                <div>@Html.ValidationMessageFor(m => m.UserRoles)</div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="form-table-label">
+                Пароль
+            </td>
+            <td class="form-table-data">
+                <div class="label">Введите новый пароль</div>
+                <div>@Html.EditorFor(m => m.NewPassword)</div>
+                <div>@Html.ValidationMessageFor(m => m.NewPassword)</div>
+                
+                <div class="label">Введите новый пароль повторно</div>
+                <div>@Html.EditorFor(m => m.NewPasswordConfirm)</div>
+                <div>@Html.ValidationMessageFor(m => m.NewPasswordConfirm)</div>
+                <div>@Html.ValidationMessage("PasswordsSync")</div>
+            </td>
+        </tr>
+    </table>
+    
+    <div class="form-save-button">
+        <input type="submit" name="_save" value="Сохранить" /> <input type="submit" name="_apply" value="Применить" id="_apply" />
+    </div>
+</form>

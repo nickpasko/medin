@@ -1,0 +1,47 @@
+﻿<?xml version="1.0"?>
+<settings xmlns="urn:settings" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:settings Settings.xsd">
+	<list orderAsc="Sort" levels="true">
+		<!--selectRowProperty="IsDefault"-->
+
+		<global>
+			<create/>
+		</global>
+
+		<actions>
+			<visibility/>
+			<sort field="Sort"/>
+			<edit/>
+			<delete/>
+		</actions>
+
+		<cols>
+			<string name="Name" title="Название" levels="true"/>
+			<string name="Alias" title="Псевдоним"/>
+		</cols>
+
+	</list>
+
+	<form>
+		<tab name="General">
+			<string name="Name" title="Название" />
+			<string name="Header" title="Заголовок" />
+			<checkbox name="ShowInMenu" title="Показывать в меню" />
+			<select name="ParentId" title="Родительская страница" reference="Parent" optionTitle="Name" optionValue="Id" levels="true" localizable="true">
+				<option>Нет</option>
+			</select>
+			<wysiwyg name="Content" title="Содержание страницы" />
+		</tab>
+		<tab name="Advanced">
+			<select name="GalleryId" reference="Gallery" title="Прикреплённая галерея">
+				<option>Нет</option>
+			</select>
+			<wysiwyg name="Teaser" title="Вступительный текст" />
+		</tab>
+		<tab name="Metadata">
+			<string name="Alias" title="Псевдоним" info="Используется для генерации url" />
+			<string name="MetaTitle" title="MetaTitle" />
+			<string name="MetaKeywords" title="MetaKeywords" />
+			<textarea name="MetaDescription" title="MetaDescription" />
+		</tab>
+	</form>
+</settings>

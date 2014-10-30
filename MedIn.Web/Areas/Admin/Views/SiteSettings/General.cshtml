@@ -1,0 +1,17 @@
+﻿@model List<MedIn.Domain.Entities.SiteSetting>
+
+<form method="POST">
+    <div class="form-save-buttons"><input type="submit" class="save-button" value="Сохранить"></div>
+
+    <table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="vertical-align:middle; padding:3px 0;">@Html.LabelFor(m => item.Name, item.Title ?? item.Name)</td>
+                <td>@Html.EditorFor(m => item.Value, null, item.Name)</td>
+            </tr>
+        }
+    </table>
+
+    <div class="form-save-buttons"><input type="submit" class="save-button" value="Сохранить"></div>
+</form>

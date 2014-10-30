@@ -1,0 +1,14 @@
+﻿@using MedIn.OziCms.PagesSettings.Forms
+@using MedIn.Web
+
+@model UploadFileSettings
+
+@{
+    var bind = string.Format("{{visible: show{0}panel, attr: {{ id: generateId() + '_{0}', 'data-parentid': ItemId, 'data-modelid': ModelId }}}}", Model.Name);
+}
+
+<div>
+    <img data-bind="{visible: show@(Model.Name)img, attr: { src: @(Model.Name), width: '@(Model.Size)' }}"/>
+    <span data-bind="{visible: show@(Model.Name)text, text: 'Для начала сохраните объект' }"></span>
+    <div data-url="@Url.Action(Actions.UploadFileCollectionItem)" data-path="@Model.GetFullPropertyName()" data-bind="@Html.Raw(bind)"></div>
+</div>

@@ -1,0 +1,47 @@
+﻿@{
+    IEnumerable<SubscriptionGroup> groups = WebContext.ViewBag.Groups;
+}
+
+@foreach (var item in groups)
+{
+    <div class="subscription-group" data-id="@item.Id">
+        @Lp.GetMessage(item.Name)
+    </div>
+}
+
+<style>
+    .subscription-group { display: inline-block;padding: 10px;margin: 10px;border-radius: 4px;border: 1px dotted lightblue;}
+    .subscription-group:hover { background: lightblue;cursor: pointer; }
+    .subscription-group.active { background: lightsteelblue; }
+    .subscription-group.active:hover { background: lightskyblue; }
+</style>
+
+<script>
+
+    var groups = [];
+    @foreach (var item in groups)
+    {
+        @:groups[@(item.Id)] = [];
+        foreach (var s in item.SubscribtionsTypes)
+        {
+            @:groups[@(item.Id)].push(@(s.Id));
+        }
+    }
+
+    var updateSubscriptions = function() {
+        var active = [];
+        $(".subscription-group.active").each(function() {
+            var id = $(this).data("id");
+            active = active.concat(groups[id]);
+        });
+        $("select[name=SubscribtionsTypes]").val(active);
+    };
+
+    $(function() {
+        $(".subscription-group").on("click", function() {
+            var $this = $(this);
+            $this.toggleClass("active");
+            updateSubscriptions();
+        });
+    });
+</script>

@@ -1,0 +1,79 @@
+﻿@using System.Collections
+@using MedIn.OziCms.PagesSettings.Forms
+@using MedIn.Web
+@using MedIn.Db.Entities
+@{
+    var field = (UploadFileSettings)WebContext.FieldSettings;
+    //var propertyValue = TypeHelpers.GetPropertyValue(Model, fieldSettings.Name);
+    var propertyValue = Model;
+    var isCreate = WebContext.IsCreate;
+}
+
+@if (isCreate)
+{
+    <div>
+        Необходимо сначала сохранить объект
+    </div> 
+}
+else
+{
+    <div id="@(field.GetFullPropertyId())-files-container">
+        <ul id="@(field.GetFullPropertyId())-list" data-bind="sortable: { data: files, afterMove: saveList }">
+            <li class="file-list-item">
+                <div class="fl">
+                    @if (field.IsImage)
+                    {
+                        <img data-bind="attr: { src: Url }" @ByCondition(field.Size != 0, string.Format("width=\"{0}\"", field.Size))/>
+                    }
+                    else
+                    {
+                        <a data-bind="{attr: {href: Url}, text: SourceName}"></a>
+                    }
+                </div>
+                <div class="fl">
+
+                    @if (field.IsImage)
+                    {
+                        <div class="row"><label>Альтернативный текст</label><input type="text" data-bind="value: Alt" /></div>
+                    }
+                    @if (field.ShowTitle) { <div class="row"><label>Подпись</label><textarea rows="5" style="width: 90%;" data-bind="value: Title"></textarea></div> }
+                    @if (field.ShowDescription) { <div class="row"><label>Описание</label><textarea rows="5" style="width: 90%;" data-bind="value: Description"></textarea></div> }
+                    @if (field.Visibility) { <div class="row"><label>Видимый</label><input type="checkbox" data-bind="checked: Visibility"/></div> }
+                    <div class="row"><button class="delete">удалить</button></div>
+                </div>        
+
+                    
+
+            </li>
+        </ul>
+    </div>
+    <div class="upload-panel" data-single="@Html.Raw(propertyValue is IEnumerable ? "false" : "true")" data-url="@Url.Action(Actions.UploadFile)" data-save-url="@Url.Action(Actions.SaveFileData)" data-delete-url="@Url.Action(Actions.DeleteFile)" data-name="@field.GetFullPropertyId()" data-id="@WebContext.Model.Id"></div>
+
+    <script>
+
+        files["@(field.GetFullPropertyId())_array"] = { files: ko.observableArray([]), saveList: function() {
+            saveOrder("@(field.GetFullPropertyId())_array", "@(Url.Action(Actions.SaveOrder))", @(WebContext.Model.Id), "@(field.GetFullPropertyId())", "@(field.Name)");
+        }};
+
+        @if (propertyValue is IEnumerable)
+        {
+            foreach (var item in ((IEnumerable<IFileEntity>) propertyValue).OrderBy(entity => entity.Sort))
+            {
+                @RenderScript(field, item)
+            }
+        }
+        else if (propertyValue != null)
+        {
+            @RenderScript(field, (IFileEntity) propertyValue)
+        }
+
+        ko.applyBindings(files["@(field.GetFullPropertyId())_array"], $("#@(field.GetFullPropertyId())-files-container").get(0));
+
+    </script>
+}
+@helper RenderScript(UploadFileSettings upload, IFileEntity file)
+{
+    <text>
+        files["@(upload.Name)_array"].files.push(new FileItem({ Id: @file.Id, Url: "@(Url.Content(file.Name))", SourceName: "@file.SourceName", Alt: "@file.Alt", Title: "@file.Title", Description: "@file.Description", Date: "@file.Date", Visibility: @file.Visibility.ToString().ToLower() }));
+    </text>
+}

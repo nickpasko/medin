@@ -1,0 +1,15 @@
+﻿@model SelectSettings
+@using MedIn.OziCms.PagesSettings.Forms
+@using MedIn.Web
+
+@if (!Model.Editable)
+{
+    var b = string.Format("{{value: {0}, options: available{0}, optionsText: 'label', optionsValue: 'value', attr: {{ name: generateName() + '.{0}' }}}}", Model.Name);
+    <select data-bind="@Html.Raw(b)"></select>
+}
+else
+{
+    var b = string.Format("{{value: current{1}, attr: {{ id: generateId() + '_{0}', name: generateName() + '.{2}.{0}', 'data-hiddenid': generateId() + '_{3}' }}}}", Model.OptionTitle, Model.Name, Model.Reference, Model.OptionValue);
+    <input type="hidden" data-bind="@Html.Raw(string.Format("{{value: {1}, attr: {{id: generateId()  + '_{0}', name: generateName() + '.{2}.{0}'}}}}", Model.OptionValue, Model.Name, Model.Reference))" />
+    <input class="autocomplete ozi-string" data-sourcename="@(Model.GetFullPropertyName().Replace(".", "_"))" type="text" data-bind="@Html.Raw(b)" />
+}

@@ -1,0 +1,22 @@
+﻿@using MedIn.Web
+@{
+    var fieldSettings = WebContext.FieldSettings;
+    var id = fieldSettings.Name;
+    
+    string value = (Model != null) ? (Model != DateTime.MinValue) ? Model.ToString("dd.MM.yyyy HH:mm") : DateTime.Now.ToString("dd.MM.yyyy HH:mm") : "";
+}
+
+<input type="text" id="@id" value="@value" name="@ViewData.TemplateInfo.HtmlFieldPrefix" 
+    @if (fieldSettings.Disabled)
+    {
+        <text>disabled="disabled"</text>
+    } 
+    @if (fieldSettings.Readonly)
+    {
+        <text>readonly="readonly"</text>
+    }/>
+<script>
+    $.datepicker.setDefaults($.datepicker.regional['ru']);
+    $.timepicker.setDefaults($.timepicker.regional['ru']);
+    $("#@id").datetimepicker();
+</script>

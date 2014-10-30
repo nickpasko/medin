@@ -1,0 +1,58 @@
+﻿@using MedIn.Web
+@model MembershipUserCollection
+
+@{
+	ViewBag.OziPageTitle = "OziCms.cms — список пользователей";
+    Layout = "~/Areas/Admin/Views/Shared/_Main.cshtml";
+}
+
+<div class="global-actions">
+    <a class="global-action create" href="@Url.Action("Create")">Добавить объект</a>
+    @*@{Html.RenderPartial("GlobalActions/Create");}*@
+</div>
+
+<form action="" id="list-form" method="post">
+    <table class="list-table">
+        <colgroup>
+            <col width="24" />
+            <col width="" />
+            <col width="24" />
+            <col width="24" />
+        </colgroup>
+            
+        <th>№</th>
+        <th>Имя пользователя</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+
+        @{int number = 0;}
+
+        @foreach (MembershipUser user in Model)
+        {
+			var action = Url.Action("Edit", new { providerUserKey = user.ProviderUserKey });
+            <tr>
+                <td class="number">@(++number)</td>
+                <td @Html.Raw(string.Format("target=\"{0}\"", action))>
+                    @user.UserName
+                </td>
+
+                <td class="list-action">
+                    <a class="list-action" href="@action"><img src="/Areas/Admin/Images/Default/edit.png" alt="Редактировать" /></a>   
+                </td> 
+                <td class="list-action">
+                    @if (!Roles.GetRolesForUser(user.UserName).Contains("SuperAdmin"))
+                    {
+                        <a class="list-action" onclick="if(!confirm('Удалить пользователя?')) return false;" href="@Url.Action("Delete", new { providerUserKey = user.ProviderUserKey })"><img src="/Areas/Admin/Images/Default/delete.png" alt="Удалить" /></a>
+                    }
+                </td> 
+                
+            </tr>
+        }
+
+        @if(Model.Count == 0)
+        {
+            <tr><td colspan="4">Список пуст</td></tr>
+        }
+    </table>
+</form>
+

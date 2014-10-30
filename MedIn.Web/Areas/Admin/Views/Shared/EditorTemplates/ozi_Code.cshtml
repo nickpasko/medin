@@ -1,0 +1,25 @@
+﻿@using MedIn.OziCms.PagesSettings.Forms
+@{ 
+    var fieldSettings = (CodeSettings)WebContext.FieldSettings;
+    var path = string.Format("{0}/{1}/{2}.js", "~/Areas/Admin/Scripts/Default/CodeMirror/mode", fieldSettings.Type, fieldSettings.Type);
+}
+<script src="@Url.Content("~/Areas/Admin/Scripts/Default/CodeMirror/lib/codemirror.js")"></script>
+<link rel="stylesheet" href="@Url.Content("~/Areas/Admin/Scripts/Default/CodeMirror/lib/codemirror.css")">
+<script src="@Url.Content("~/Areas/Admin/Scripts/Default/CodeMirror/mode/javascript/javascript.js")"></script>
+<script src="@Url.Content(path)"></script>
+<style>
+    .CodeMirror {
+        border-radius: 6px;
+    }
+</style>
+<textarea id="@ViewData.TemplateInfo.HtmlFieldPrefix" name="@ViewData.TemplateInfo.HtmlFieldPrefix">@ViewData.TemplateInfo.FormattedModelValue</textarea>
+<script type="text/javascript">
+    CodeMirror.fromTextArea(document.getElementById("@(ViewData.TemplateInfo.HtmlFieldPrefix)"), {
+        value: "@(ViewData.TemplateInfo.FormattedModelValue.ToString().Replace("\"", "\\\"").Replace("\n", "").Replace("\r", "\\\r"))",
+        mode: { name: "@(fieldSettings.Type)", alignCDATA: true },
+        lineNumbers: true,
+        tabSize: 4,
+        matchBrakets: true
+    });
+
+</script>
