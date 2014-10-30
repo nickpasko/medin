@@ -1,0 +1,8 @@
+﻿
+@helper Stars(int count)
+{
+    if (count > 0)
+    {
+        <i style="color:red;">@string.Empty.PadLeft(count, '*')</i>
+    }
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e033d610531d47619952ec99daa99bfe" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="DataModel.Application" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DataModel.Article" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="DataModel.EmailLog" Width="1.5" PointX="7.75" PointY="0.875" />
+        <EntityTypeShape EntityType="DataModel.File" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="DataModel.Gallery" Width="1.5" PointX="5.25" PointY="6.25" />
+        <EntityTypeShape EntityType="DataModel.Location" Width="1.5" PointX="7.5" PointY="5.75" />
+        <EntityTypeShape EntityType="DataModel.News" Width="1.5" PointX="9.75" PointY="0.875" />
+        <EntityTypeShape EntityType="DataModel.Profile" Width="1.5" PointX="5.25" PointY="2.5" />
+        <EntityTypeShape EntityType="DataModel.Question" Width="1.5" PointX="9.75" PointY="4.875" />
+        <EntityTypeShape EntityType="DataModel.SiteSetting" Width="1.5" PointX="9.75" PointY="8.875" />
+        <EntityTypeShape EntityType="DataModel.UserEntity" Width="1.5" PointX="3" PointY="2.875" />
+        <AssociationConnector Association="DataModel.UserApplication" />
+        <AssociationConnector Association="DataModel.FK_Articles_Files" />
+        <AssociationConnector Association="DataModel.FK_Users_Files" />
+        <AssociationConnector Association="DataModel.FK_Locations_Galleries" />
+        <AssociationConnector Association="DataModel.FK_Locations_Locations" />
+        <AssociationConnector Association="DataModel.UserProfile" />
+        <AssociationConnector Association="DataModel.ArticleGalleries" />
+        <AssociationConnector Association="DataModel.GalleryFiles" />
+        <EntityTypeShape EntityType="DataModel.Membership" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="DataModel.Role" Width="1.5" PointX="3" PointY="4.25" />
+        <AssociationConnector Association="DataModel.MembershipApplication" />
+        <AssociationConnector Association="DataModel.RoleApplication" />
+        <AssociationConnector Association="DataModel.MembershipUser" />
+        <AssociationConnector Association="DataModel.UsersInRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
