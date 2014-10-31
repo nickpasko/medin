@@ -1,0 +1,14 @@
+﻿@model MedIn.Domain.Entities.File
+
+<div class="image">
+    <a class="lightbox" title="@Model.Title" rel="showtime" href="@Url.Content(Model.Name)">
+        <img src="@Url.Image(Model.Name, "height=158", "mode=max")" alt="@Model.Alt" />
+    </a>
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <div class="desc">
+			@Html.Raw(Model.Title)
+        </div>
+    }
+</div>
+

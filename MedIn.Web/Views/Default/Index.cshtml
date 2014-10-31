@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "title";
+    Layout = MVC.Shared.Views._Layout;
+    ViewBag.PageContentId = "main-page-content";
+    ViewBag.HomePage = true;
+}
+@{ Html.RenderAction(MVC.Default.NewsBlock()); }
+
+@section head{
+    <link href="~/Styles/CustomDefault.css" rel="stylesheet" media="screen" />
+    <link href="~/Styles/rcarousel.css" rel="stylesheet" media="screen" />
+}
+@section scripts{
+    <script defer="defer" src="~/Scripts/jquery-ui-1.11.1.js"></script>
+    <script defer="defer" src="~/Scripts/jquery.ui.core.min.js"></script>
+    <script defer="defer" src="~/Scripts/jquery.ui.widget.min.js"></script>
+    <script defer="defer" src="~/Scripts/jquery.ui.rcarousel.min.js"></script>
+    <script defer="defer" src="~/Scripts/ResponciveSlides.js"></script>
+}

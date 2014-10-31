@@ -1,0 +1,26 @@
+﻿@using MedIn.Libs
+@model MedIn.OziCms.ViewModels.PagerViewModel
+
+@if (Model.PageCount > 1)
+{
+	<div class="pager">
+        <div class="label">Страницы:</div>
+		<div class="nums">
+        @for (var i = 1; i <= Model.PageCount; i++)
+        {
+			
+		    if (i == Model.Page) {<span>@i</span>}
+            else
+		    {
+		        var urlString = Url.ActionAbsolute(Model.Action(i));
+		        var uri = new Uri(urlString);
+		        foreach (string key in Request.QueryString.Keys)
+		        {
+    		        uri = uri.SetParameterIfDoesntExists(key, Request[key]);
+		        }
+                <a href="@uri">@i</a>
+            }
+        }
+        </div>
+	</div>
+}

@@ -1,0 +1,17 @@
+﻿@model MedIn.Web.Models.LogInViewModel
+
+
+@Html.LabelFor(x => x.LogIn,L("LogIn"))
+<div>
+@Html.EditorFor(x=>x.LogIn)
+@Html.ValidationMessageFor(x=>x.LogIn)
+</div>
+@Html.LabelFor(x => x.Password,L("Password"))
+<div>
+@Html.PasswordFor(x=>x.Password)
+@Html.ValidationMessageFor(x=>x.Password)
+</div>
+<div class="checkbox">
+@Html.EditorFor(x=>x.Remember)
+@Html.LabelFor(x => x.Remember,L("Remember"))
+</div>

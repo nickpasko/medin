@@ -1,0 +1,14 @@
+﻿.customInputFile {
+    overflow:hidden;position:absolute;right:284px;top:0;text-align:center;cursor:pointer;
+    font:12px Arial;color:#c33e3e;text-decoration:underline;border:none;outline:none;
+    background:url(/Content/i/themes/custom/images/gray_button.png) 0 0 no-repeat;width:135px;
+    height:33px;cursor:pointer;font:12px/28px Arial;color:#2d2d2d;text-decoration:none;
+}
+#edit-submitted-prikrepit-foto-upload-button:hover{}#edit-submitted-prikrepit-foto-upload-button:active {
+                                                        background-position:0 -66px;
+                                                    }
+#edit-submitted-prikrepit-foto{position:relative;}
+#webform-client-form-13 #edit-submitted-prikrepit-foto-ajax-wrapper label{display:none !important;}
+#edit-submitted-prikrepit-foto-ajax-wrapper{height:33px;width:100%;clear:both;}
+#edit-submitted-prikrepit-foto-ajax-wrapper .form-item{margin-bottom:0}
+#file-label{background:url(/Content/i/themes/custom/images/file.png) 0 0 repeat-x;height:24px;border:none;padding:0 10px;width:223px;padding-top:6px;outline:none !important;font:italic 12px Arial;color:#7D7D7D;position:absolute;left:10px;top:0;}.customInputFile:hover{cursor:pointer;}.customInputFileName{padding:2px;display:none;cursor:pointer;}.customInputFileHover{background:url(/Content/i/themes/custom/images/gray_button.png) 0 -33px no-repeat;cursor:pointer;}.customInputFileActive{background-position:0 -33px;cursor:pointer;}.customInputFileActive.customInputFileHover{background:url(/Content/i/themes/custom/images/gray_button.png) 0 -33px no-repeat;cursor:pointer;}input[type="file"]{font-size:4px;cursor:pointer;}input[type="file"]:hover{cursor:pointer;}.customInputFileWrapper{cursor:pointer !important;}#edit-submitted-prikrepit-foto{cursor:pointer !important;}#edit-submitted-prikrepit-foto-upload{cursor:pointer !important;}

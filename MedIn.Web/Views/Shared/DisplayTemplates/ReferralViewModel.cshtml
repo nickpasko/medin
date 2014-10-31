@@ -1,0 +1,129 @@
+﻿@model ReferralViewModel
+
+<div id="ref" style="border: 1px solid #000; padding: 1em 0; font-family: Arial; font-size: 13px;">
+    <div id="ref-c" style="margin: 0 1em;">
+        <table style="border: 0; margin: 0; padding: 0; width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="vertical-align: top; width: 220px; border-collapse: collapse;">
+                    <img src="http://www.3d-lab.ru/i/logo-ref.jpg" style="vertical-align: middle; margin: 0 10px 0 0;"></td>
+                <td style="vertical-align: top; border-collapse: collapse;">
+                    <h2 style="font-size: 18px; color: #0075AB; margin: 0 0 11px 0;">Направление на рентгенологическое исследование</h2>
+                    <div class="item">
+                        <table style="width: 100%">
+                            <tr>
+                                <td style="white-space: nowrap; padding-right: 10px;">ФИО пациента:</td>
+                                <td style="border-bottom: 1px solid #000; width: 100%; font-weight: bold;">@Model.PatientName</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="item">
+                        <table style="width: 100%">
+                            <tr>
+                                <td style="white-space: nowrap; padding-right: 10px;">Контактный телефон:</td>
+                                <td style="border-bottom: 1px solid #000; width: 100%; font-weight: bold;">@Model.DoctorPhone</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="item">
+                        <table style="width: 100%">
+                            <tr>
+                                <td style="white-space: nowrap; padding-right: 10px;">Врач:</td>
+                                <td style="border-bottom: 1px solid #000; width: 100%; font-weight: bold;">@Model.DoctorName</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="item">
+                        <table style="width: 100%">
+                            <tr>
+                                <td style="white-space: nowrap; padding-right: 10px;">Клиника:</td>
+                                <td style="border-bottom: 1px solid #000; width: 100%; font-weight: bold;">@Model.ClinicName</td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <h3 style="font-size: 14px; color: #0075AB; font-weight: bold; margin: 0 0 11px 0;">Область интереса</h3>
+        <table style="width: 90%; border: 0; margin: 22px auto; border-collapse: collapse;">
+            <tr>
+                <td style="border-bottom: 1px solid #000; border-right: 1px solid #000; width: 50%; text-align: center; font-size: 22px; padding: 4px; border-collapse: collapse;">
+                    @V("areatl", new { separator = false, frame = true, showInput = false })
+                </td>
+                <td style="border-bottom: 1px solid #000; width: 50%; text-align: center; font-size: 22px; padding: 4px; border-collapse: collapse;">
+                    @V("areatr", new { separator = false, frame = true, showInput = false })
+                </td>
+            </tr>
+            <tr>
+                <td style="border-right: 1px solid #000; width: 50%; text-align: center; font-size: 22px; padding: 4px; border-collapse: collapse;">
+                    @V("areabl", new { separator = false, frame = true, showInput = false })
+                </td>
+                <td style="border: 0; width: 50%; text-align: center; font-size: 22px; padding: 4px; border-collapse: collapse;">
+                    @V("areabr", new { separator = false, frame = true, showInput = false })
+                </td>
+            </tr>
+        </table>
+        @{ var val = Model.Value("catarsis").GetValue(); }
+        @if (!string.IsNullOrEmpty(val))
+        {
+            <h3 style="font-size: 14px; color: #0075AB; font-weight: bold; margin: 0 0 11px 0;">Цель исследования, комментарии врача</h3>
+            @V("catarsis")
+        }
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="vertical-align: top; padding-right: 20px; width: 50%; border-collapse: collapse;">
+                    <h3 style="font-size: 14px; color: #0075AB; font-weight: bold; margin: 0 0 11px 0;">Конусно-лучевая томография челюстно-лицевой области</h3>
+                    @V("Endodontia", new { Stars = 2 })
+                    @V("impl")
+                    @V("pazuhi", new { ChildStars = new[] { 0, 1 } })
+                    @V("retencia")
+                    @V("vnchs", new { ChildStars = new[] { 0, 0, 1 } })
+                    @V("visok", new { Stars = 2 })
+                    @V("scull", new { Stars = 1 })
+                    @V("rentgen")
+                    @V("klktother")
+                </td>
+                <td style="vertical-align: top; border-collapse: collapse;">
+                    <h3 style="font-size: 14px; color: #0075AB; font-weight: bold; margin: 0 0 11px 0;">Цифровая рентгенография</h3>
+                    @V("optg")
+                    @V("trg")
+                    @V("counttrg")
+                    @V("counttrgother")
+                    @V("vnchsline")
+                </td>
+            </tr>
+        </table>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="vertical-align: top; padding-right: 20px; width: 50%;">
+                        <h3 style="font-size: 14px; color: #0075AB; font-weight: bold; margin: 22px 0 11px 0;">Визуализация и планирование</h3>
+                        @V("3dphoto", new { showInput = false, ChildStars = new[] { 1, 1, 1 } })
+                    </td>
+                    <td style="vertical-align: top;">
+                        <h3 style="font-size: 14px; color: #0075AB; font-weight: bold; margin: 22px 0 11px 0;">Дополнительные условия</h3>
+                        @V("withoutprocessing")
+                        @V("printontape") @V("printscale")
+                        @V("burntocd")
+                        @V("sendtoemail")
+                        @V("convertfiles")
+                        @V("stlmodel")
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="color: red">* — <em class="red">только в лаборатории на Марксистской</em></p>
+        <p style="color: red">** — <em class="red">только в лаборатории на Кропоткинской</em></p>
+        @{
+            Model.FillLaboratoriesAndTotalCoast();
+        }
+        <div class="serviceCalc" id="ResultCalc">
+            <p><strong>@L("TotalCost")<span id="AnimatedResult" >@Model.Price</span> р.</strong></p>
+        </div>
+    </div>
+</div>
+
+
+<div style="font-family: Arial; font-size: 14px; margin: 22px 0;">
+    <h3 style="font-family: Arial; font-size: 18px;">Телефон (многоканальный): +7 (499) 584-44-84</h3>
+    <h3 style="font-family: Arial; font-size: 18px;">http://www.3d-lab.ru</h3>
+</div>

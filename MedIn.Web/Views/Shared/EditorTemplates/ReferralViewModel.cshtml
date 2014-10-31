@@ -1,0 +1,283 @@
+﻿@model ReferralViewModel
+
+<div id="refferal">
+    <h2>Форма направления на исследование</h2>
+    <a class="clear-form">Очистить форму</a>
+    <div>
+        <label class="field">ФИО пациента</label>
+        <input type="text" class="text" name="PatientName"/>
+        <input type="checkbox" name="less14" id="old" /><label class="field" for="old">до 14 лет</label>
+    </div>
+    <div>
+        @if (User.Identity.IsAuthenticated && Model.Clinics != null && Model.Clinics.Any())
+        {
+            <label class="field">Клиника</label>
+            @Html.DropDownListFor(model => model.ClinicId, Model.Clinics.Select(clinic => new SelectListItem { Text = clinic.Name, Value = clinic.Id.ToString() }), new { @class = "select" })
+        }
+    </div>
+    <div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <label class="field">Добавить клинику</label>
+        }
+        else
+        {
+            <label class="field">Клиника</label>
+        }
+        <input type="text" class="text" name="ClinicName"/>
+    </div>
+    <div>
+        <label class="field">Контактный телефон</label>
+        <input type="text" class="text" name="DoctorPhone" value="@Model.DoctorPhone"/>
+    </div>
+    <div>
+        <label class="field">Врач</label>
+        <input type="text" class="text" name="DoctorName" value="@Model.DoctorName"/>
+    </div>
+
+    <div>
+        <label class="field">Лаборатория</label>
+        <select name="labname" id="labname" class="select">
+            <option value="">Выберите лабораторию</option>
+            <option value="marks">на Марксистской</option>
+            <option value="mayak">на Маяковской</option>
+            <option value="suhar">на Сухаревской</option>
+            <option value="kropt">на Кропоткинской</option>
+            <option value="octob">на Октябрьской</option>
+        </select>
+    </div>
+
+    <h3>Цифровая рентгенография</h3>
+    <div class="d-item">
+        <input class="chkbx" type="checkbox" name="optg" id="optg"><label for="optg"><strong>ОПТГ</strong></label>
+    </div>
+    <div class="d-item">
+        <strong>ТРГ:</strong><span>&nbsp;</span>
+        <input class="chkbx" type="checkbox" name="TRG_side" id="TRGside"><label for="TRGside">Боковая</label>
+        <span>|</span>
+        <input class="chkbx" type="checkbox" name="TRG_front" id="TRGfront"><label for="TRGfront">Прямая</label>
+    </div>
+    <div class="d-item">
+        <strong>Расчёт ТРГ:</strong><span>&nbsp;</span>
+        <input class="chkbx" type="checkbox" name="CountTRG_Ricketts" id="CountTRGRicketts"><label for="CountTRGRicketts">Ricketts</label>
+        <span>|</span>
+        <input class="chkbx" type="checkbox" name="CountTRG_McNamara" id="CountTRGMcNamara"><label for="CountTRGMcNamara">McNamara</label>
+        <span>|</span>
+        <input class="chkbx" type="checkbox" name="CountTRG_Jarabak" id="CountTRGJarabak"><label for="CountTRGJarabak">Jarabak</label>
+        <br />
+        <label for="CountTRGOther">Другое</label><input value="" class="text" type="text" name="CountTRGOther" id="CountTRGOther">
+    </div>
+    
+    <h3>Конусно-лучевая компьютерная томография (КЛКТ)</h3>
+    <div class="d-item">
+        <input class="chkbx" type="checkbox" name="endodontia" id="Endodontia" data-toggle-panel="#endodontia-panel">
+        <label for="Endodontia"><strong>Эндодонтия</strong></label><i class="mark">**</i>
+        <div id="endodontia-panel" style="display:none;">
+            <div class="d-item">
+                <input data-hide-panel="#endo_teeth_panel" class="chkbx" type="radio" name="endo_WithoutProcessing" id="endoWithoutProcessing"><label for="endoWithoutProcessing"><strong>Без обработки исследования (только CD/DVD)</strong></label>
+            </div>
+            <div class="d-item">
+                <input data-show-panel="#endo_teeth_panel" class="chkbx" checked="checked" type="radio" name="endo_WithoutProcessing" id="endoPrintOnTape"><label for="endoPrintOnTape"><strong>Печать на плёнке, масштаб 1:1</strong></label>
+                <label for="endoPrintScale">или</label><input value="" class="text" type="text" name="endo_PrintScale" id="endoPrintScale">
+            </div>
+            <div id="endo_teeth_panel">
+                @RenderTeethArea("endodontia")
+            </div>
+            <div id="endo_hires">
+                <input class="chkbx" checked="checked" type="checkbox" name="endodontia_hires" id="Endodontia_hires">
+                <label for="Endodontia_hires"><strong>Высокое качество</strong></label><i class="mark">**</i>
+            </div>
+            <div id="endo_repeated_panel">
+                <input class="chkbx" type="checkbox" name="endo_repeated" id="endo_repeated">
+                <label for="endo_repeated"><strong>Повторное исследование</strong></label>
+            </div>
+        </div>
+    </div>
+    <div class="d-item">
+        <strong>
+            <input class="chkbx" type="checkbox" name="impl" id="impl" data-toggle-panel="#impl-panel"><label for="impl">Дентальная имплантация</label>
+        </strong>
+        <span>|</span>
+        <strong>
+            <input class="chkbx" type="checkbox" name="augmentation" id="augmentation" data-toggle-panel="#impl-panel"><label for="augmentation">Аугментация</label>
+        </strong>
+        <div id="impl-panel" style="display:none;">
+            <div class="d-item">
+                <input data-hide-panel="#impl_teeth_panel" class="chkbx" type="radio" name="impl_WithoutProcessing" id="implWithoutProcessing"><label for="implWithoutProcessing"><strong>Без обработки исследования (только CD/DVD)</strong></label>
+            </div>
+            <div class="d-item">
+                <input data-show-panel="#impl_teeth_panel" class="chkbx" checked="checked" type="radio" name="impl_WithoutProcessing" id="implPrintOnTape"><label for="implPrintOnTape"><strong>Печать на плёнке, масштаб 1:1</strong></label>
+                <label for="implPrintScale">или</label><input value="" class="text" type="text" name="implPrintScale" id="implPrintScale">
+            </div>
+            <div id="impl_teeth_panel">
+                @RenderTeethArea("impl")
+            </div>
+            <input class="chkbx" type="checkbox" name="rentgen" id="rentgen"><label for="rentgen"><strong>С рентегенологическим шаблоном</strong></label>
+            <div id="impl_hires_panel">
+                <input class="chkbx" checked="checked" type="checkbox" name="impl_hires" id="impl_hires">
+                <label for="impl_hires"><strong>Высокое качество</strong></label><i class="mark">**</i>
+            </div>
+            <div id="impl_repeated_panel">
+                <input class="chkbx" type="checkbox" name="impl_repeated" id="impl_repeated">
+                <label for="impl_repeated"><strong>Повторное исследование</strong></label>
+            </div>
+        </div>
+    </div>
+    <div class="d-item">
+        <strong>
+            <input class="chkbx" type="checkbox" name="retencia" id="retencia" data-toggle-panel="#retencia-panel"><label for="retencia">Ретенция</label>
+        </strong>
+        <span>|</span>
+        <strong>
+            <input class="chkbx" type="checkbox" name="distopia" id="distopia" data-toggle-panel="#retencia-panel"><label for="distopia">Дистопия</label>
+        </strong>
+        <div id="retencia-panel" style="display:none;">
+            @RenderTeethArea("retencia")
+        </div>
+
+    </div>
+
+    <div class="d-item">
+        <strong>Околоносовые пазухи:</strong><span>&nbsp;</span>
+        <input class="chkbx" type="checkbox" name="pazuhi_up" id="pazuhiUp"><label for="pazuhiUp">Верхнечелюстные</label>
+        <div id="pazuhi_whole_wrap" style="display:inline;">
+            <span>|</span>
+            <input class="chkbx" type="checkbox" name="pazuhi_whole" id="pazuhiWhole"><label for="pazuhiWhole">Полностью</label>
+            <i class="mark">*</i>
+        </div>
+    </div>
+    
+    <div class="d-item" id="vnchs_wrap">
+        <strong>ВНЧС:</strong><span>&nbsp;</span>
+        <input class="chkbx" type="checkbox" name="VNCHSopen" id="VNCHSopen"><label for="VNCHSopen">Откр.</label>
+        <span>|</span>
+        <input class="chkbx" type="checkbox" name="VNCHSclosed" id="VNCHSclosed"><label for="VNCHSclosed">Закр.</label>
+        <div id="splint_wrap" style="display:inline;">
+            <span>|</span>
+            <input class="chkbx" type="checkbox" name="VNCHSSplint" id="VNCHSsplint"><label for="VNCHSsplint">Сплинт (Включая плоскость окклюзии)</label>
+            <i class="mark">*</i>
+        </div>
+    </div>
+    
+    <div class="d-item" id="visok_wrap">
+        <strong>Височная кость<i class="mark">**</i>:</strong><span>&nbsp;</span>
+        <input class="chkbx" type="checkbox" name="visok_right" id="visokRight"><label for="visokRight">Правая</label>
+        <span>|</span>
+        <input class="chkbx" type="checkbox" name="visok_left" id="visokLeft"><label for="visokLeft">Левая</label>
+        <br/>
+        <input class="chkbx" type="checkbox" name="doctor_conclusion" id="doctor_conclusion"><label for="doctor_conclusion">Заключение врача + печать на пленке</label>
+    </div>
+    <div class="d-item" id="scull-wrap-23x26">
+        <input class="chkbx" type="checkbox" name="scull-23x26" id="scull-23x26"><label for="scull-23x26"><strong>Череп (объем сканирования до 23 х 26 см)</strong></label>
+        <i class="mark">*</i>
+    </div>
+    <div class="d-item" id="scull-wrap-17x22">
+        <input class="chkbx" type="checkbox" name="scull-17x22" id="scull-17x22"><label for="scull-17x22"><strong>Череп (объем сканирования до 17 х 22 см)</strong></label>
+        <i class="mark">**</i>
+    </div>
+    <div id="threeD-wrap">
+        <h3>Визуализация и планирование</h3>
+        <div class="d-item">
+            <input class="chkbx" type="checkbox" name="_3dPhoto_3Dphoto" id="3dPhoto3Dphoto"><label for="3dPhoto3Dphoto">3D фотография</label>
+            <i class="mark">*</i>
+            <span>|</span>
+            <input class="chkbx" type="checkbox" name="_3dPhoto_3Dplan" id="3dPhoto3Dplan"><label for="3dPhoto3Dplan">3D планирование</label>
+            <i class="mark">*</i>
+            <span>|</span>
+            <input class="chkbx" type="checkbox" name="_3dPhoto_3Dcefalometria" id="3dPhoto3Dcefalometria"><label for="3dPhoto3Dcefalometria">3D цефалометрия</label>
+            <i class="mark">*</i>
+        </div>
+    </div>
+    <h3>Комментарии врача</h3>
+    <div class="d-item">
+        <textarea name="catarsis"></textarea>
+    </div>
+    <div id="otherConditions" style="display: none;">
+        <h3>Дополнительные условия</h3>
+        <div class="d-item">
+            <label for="SendToEmail">Выслать на e-mail</label><input data-role="other" value="" class="text" type="text" name="SendToEmail" id="SendToEmail" data-ref-checkbox="sharefiles">
+        </div>
+        <div class="d-item">
+            <input class="chkbx" type="checkbox" name="sharefiles" data-role="other" id="sharefiles"><label for="sharefiles"><strong>Загрузка на файловое хранилище</strong></label>
+        </div>
+        <div class="d-item">
+            <input class="chkbx" data-role="other" type="checkbox" name="ConvertFiles" id="ConvertFiles"><label for="ConvertFiles"><strong>Конвертация файлов (.DCIM посрезово / .DICOMDIR)</strong></label>
+        </div>
+        <div class="d-item">
+            <input class="chkbx" data-role="other" type="checkbox" id="STLModel_checkbox">
+            <label for="STLModel"><strong>STL модель</strong></label>
+            <input class="text" data-role="other" type="text" value="" name="STLModel" id="STLModel" data-ref-checkbox="STLModel_checkbox">
+        </div>
+    </div>
+    <p class="red">* — <em class="red">только в лаборатории на Марксистской</em></p>
+    <p class="red">** — <em class="red">только в лаборатории на Кропоткинской и Октябрьской</em></p>
+    <div class="serviceCalc" id="ResultCalc">
+        <p><strong>Общая стоимость услуг<span id="cost"></span> руб.</strong></p>
+    </div>
+    <input type="hidden" name="Price" value="0"/>
+
+    <div><input type="submit" value="Просмотреть и отправить" name="view" class="button"></div>
+</div>
+
+@helper RenderTeethArea(string prefix)
+{
+    <h4>Область интереса</h4>
+    <div class="tooths-c">
+        <table class="tooths">
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" class="change-group" data-td="@(prefix)_tl"></td>
+                    <td><input type="checkbox" class="change-group" data-td="@(prefix)_tr"></td>
+                </tr>
+                <tr id="@(prefix)_top">
+                    <td id="@(prefix)_tl" style="border-bottom: 1px solid #000; border-right: 1px solid #000">
+                        <input class="chkbx" type="checkbox" name="@(prefix)_1_8" id="@(prefix)_AreaTL8"><label for="@(prefix)_AreaTL8">8</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_1_7" id="@(prefix)_AreaTL7"><label for="@(prefix)_AreaTL7">7</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_1_6" id="@(prefix)_AreaTL6"><label for="@(prefix)_AreaTL6">6</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_1_5" id="@(prefix)_AreaTL5"><label for="@(prefix)_AreaTL5">5</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_1_4" id="@(prefix)_AreaTL4"><label for="@(prefix)_AreaTL4">4</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_1_3" id="@(prefix)_AreaTL3"><label for="@(prefix)_AreaTL3">3</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_1_2" id="@(prefix)_AreaTL2"><label for="@(prefix)_AreaTL2">2</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_1_1" id="@(prefix)_AreaTL1"><label for="@(prefix)_AreaTL1">1</label>
+                    </td>
+                    <td id="@(prefix)_tr" style="border-bottom: 1px solid #000;">
+                        <input class="chkbx" type="checkbox" name="@(prefix)_2_1" id="@(prefix)_AreaTR1"><label for="@(prefix)_AreaTR1">1</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_2_2" id="@(prefix)_AreaTR2"><label for="@(prefix)_AreaTR2">2</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_2_3" id="@(prefix)_AreaTR3"><label for="@(prefix)_AreaTR3">3</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_2_4" id="@(prefix)_AreaTR4"><label for="@(prefix)_AreaTR4">4</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_2_5" id="@(prefix)_AreaTR5"><label for="@(prefix)_AreaTR5">5</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_2_6" id="@(prefix)_AreaTR6"><label for="@(prefix)_AreaTR6">6</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_2_7" id="@(prefix)_AreaTR7"><label for="@(prefix)_AreaTR7">7</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_2_8" id="@(prefix)_AreaTR8"><label for="@(prefix)_AreaTR8">8</label>
+                    </td>
+                </tr>
+                <tr id="@(prefix)_bottom">
+                    <td id="@(prefix)_bl" style="border-right: 1px solid #000">
+                        <input class="chkbx" type="checkbox" name="@(prefix)_4_8" id="@(prefix)_AreaBL8"><label for="@(prefix)_AreaBL8">8</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_4_7" id="@(prefix)_AreaBL7"><label for="@(prefix)_AreaBL7">7</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_4_6" id="@(prefix)_AreaBL6"><label for="@(prefix)_AreaBL6">6</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_4_5" id="@(prefix)_AreaBL5"><label for="@(prefix)_AreaBL5">5</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_4_4" id="@(prefix)_AreaBL4"><label for="@(prefix)_AreaBL4">4</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_4_3" id="@(prefix)_AreaBL3"><label for="@(prefix)_AreaBL3">3</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_4_2" id="@(prefix)_AreaBL2"><label for="@(prefix)_AreaBL2">2</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_4_1" id="@(prefix)_AreaBL1"><label for="@(prefix)_AreaBL1">1</label>
+                    </td>
+                    <td id="@(prefix)_br">
+                        <input class="chkbx" type="checkbox" name="@(prefix)_3_1" id="@(prefix)_AreaBR1"><label for="@(prefix)_AreaBR1">1</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_3_2" id="@(prefix)_AreaBR2"><label for="@(prefix)_AreaBR2">2</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_3_3" id="@(prefix)_AreaBR3"><label for="@(prefix)_AreaBR3">3</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_3_4" id="@(prefix)_AreaBR4"><label for="@(prefix)_AreaBR4">4</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_3_5" id="@(prefix)_AreaBR5"><label for="@(prefix)_AreaBR5">5</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_3_6" id="@(prefix)_AreaBR6"><label for="@(prefix)_AreaBR6">6</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_3_7" id="@(prefix)_AreaBR7"><label for="@(prefix)_AreaBR7">7</label>
+                        <input class="chkbx" type="checkbox" name="@(prefix)_3_8" id="@(prefix)_AreaBR8"><label for="@(prefix)_AreaBR8">8</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="change-group" data-td="@(prefix)_bl"></td>
+                    <td><input type="checkbox" class="change-group" data-td="@(prefix)_br"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

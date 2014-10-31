@@ -1,0 +1,20 @@
+﻿@model ReferralNameValueViewModel
+
+@{
+    var val = Model.Value != null ? Model.Value.GetValue() : string.Empty;
+    var ch = !string.IsNullOrEmpty(val);
+}
+
+<input @Html.Raw(Model.Field.Price.HasValue ? "data-price='" + Model.Field.Price.Value.ToString("#.#") + "'" : string.Empty) @ByCondition(ch, "checked") class="chkbx" type="checkbox" id="@(Model.Field.Name)" >
+<label for="@Model.Field.Name"><strong>@L(Model.Field.Title)</strong></label>@LabHelpers.Stars(ViewBag.Stars ?? 0)
+<input @Html.Raw(Model.Field.Price.HasValue ? "data-price='" + Model.Field.Price.Value.ToString("#.#") + "'" : string.Empty) class="text" type="text" value="@val" name="@Model.Field.Name" id="@(Model.Field.Name)-string-checkbox" />
+
+<script type="text/javascript">
+    $(function () {
+        $('#@(Model.Field.Name)').on('input', function () {
+            $('#@(Model.Field.Name)-string-checkbox').prop("checked", !!$(this).val());
+            calculateCost();
+        });
+    });
+
+</script>

@@ -1,0 +1,8 @@
+﻿@using MedIn.Web
+<h1>@WebContext.Location.Header</h1>
+@Html.Raw(WebContext.Location.Content)
+
+@if (WebContext.Location.GalleryId.HasValue)
+{
+    Html.RenderAction(MVC.Default.Gallery(WebContext.Location.GalleryId.Value));
+}

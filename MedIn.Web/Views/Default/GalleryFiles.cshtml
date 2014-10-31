@@ -1,0 +1,23 @@
+﻿@model System.Collections.Generic.IEnumerable<MedIn.Domain.Entities.File>
+
+@if (Model.Any())
+{
+    <div class="thumbnails">
+
+        @foreach (var file in Model)
+        {
+            <div class="image">
+                <a class="lightbox" href="@Url.Content(file.Name)" title="">
+                    <img alt="" src="@Url.Image(file, "width=312", "height=158", "mode=max")">
+                </a>
+                @if (!string.IsNullOrEmpty(file.Title))
+                {
+                    <div class="desc">
+			            @Html.Raw(file.Title)
+                    </div>
+                }
+            </div>
+        }
+
+    </div>
+}

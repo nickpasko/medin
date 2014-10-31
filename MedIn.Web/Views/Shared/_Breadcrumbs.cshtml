@@ -1,0 +1,58 @@
+﻿@{
+    // для начала проходим по всем страницам до корня
+
+    var page = WebContext.Location;
+
+    var pages = new Stack<Location>();
+    while (page != null)
+    {
+        pages.Push(page);
+        page = page.Parent;
+    }
+
+    // затем рендерим все элементы из заранее сформированного пути
+
+    var links = WebContext.GetBreadcrumb();
+    var hasOtherLinks = links.Any();
+    var cpath = "/";
+}
+
+<div id="breadcrumbs" class="breadcrumb">
+    <h2 class="element-invisible">Вы здесь</h2>
+    <div class="breadcrumb">
+        <a href="@cpath">Главная</a>
+        @while (pages.Count != 0)
+        {
+            var p = pages.Pop();
+            cpath += "/" + p.Alias;
+            @RenderItem(p.Name, cpath, pages.Count == 0 && !hasOtherLinks)
+        }
+        @if (hasOtherLinks)
+        {
+            foreach (var l in links.TakeWhile(model => model != links.Last()))
+            {
+                cpath += "/" + l.Alias;
+                @RenderItem(l.Text, cpath, false)
+            }
+            var last = links.Last();
+            @RenderItem(last.Text, null, true)
+        }
+    </div>
+</div>
+
+@helper RenderItem(string name, string url, bool lastCondition)
+{
+    if (!string.IsNullOrEmpty(name))
+    {
+        @:&nbsp;&rarr;&nbsp;
+        if (lastCondition)
+        {
+            <span>@name</span>
+        }
+        else
+        {
+            url = url + "/";
+            <a href="@url.Replace("//", "/")">@name</a>
+        }
+    }
+}

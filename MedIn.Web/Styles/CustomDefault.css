@@ -1,0 +1,90 @@
+﻿#mainSlider {
+    width: 919px;
+    height: 321px;
+    background: url(/Content/i/themes/custom/images/slider-bg.png) left top no-repeat;
+    margin: 0 auto;
+    padding: 6px 0 0 7px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+#carousel {
+    text-align: start;
+    float: none;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    width: 919px;
+    height: 349px;
+    margin: 0px;
+    overflow: hidden;
+}
+
+#ui-carousel-next, #ui-carousel-prev {
+    width: 38px;
+    height: 40px;
+    position: absolute;
+    top: 144px;
+    display: block;
+    z-index: 999;
+    background: url(/Content/i/themes/custom/images/thumbs.png) no-repeat;
+}
+
+#ui-carousel-next {
+    right: 309px;
+    background-position: 0 -40px;
+}
+
+#ui-carousel-prev {
+    left: 6px;
+    background-position: 0 -120px;
+}
+
+#ui-carousel-prev:hover {
+    background-position: 0 -80px;
+}
+
+#ui-carousel-next:hover {
+    background-position: 0 0px;
+}
+
+.slide {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 315px;
+    width: 919px !important;
+    float: left;
+}
+
+#slide > .text {
+    float: right;
+    width: 256px;
+    padding: 32px 15px 0px 38px;
+    font: 12px/18px Arial;
+    color: #C8FFFA;
+    position: relative;
+    height: 282px;
+}
+
+#pages {
+    position: absolute;
+    left: 33%;
+    bottom: -15px;
+    height: 36px;
+    width: 100%;
+    z-index: 999;
+}
+
+.bullet {
+    background: url(/Content/i/themes/custom/images/page-off.png) center center no-repeat;
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    margin-right: 5px;
+    margin-top: -6px;
+    float: left;
+}

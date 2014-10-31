@@ -1,0 +1,31 @@
+﻿@using MedIn.Web
+@model MedIn.Web.Models.FeedbackViewModel
+
+<div id="message-container">
+    <p><span class="js-link toggle-form" data-target-id="i-cart">@L("AskQuestion")</span></p>
+
+    @using (Html.BeginForm(MVC.Faq.WriteUs(), FormMethod.Post, new { @class = "ajax-form hidden", id = "i-cart", data_container = "message-container" }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="i-form-container">
+            <div id="i-form-padder">
+                <div class="i-item">
+                    <p>@Html.LabelFor(model => Model.Username, L("UserName"))</p>
+                    @Html.EditorFor(model => Model.Username, new { @class = "imperial" })
+                    @Html.ValidationMessageFor(model => Model.Username)
+                </div>
+                <div class="i-item">
+                    <p>@Html.LabelFor(model => Model.Email,L("Email"))</p>
+                    @Html.EditorFor(model => Model.Email)
+                    @Html.ValidationMessageFor(model => Model.Email)
+                </div>
+                <div class="i-item">
+                    <p>@Html.LabelFor(model => Model.Message, L("Message"))</p>
+                    @Html.EditorFor(model => Model.Message)
+                    @Html.ValidationMessageFor(model => Model.Message)
+                </div>
+            </div>
+        </div>
+        <div class="item">@Html.Submit(L("Post"))</div>
+    }
+</div>

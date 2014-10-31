@@ -1,0 +1,43 @@
+﻿@model MedIn.Web.Models.RegisterViewModel
+
+
+
+@Html.LabelFor(m => m.UserName,L("UserName"))
+
+<div>
+@Html.EditorFor(m => m.UserName)
+@Html.ValidationMessageFor(m => m.UserName)
+</div>
+
+
+
+@Html.LabelFor(m => m.Email,L("Email"))
+
+<div>
+@Html.EditorFor(m => m.Email)
+@Html.ValidationMessageFor(m => m.Email)
+</div>
+
+@Html.LabelFor(m => m.PhoneNumber,L("PhoneNumber"))
+
+<div>
+@Html.EditorFor(m => m.PhoneNumber)
+</div>
+
+
+@Html.LabelFor(m => m.Password, L("YourPassword"))
+
+<div>
+@Html.PasswordFor(m => m.Password)
+@Html.ValidationMessageFor(m => m.Password)
+</div>
+
+
+@Html.LabelFor(m => m.ConfirmPassword,L("ConfirmPassword"))
+
+<div>
+@Html.PasswordFor(m => m.ConfirmPassword)
+@Html.ValidationMessageFor(m => m.ConfirmPassword)
+</div>
+
+

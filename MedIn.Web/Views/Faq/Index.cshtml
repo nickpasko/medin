@@ -1,0 +1,25 @@
+﻿@using MedIn.Web
+@using MedIn.Web.Models
+@model MedIn.Web.Models.ListItemsViewModel<Question>
+
+<h1>@WebContext.Location.Header</h1>
+
+@{ Html.RenderPartial(MVC.Faq.Views._Form, new FeedbackViewModel()); }
+
+<div class="qa-container">
+    <div>
+        @Html.DisplayFor(m => m.Pager)
+    </div>
+    @foreach (var item in Model.Items)
+    {
+        <div class="qa">
+            <a name="q@(item.Id)"></a>
+            <div class="qa-author">@item.UserName</div>
+            <div class="question">@Html.Raw(item.QuestionText.Replace("\n", "<br/>").ToSafeHtml())</div>
+            <div class="answer">@Html.Raw(item.Response)</div>
+        </div>
+    }
+    <div>
+        @Html.DisplayFor(m => m.Pager)
+    </div>
+</div>

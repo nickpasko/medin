@@ -1,0 +1,49 @@
+﻿@model Location[]
+@{
+    @functions {
+        private string GetPrefix(int i)
+        {
+            string preWord = string.Empty;
+            if (i == 0)
+            {
+                preWord = "first ";
+            }
+            else if (i == Model.Count() - 1)
+            {
+                preWord = "last ";
+            }
+            return preWord;
+        }
+    }
+    var location = WebContext.Location;
+}
+
+@if (Model.Any())
+{
+    <ul class="menu">
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            var isSelected = location.InPath(Model[i].Alias);
+            string className;
+            if (isSelected)
+            {
+                className = GetPrefix(i) + "leaf active-trail";
+            }
+            else
+            {
+                className = GetPrefix(i) + "leaf";
+            }
+            <li class="@className">
+
+                @if (!isSelected || WebContext.Location.Alias != Model[i].Alias)
+                {
+                    @Html.PageLink(Model[i], string.Format( Model[i].Name))
+                }
+                else
+                {
+                    @Html.PageLink(Model[i], string.Format(Model[i].Name), new { @class = "active-trail active" })
+                }
+            </li>
+        }
+    </ul>
+}

@@ -1,0 +1,17 @@
+﻿@using MedIn.Web
+@model MedIn.Web.Models.LogInViewModel
+@{
+    var link = @Url.ActionAbsolute(MVC.Accounts.ForgotPassword());
+    WebContext.Metadata.MetaTitle = L("PersonalOfficeHeader");
+}
+<h1>@L("PersonalOfficeHeader")</h1>
+<div class="form">
+@Html.ValidationSummary(true)
+@using (Html.BeginForm(MVC.Accounts.Login(),FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.EditorForModel()
+    @Html.Submit(L("Enter"))
+}
+</div>
+<p>@Html.ActionLink(L("Registration"), MVC.Accounts.Register(), new { @style="margin-right:20px;" }) @Lh("ForgotPassword",link)</p>

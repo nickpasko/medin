@@ -1,0 +1,18 @@
+﻿@model ReferralNameValueViewModel
+
+@{
+    var val = Model.Value.IsChecked();
+}
+
+<div style="line-height: 1.5;">
+    <table style="width: 100%; border-collapse: collapse;">
+        <tbody>
+            <tr>
+                <td style="white-space: nowrap; border-collapse: collapse;">
+                    <input style="vertical-align: middle; margin: 0 10px 0 0;" type="checkbox" disabled="" @ByCondition(val, "checked")>
+                    <span @ByCondition(val, "style=\"font-weight: bold; color: #000; text-decoration: underline;\"")>@L(Model.Value.DetachedField.Title)</span>@LabHelpers.Stars(ViewBag.Stars ?? 0)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

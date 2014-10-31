@@ -1,0 +1,9 @@
+﻿@using MedIn.Web
+@model Referral
+
+<p>Изменилась информация по направлению для пациента @Model.Name, созданного @Model.CreateDate.ToString().</p>
+
+<p><a href="@Url.ActionAbsolute(MVC.Personal.Details(Model.Id))">Посмотреть в личном кабинете на сайте 3Д Лаб.</a></p>
+
+<p>The patient refferal (created @Model.CreateDate.ToString()) about @Model.Name is changed.</p>
+<p><a href="@Url.ActionAbsolute(MVC.Personal.Details(Model.Id))">View changes in a personal office.</a></p>

@@ -1,0 +1,39 @@
+﻿@model ReferralNameValueViewModel
+
+@{
+    var hasTitle = !string.IsNullOrEmpty(Model.Field.Title);
+    var last = Model.Field.AvailableValues.LastOrDefault();
+    var separator = ViewBag.separator ?? true;
+    var bold = ViewBag.bold ?? true;
+    var selected = Model.Value != null ? Model.Value.GetValues() : new string[0];
+    var stars = (int[])ViewBag.ChildStars ?? new int[0];
+    var index = 0;
+}
+
+
+<input type="hidden" id="@Model.Field.Name" @Html.Raw(Model.Field.Price.HasValue ? "data-price='" + Model.Field.Price.Value.ToString("#.#") + "'" : string.Empty) />
+
+@if (hasTitle)
+{
+    <strong>@L(Model.Field.Title)@LabHelpers.Stars(ViewBag.Stars ?? 0):</strong><span>&nbsp;</span>
+}
+
+@foreach (var item in Model.Field.AvailableValues)
+{
+    var ch = selected.Contains(item.Value);
+    var starCount = stars.Length > index ? stars[index] : 0;
+    index++;
+    if (!hasTitle && bold)
+    {
+        @:<strong>
+    }
+    <input @ByCondition(ch, "checked") data-parent="@Model.Field.Name" class="chkbx" type="checkbox" @Html.Raw(item.Price.HasValue ? "data-price='" + item.Price.Value.ToString("#.#") + "'" : string.Empty) name="@(Model.Field.Name)_@(item.Value)" id="@(Model.Field.Name)@item.Value"><label for="@(Model.Field.Name)@item.Value">@L(item.Value)</label>@LabHelpers.Stars(starCount)
+    if (!hasTitle && bold)
+    {
+        @:</strong>
+    }
+    if (last.Id != item.Id && separator)
+    { 
+        <span>|</span>
+    }
+}

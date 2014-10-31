@@ -1,0 +1,23 @@
+﻿@using MedIn.Web
+@model MedIn.Web.Models.ListItemsViewModel<Article>
+
+<h1>@WebContext.Location.Header</h1>
+@Html.DisplayFor(m => m.Pager)
+<div class="articles">
+@foreach (var item in Model.Items)
+{
+    <div class="item">
+        @if (item.File != null)
+        {
+            <div class="image">
+                <a href="@Url.Action(MVC.Articles.Details(item.Alias))">@Html.Image(item.File, "width=800")</a>
+            </div>
+        }
+        <div class="date">@item.PublishDate.ToString("D")</div>
+        <h3><a href="@Url.Action(MVC.Articles.Details(item.Alias))">@item.Name</a></h3>
+        <div class="teaser">@Html.Raw(item.Teaser)</div>
+    </div>
+}
+</div>
+@Html.DisplayFor(m => m.Pager)
+

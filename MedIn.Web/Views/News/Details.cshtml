@@ -1,0 +1,8 @@
+﻿@model ItemViewModel<News>
+
+<h1>@Html.Raw(Model.Item.Teaser)</h1>
+<p class="back">&larr;&nbsp;<a href="@Url.Action(MVC.News.Index(Model.ItemPage))">новости списком</a></p>
+<div class="date"><strong>@Model.Item.PublishDate.ToString("D")</strong></div>
+<div>
+    @Html.Raw(Model.Item.Content)
+</div>

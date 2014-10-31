@@ -1,0 +1,12 @@
+﻿@using MedIn.Web
+@model Gallery
+
+@if (Model.Files.Any())
+{
+    <h2>@Model.Name</h2>
+    
+    @Html.Raw(Model.Description)
+ 
+    Html.RenderAction(MVC.Default.GalleryFiles(Model.Id));
+ 
+}

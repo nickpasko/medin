@@ -1,0 +1,31 @@
+﻿@{
+    Layout = MVC.Shared.Views._Layout;
+}
+
+<div class="fr">
+    @{ Html.RenderPartial(MVC.Shared.Views._Breadcrumbs); }
+    @RenderBody()
+</div>
+@RedefineSection("head")
+
+@section leftMenu{
+    @switch (WebContext.Location.Alias)
+    {
+        case "about":
+        case "sertifications":
+        case "news":
+            {
+                <div class="sidebar" id="sideLeft">
+                    <div class="region region-sidebar-first">
+                        <div id="block-menu-menu-company" class="block block-menu">
+                            <div class="content">
+                                @{ Html.RenderAction(MVC.Default.LeftMenu()); }
+                                @RenderSection("sidebar", false)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            break;
+    }
+}

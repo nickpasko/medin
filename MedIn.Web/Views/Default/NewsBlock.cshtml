@@ -1,0 +1,21 @@
+﻿@model IQueryable<News>
+<div id="block-views-news-block" class="block block-views">
+    <div class="content">
+        <div class="view view-news view-id-news view-display-id-block view-dom-id-e4c4026d8c2c8446867e06fe86cc395e">
+            <div class="view-content">
+                <div class="item-list">
+                    <h2><span>Новости</span>@Html.ActionLink("Все новости", MVC.News.Index())</h2>
+                    @foreach (var item in Model)
+                    {
+                        <p class="news-main-date">@item.PublishDate.ToString("d")</p>
+
+                        var text = item.Name ?? item.Teaser;
+                        <p>
+                            <a href="@Url.Action(MVC.News.Details(item.Id))">@Html.Raw(text)</a>
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

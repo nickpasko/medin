@@ -1,0 +1,18 @@
+﻿@using MedIn.Web
+@model MedIn.Web.Models.FeedbackViewModel
+
+@{Html.RenderPartial(MVC.Contacts.Views._Form, Model);}
+
+@if (!string.IsNullOrEmpty(Model.ToastrMessage))
+{
+    <script>
+        @if (Model.Success)
+        {
+            @:toastr.success("@Model.ToastrMessage");
+        }
+        else
+        {
+            @:toastr.error("@Model.ToastrMessage");
+        }
+    </script>
+}

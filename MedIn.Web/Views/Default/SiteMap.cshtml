@@ -1,0 +1,26 @@
+﻿@model List<Location>
+
+<h1>@WebContext.Location.Name</h1>
+
+<ul>
+    @foreach (var item in Model.Where(x => x.ParentId == null))
+    {
+        @RenderTree(item)
+    }
+</ul>
+
+@helper RenderTree(Location location)
+{
+    <li>
+        <a href="@Url.ForPage(location)">@(location.Header ?? location.Name)</a>
+        @if (location.Children.Any())
+        {
+            <ul>
+                @foreach (var child in location.Children)
+                {
+                    @RenderTree(child)
+                }
+            </ul>
+        }
+    </li>
+}

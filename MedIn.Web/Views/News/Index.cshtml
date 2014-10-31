@@ -1,0 +1,16 @@
+﻿@model ListItemsViewModel<News>
+
+<h1>@WebContext.Location.Header</h1>
+@Html.Raw(WebContext.Location.Content)
+
+@Html.DisplayFor(m => m.Pager)
+<div class="news">
+@foreach (var item in Model.Items)
+{
+    <div class="item">
+        <div class="date">@item.PublishDate.ToString("D")</div>
+        <div class="link"><a href="@Url.Action(MVC.News.Details(item.Id))">@Html.Raw(item.Teaser)</a></div>
+    </div>
+}
+</div>
+@Html.DisplayFor(m => m.Pager)

@@ -1,0 +1,10 @@
+﻿@using MedIn.Web
+@model MedIn.Web.Areas.Admin.ViewModels.DistributionViewModel
+
+@{
+    var url = Url.ActionAbsolute(MVC.Subscriptions.Index(Model.DoctorKey));
+}
+<h3>@Model.Subscribtion.Name</h3>
+@Html.Raw(Model.Subscribtion.Content)
+
+<p>Для того что бы отписаться от рассылки пройдите по следующей ссылке <a href="@url">@url</a>.</p>

@@ -1,0 +1,20 @@
+﻿@using MedIn.Web
+@model MedIn.Web.Models.ItemViewModel<Article>
+
+<h1>@Model.Item.Name</h1>
+<div class="back">
+    &larr; @Html.ActionLink(L("BackLinkText"), MVC.Articles.Index(Model.ItemPage))
+</div>
+@if (Model.Item.File != null){
+<p>@Html.Image(Model.Item.File, "width=800")</p>
+}
+<div>
+    @Html.Raw(Model.Item.Content)
+</div>
+@if (Model.Item.Galleries.Any())
+{
+    foreach (var gallery in Model.Item.Galleries.Where(g => g.Visibility && g.Files.Any()).OrderBy(g => g.Sort))
+    {
+        Html.RenderAction(MVC.Default.Gallery(gallery.Id));
+    }
+}

@@ -1,0 +1,38 @@
+﻿@model MedIn.Web.Models.ChildrenViewModel
+
+<div class="bp"><h2><a href="@Url.ForPage(Model.Location)">@(Model.Location.Header)</a></h2></div>
+<div class="b" @if(@Model.Location.Alias == "learning"){<text>id="su-top"</text> }>
+    @if(@Model.Location.Alias != "learning"){<em class="br"></em> }
+    <div class="b-c">
+        <ul>
+            @foreach (var item in Model.Location.Children)
+            {
+                <li>@Html.PageLink(item)</li>
+            }
+        </ul>
+    </div>
+    <div class="photo" id="ppl1"><img src="@Model.ImgUrl" alt="@L("Pacient")" class="png" width="207" height="156"></div>
+</div>
+@if (Model.Location.GalleryId.HasValue)
+{
+    <div id="main-page-gallery">
+        <em id="ls"></em><em id="rs"></em>
+        <div><h3>@Model.Location.Gallery.Name</h3></div>
+        <div id="@Model.Location.Alias">
+            @foreach (var file in Model.Location.Gallery.Files.OrderBy(f => f.Sort).Take(3))
+            {
+                <a href="@Url.ForPage(Model.Location)" title="@Model.Location.Header">@Html.Image(file, "width=134", "height=89", "mode=max")</a>
+            }
+        </div>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.Location.Teaser))
+{
+    <div class="b" id="su-bottom">
+	    <em class="br"></em>
+	    <div class="b-c">
+		    @Html.Raw(Model.Location.Teaser)
+	    </div>
+    </div> 
+}

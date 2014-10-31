@@ -1,0 +1,22 @@
+﻿@model FeedbackViewModel
+
+<div id="message-container">
+    <p><span class="js-link toggle-form" data-target-id="i-cart">написать сообщение</span></p>
+
+    @using (Html.BeginForm(MVC.Contacts.WriteUs(), FormMethod.Post, new { @class = "ajax-form hidden form", id = "i-cart", data_container = "message-container" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.LabelFor(model => Model.Username, "Имя пользователя")
+        <div>@Html.EditorFor(model => Model.Username)</div>
+        @Html.ValidationMessageFor(model => Model.Username)
+
+        @Html.LabelFor(model => Model.Email,"Email")
+        <div>@Html.EditorFor(model => Model.Email)</div>
+        @Html.ValidationMessageFor(model => Model.Email)
+
+        @Html.LabelFor(model => Model.Message,"Сообщение")
+        <div>@Html.EditorFor(model => Model.Message)</div>
+        @Html.ValidationMessageFor(model => Model.Message)
+        <div>@Html.Submit("Отправить")</div>
+    }
+</div>

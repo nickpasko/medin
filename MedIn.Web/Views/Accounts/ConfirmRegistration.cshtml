@@ -1,0 +1,8 @@
+﻿@using MedIn.Web
+@{
+    var link = @Url.ActionAbsolute(MVC.Personal.Index());
+    WebContext.Metadata.MetaTitle = L("ConfirmRegistrationHeader");
+}
+<p>
+    @Lh("ConfirmRegistration", link)
+</p>

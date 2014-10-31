@@ -1,0 +1,16 @@
+﻿@using MedIn.OziCms.Helpers
+@using MedIn.Web
+@model MedIn.Web.Models.RegisterViewModel
+@{
+    WebContext.Metadata.MetaTitle = L("Registration");
+}
+<h1>@L("Registration")</h1>
+<div class="form">
+@Html.ValidationSummary(true)
+@using (Html.BeginForm(MVC.Accounts.Register(), FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.EditorForModel()
+    @Html.Submit(L("Registration"))
+}
+</div>

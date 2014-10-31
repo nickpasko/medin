@@ -1,0 +1,8 @@
+﻿@model ReferralNameValueViewModel
+
+@{
+    var val = Model.Value != null ? Model.Value.GetValue() : string.Empty;
+}
+
+<label for="@Model.Field.Name">@L(Model.Field.Title)</label><input value="@val" class="text" type="text" name="@Model.Field.Name" id="@Model.Field.Name">
+

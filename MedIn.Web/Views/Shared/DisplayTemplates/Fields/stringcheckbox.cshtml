@@ -1,0 +1,18 @@
+﻿@model ReferralNameValueViewModel
+
+@{
+    var val = Model.Value.GetValue();
+    var ch = !string.IsNullOrEmpty(val);
+}
+
+<div style="line-height: 1.5;">
+    <table style="width: 100%; border-collapse: collapse;">
+        <tbody>
+            <tr>
+                <td style="white-space: nowrap; border-collapse: collapse;">
+                    <input style="vertical-align: middle; margin: 0 10px 0 0;" type="checkbox" @ByCondition(ch, "checked") disabled><span>@L(Model.Value.DetachedField.Title)@LabHelpers.Stars(ViewBag.Stars ?? 0)</span></td>
+                <td style="border-bottom: 1px solid #000; width: 100%; border-collapse: collapse;">@val</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
