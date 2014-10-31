@@ -1,0 +1,2 @@
+6 июня 2013 г. -- d:\DotOrg\DotOrg.3dlab.Web\Views\Mails\ConfirmRegistration.cshtml(4): error CS1502: The best overloaded method match for 'DotOrg._3dlab.Web.Controllers.AccountsController.Confirm(System.Guid)' has some invalid arguments -- System.Web.HttpCompileException
+6 июня 2013 г. -- Failure sending mail. -- System.Net.Mail.SmtpException
