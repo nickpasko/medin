@@ -1,0 +1,75 @@
+﻿@using File = MedIn.Domain.Entities.File
+@model IList<Category>
+@{
+    var root = "/products";
+}
+
+<h1 class="title" id="page-title">@WebContext.Location.Name</h1>
+
+<div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+        <div class="content">
+            <div class="production-wrapper">
+                @{
+                    int i;
+                    for (i = 0; i < Model.Count - 3; i += 3)
+                    {
+                        <ul class="production-line">
+                            <li class="odd first">
+                                <a href="@(root)/@Model[i].Alias">
+                                    @ImageForFile(Model[i].Gallery.With(galary => galary.Files.FirstOrDefault()))@Model[i].Name
+                                </a>
+                            </li>
+                            <li class="even">
+                                <a href="@(root)/@Model[i + 1].Alias">
+                                    @ImageForFile(Model[i + 1].Gallery.With(galary => galary.Files.FirstOrDefault()))@Model[i + 1].Name
+                                </a>
+                            </li>
+                            <li class="odd last">
+                                <a href="@(root)/@Model[i + 2].Alias">
+                                    @ImageForFile(Model[i + 2].Gallery.With(galary => galary.Files.FirstOrDefault()))@Model[i + 2].Name
+                                </a>
+                            </li>
+                        </ul>
+                    }
+                    i += 1;
+                    if (i < Model.Count)
+                    {
+                        <ul class="production-line">
+                            <li class="odd first">
+                                <a href="@(root)/@Model[i].Alias">
+                                    @ImageForFile(Model[i].Gallery.With(galary => galary.Files.FirstOrDefault()))@Model[i].Name
+                                </a>
+                            </li>
+
+                            @{
+                        i += 1;
+                            }
+
+                            @if (i < Model.Count)
+                            {
+                                <li class="even">
+                                    <a href="@(root)/@Model[i].Alias">
+                                        @ImageForFile(Model[i].Gallery.With(galary => galary.Files.FirstOrDefault()))@Model[i].Name
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                }
+
+                <div class="clearfix">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@helper ImageForFile(File file)
+{
+    if (file != null)
+    {
+        <img class="category-image" typeof="foaf:Image" src="@Url.Content(file.ToString())" alt="">
+    }
+}

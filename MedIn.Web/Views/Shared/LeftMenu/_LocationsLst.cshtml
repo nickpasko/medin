@@ -1,0 +1,11 @@
+﻿<div class="sidebar" id="sideLeft">
+    <div class="region region-sidebar-first">
+        <div id="block-menu-menu-catalog" class="block block-menu">
+            <div class="content">
+
+                @{ Html.RenderAction(MVC.Default.LeftMenu()); }
+                @*@RenderSection("sidebar", false)*@
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model List<Category>
+<div class="sidebar" id="sideLeft">
+    <div class="region region-sidebar-first">
+        <div id="block-menu-menu-catalog" class="block block-menu">
+            <div class="content">
+                @RecursiveRender(Model, "/products")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@helper RecursiveRender(IList<Category> list, string root)
+{
+    Category curCategory = WebContext.ViewBag.CurrentCategory;
+    <ul class="menu">
+        @for (int i = 0; i < list.Count; i++)
+        {
+            <li class="@(GetLstCategoryClass(list[i].Children.Any(x => x.Visibility), ByCondition(curCategory.With(x => x.Alias == list[i].Alias), "active-trail"), ByCondition(i == 0, "first", i == list.Count - 1, "last")))">
+                <a href="@(root)/@(list[i].Alias)" class="@(ByCondition(curCategory.With(x => x.Alias == list[i].Alias), "active-trail active"))">@(list[i].Name)</a>
+                @if (list[i].Children.Any(x => x.Visibility))
+                {   
+                    @RecursiveRender(list[i].Children.Where(c => c.Visibility).OrderBy(c => c.Sort).ToList(), string.Format("{0}/{1}", root, list[i].Alias))
+                }
+            </li>
+
+        }
+    </ul>
+}

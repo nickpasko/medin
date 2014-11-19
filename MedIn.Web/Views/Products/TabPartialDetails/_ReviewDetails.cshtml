@@ -1,0 +1,38 @@
+﻿@model ReviewDetailsViewModel
+
+<div id="gallery" class="content">
+    <div id="controls" class="controls"></div>
+    <div class="slideshow-container">
+        <div id="loading" class="loader"></div>
+        <div id="slideshow" class="slideshow"></div>
+    </div>
+</div>
+<div id="thumbs" class="navigation">
+    <ul class="thumbs noscript">
+        @foreach (var file in Model.Files)
+        {
+            <li>
+                <a class="thumb" name="leaf" href="@Url.Content(file.Name)" title="@file.Title">
+                    <img src="@Url.Content(file.Name)" alt="@file.Alt" width="112px" height="85px" />
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+<br />
+<br />
+<br />
+@foreach (var item in Model.DescGroups)
+{
+    <div style="
+    padding-left: 26px;
+    font: bold 14px/21px Arial;
+    color: #009387;
+    padding-bottom: 10px;
+    text-align:center;
+    ">
+        <span>@Html.Raw(item.Name)</span>
+    </div>
+       @Html.Raw(item.Content)
+}

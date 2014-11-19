@@ -1,0 +1,106 @@
+﻿@model ProductViewModel
+@{
+    Product product = WebContext.ViewBag.CurrentProduct;
+}
+<h1 class="title" id="page-title">@product.Name</h1>
+
+@Html.Raw(product.Description)
+
+<div class="region region-content" style="width:113%">
+    <div id="block-system-main" class="block block-system">
+        <div class="content">
+            <div id="node-39" class="node node-product clearfix" about="/produkciya/obshchebolnichnoe-oborudovanie/stoliki-medicinskie/stolik-medicinskiy-instrumentalnyy-si-51" typeof="sioc:Item foaf:Document">
+                <div class="catalog-number">
+                    <div class="field field-name-field-number field-type-text field-label-inline clearfix">
+                        <div class="field-label">Каталожный №:&nbsp;</div><div class="field-items">
+                            <div class="field-item even">@product.CatalogPlace</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-button">
+                    <a href="/add/nojs/order/39" class="ctools-use-modal ctools-use-modal-processed">Заявка</a>
+                </div>
+
+                <div id="tabs">
+                    <ul>
+                        @for (int i = 0; i < Model.Tabs.Count; i++)
+                        {
+                            <li>
+                                <a href="#@i">@Model.Tabs[i].Name</a>
+                            </li>
+                        }
+                    </ul>
+                    <div style="clear:both"></div>
+
+                    @for (int i = 0; i < Model.Tabs.Count; i++)
+                    {
+                        <div id="@i">
+                            @Html.Raw(Model.Tabs[i].Content)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section head{
+    <link rel="stylesheet" href="~/Styles/Galleriffic.css" type="text/css" />
+    <link rel="stylesheet" href="~/Styles/jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/themes/base/tabs.css" />
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.galleriffic.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.history.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.opacityrollover.js"></script>
+}
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $("#tabs").tabs();
+        var onMouseOutOpacity = 0.67;
+        $('#thumbs ul.thumbs li').opacityrollover({
+            mouseOutOpacity: onMouseOutOpacity,
+            mouseOverOpacity: 1.0,
+            fadeSpeed: 'fast',
+            exemptionSelector: '.selected'
+        });
+
+        var gallery = $('#thumbs').galleriffic({
+            delay: 2500,
+            numThumbs: 15,
+            preloadAhead: 10,
+            enableTopPager: true,
+            enableBottomPager: true,
+            maxPagesToShow: 7,
+            imageContainerSel: '#slideshow',
+            controlsContainerSel: '#controls',
+            captionContainerSel: '#caption',
+            loadingContainerSel: '#loading',
+            renderSSControls: true,
+            renderNavControls: true,
+            playLinkText: '',
+            pauseLinkText: '',
+            prevLinkText: '',
+            nextLinkText: '',
+            nextPageLinkText: 'Next &rsaquo;',
+            prevPageLinkText: '&lsaquo; Prev',
+            enableHistory: false,
+            autoStart: false,
+            syncTransitions: true,
+            defaultTransitionDuration: 900,
+            onSlideChange: function (prevIndex, nextIndex) {
+                this.find('ul.thumbs').children()
+                    .eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+                    .eq(nextIndex).fadeTo('fast', 1.0);
+            },
+            onPageTransitionOut: function (callback) {
+                this.fadeTo('fast', 0.0, callback);
+            },
+            onPageTransitionIn: function () {
+                this.fadeTo('fast', 1.0);
+            }
+        });
+    })
+</script>

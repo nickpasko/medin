@@ -184,39 +184,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutCompanyController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AccountsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.AccountController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.ArticleController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.GalleriesController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.LocationsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.NewsItemsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.QuestionsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.SharedController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.SiteSettingsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.UtilsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Ckeditor\plugins\filemanager\connectors\ashx\FileManager.ashx.cs">
@@ -226,9 +193,12 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DescGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\GalleriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LocationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsItemsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SiteSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UtilsController.cs" />
@@ -244,12 +214,6 @@
     <Compile Include="Areas\Admin\ViewModels\FineUploadResult.cs" />
     <Compile Include="Areas\Admin\ViewModels\ImportViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\JsonProjectModel.cs" />
-    <Compile Include="ArticlesController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ContactsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AboutCompanyController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
@@ -257,46 +221,40 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\EmailLogsService.cs" />
     <Compile Include="Core\Pages.cs" />
     <Compile Include="Core\SiteConfig.cs" />
     <Compile Include="Core\SiteHelper.cs" />
-    <Compile Include="DefaultController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FaqController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Core\TabService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MailsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BreadcrumbsViewModel.cs" />
+    <Compile Include="Models\CategoriesViewModels.cs" />
     <Compile Include="Models\ChildrenViewModel.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\ItemViewModel.cs" />
     <Compile Include="Models\ListItemsViewModel.cs" />
     <Compile Include="Models\LogInViewModel.cs" />
+    <Compile Include="Models\ProductTabViewModel.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\RecPasswordViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\ReviewDetailsViewModel.cs" />
     <Compile Include="Mvc\BaseController.cs" />
     <Compile Include="Mvc\BaseWebPage.cs" />
+    <Compile Include="Mvc\CategoriesConstraint.cs" />
     <Compile Include="Mvc\DotOrgRoute.cs" />
+    <Compile Include="Mvc\Extensions.cs" />
     <Compile Include="Mvc\HtmlExtensions.cs" />
     <Compile Include="Mvc\LocationConstraints.cs" />
+    <Compile Include="Mvc\ProductConstraint.cs" />
     <Compile Include="Mvc\RouteExtensions.cs" />
     <Compile Include="Mvc\UrlExtensions.cs" />
     <Compile Include="Mvc\WebContext.cs" />
-    <Compile Include="NewsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SharedController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -361,11 +319,16 @@
     <Content Include="Areas\Admin\Scripts\Default\sh_main.min.js" />
     <Content Include="Areas\Admin\Scripts\Default\toastr\toastr.js" />
     <Content Include="Areas\Admin\Settings\Article.xml" />
+    <Content Include="Areas\Admin\Settings\Category.xml" />
+    <Content Include="Areas\Admin\Settings\DescGroup.xml" />
     <Content Include="Areas\Admin\Settings\Gallery.xml" />
     <Content Include="Areas\Admin\Settings\Location.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Admin\Settings\News.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Admin\Settings\Product.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Admin\Settings\Question.xml" />
@@ -378,17 +341,24 @@
     <Content Include="Areas\Admin\Styles\Default\toastr\toastr.css" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Content\i\logo.png" />
+    <Content Include="Content\i\themes\custom\images\active_arrow.png" />
+    <Content Include="Content\i\themes\custom\images\active_arrow_wh.png" />
     <Content Include="Content\i\themes\custom\images\arrow-left.png" />
     <Content Include="Content\i\themes\custom\images\arrow-right.png" />
     <Content Include="Content\i\themes\custom\images\arrow_brcmb.png" />
     <Content Include="Content\i\themes\custom\images\banner_4.jpg" />
     <Content Include="Content\i\themes\custom\images\beta_plus_0.jpg" />
+    <Content Include="Content\i\themes\custom\images\bottom.jpg" />
     <Content Include="Content\i\themes\custom\images\cr_1_0.jpg" />
+    <Content Include="Content\i\themes\custom\images\earth.png" />
     <Content Include="Content\i\themes\custom\images\footer_line.jpg" />
     <Content Include="Content\i\themes\custom\images\header-bg.jpg" />
     <Content Include="Content\i\themes\custom\images\kgm_3p_full_banner_1.jpg" />
+    <Content Include="Content\i\themes\custom\images\leaf.jpg" />
     <Content Include="Content\i\themes\custom\images\mail.png" />
     <Content Include="Content\i\themes\custom\images\menu-bg.jpg" />
+    <Content Include="Content\i\themes\custom\images\menu-expanded.png" />
+    <Content Include="Content\i\themes\custom\images\menu-leaf.png" />
     <Content Include="Content\i\themes\custom\images\menu_links.png" />
     <Content Include="Content\i\themes\custom\images\more.png" />
     <Content Include="Content\i\themes\custom\images\obogrev_full_banner_0.jpg" />
@@ -396,10 +366,27 @@
     <Content Include="Content\i\themes\custom\images\page-on.png" />
     <Content Include="Content\i\themes\custom\images\paginator.png" />
     <Content Include="Content\i\themes\custom\images\phone-2.png" />
+    <Content Include="Content\i\themes\custom\images\shadow.jpg" />
     <Content Include="Content\i\themes\custom\images\show-room_full_banner.jpg" />
     <Content Include="Content\i\themes\custom\images\slider-bg.png" />
     <Content Include="Content\i\themes\custom\images\thumbs.png" />
     <Content Include="Content\i\themes\custom\images\top-line.jpg" />
+    <Content Include="Content\i\themes\custom\images\topa.jpg" />
+    <Content Include="Content\i\themes\custom\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\i\themes\custom\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\i\themes\custom\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\i\themes\custom\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\i\themes\custom\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\i\themes\custom\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\i\themes\custom\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\i\themes\custom\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\i\themes\custom\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\i\themes\custom\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\i\themes\custom\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\i\themes\custom\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\i\themes\custom\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\i\themes\custom\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\i\themes\custom\images\vote.png" />
     <Content Include="Content\i\themes\custom\images\z-shtativ_full_banner.jpg" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -453,20 +440,26 @@
     <None Include="Properties\PublishProfiles\mastertest.pubxml" />
     <Content Include="rewriteMaps.config" />
     <Content Include="rewriteRules.config" />
-    <None Include="Scripts\jquery-2.0.1.intellisense.js" />
     <Content Include="Scripts\costReferrals.js" />
     <Content Include="Scripts\default.js" />
-    <Content Include="Scripts\jquery-2.0.1.js" />
-    <Content Include="Scripts\jquery-2.0.1.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.1.js" />
-    <Content Include="Scripts\jquery-ui.min-1.11.1.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.galleriffic.js" />
+    <Content Include="Scripts\jquery.history.js" />
     <Content Include="Scripts\jquery.lightbox.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Scripts\jquery.opacityrollover.js" />
     <Content Include="Scripts\jquery.pjax.js" />
     <Content Include="Scripts\jquery.ui.core.min.js" />
     <Content Include="Scripts\jquery.ui.rcarousel.min.js" />
     <Content Include="Scripts\jquery.ui.widget.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -484,6 +477,8 @@
     <Content Include="Styles\Default4.css" />
     <Content Include="Styles\Default5.css" />
     <Content Include="Styles\fonts\fontello.svg" />
+    <Content Include="Styles\Galleriffic.css" />
+    <Content Include="Styles\jquery-ui.css" />
     <Content Include="Styles\lightbox.css" />
     <Content Include="Styles\print.css" />
     <Content Include="Styles\rcarousel.css" />
@@ -491,7 +486,9 @@
     <Content Include="Styles\style.css" />
     <Content Include="Styles\toastr-responsive.css" />
     <Content Include="Styles\toastr.css" />
-    <None Include="T4MVC.tt.settings.xml" />
+    <None Include="T4MVC.tt.settings.xml">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -502,7 +499,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Scripts\jquery-2.0.1.min.map" />
     <Content Include="Views\Default\TopMenu.cshtml" />
     <Content Include="Views\Default\Page.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -548,11 +544,6 @@
     <Content Include="Views\Shared\EditorTemplates\Fields\textarea.cshtml" />
     <Content Include="Views\Mails\Distribution.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ReferralViewModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Fields\checkbox.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Fields\multicheckbox.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Fields\string.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Fields\stringcheckbox.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Fields\textarea.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\File.cshtml" />
     <Content Include="Views\Default\GalleryFiles.cshtml" />
     <Content Include="Views\Mails\ReferralChanged.cshtml" />
@@ -568,6 +559,14 @@
     </None>
     <Content Include="Views\Default\MainSlider.cshtml" />
     <Content Include="Views\AboutCompany\Index.cshtml" />
+    <Content Include="Views\Products\Categories.cshtml" />
+    <Content Include="Views\Products\_ShortCategoriesView.cshtml" />
+    <Content Include="Views\Products\_FullCategoriesView.cshtml" />
+    <Content Include="Views\Shared\LeftMenu\_LocationsLst.cshtml" />
+    <Content Include="Views\Shared\LeftMenu\_CategoriesTree.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\TabPartialDetails\_ReviewDetails.cshtml" />
+    <Content Include="Views\Products\TabPartialDetails\_TechDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

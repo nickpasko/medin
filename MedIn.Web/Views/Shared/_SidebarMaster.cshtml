@@ -2,10 +2,10 @@
     Layout = MVC.Shared.Views._Layout;
 }
 
-<div class="fr">
-    @{ Html.RenderPartial(MVC.Shared.Views._Breadcrumbs); }
-    @RenderBody()
-</div>
+
+@{ Html.RenderPartial(MVC.Shared.Views._Breadcrumbs); }
+<div class="tabs"></div>
+@RenderBody()
 @RedefineSection("head")
 
 @section leftMenu{
@@ -14,17 +14,12 @@
         case "about":
         case "sertifications":
         case "news":
+            Html.RenderPartial(MVC.Shared.Views.LeftMenu._LocationsLst);
+            break;
+        case "products":
+            if (WebContext.ViewBag.CurrentCategory != null)
             {
-                <div class="sidebar" id="sideLeft">
-                    <div class="region region-sidebar-first">
-                        <div id="block-menu-menu-company" class="block block-menu">
-                            <div class="content">
-                                @{ Html.RenderAction(MVC.Default.LeftMenu()); }
-                                @RenderSection("sidebar", false)
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                Html.RenderPartial(MVC.Shared.Views.LeftMenu._CategoriesTree,(List<Category>) WebContext.ViewBag.Categories);
             }
             break;
     }

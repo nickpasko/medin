@@ -1,0 +1,29 @@
+﻿@model List<TechProperty>
+
+<div class="field field-name-field-char-table field-type-tablefield field-label-hidden">
+    <div class="field-items">
+        <div class="field-item even">
+            <div id="tablefield-wrapper-0" class="tablefield-wrapper">
+                <table id="tablefield-0" class="tablefield sticky-enabled">
+                    <thead><tr><th class="row_0 col_0"></th><th class="row_0 col_1"></th> </tr></thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            string world = "odd";
+                            if (i % 2 == 0)
+                            {
+                                world = "even";
+                            }
+                            <tr class="@world">
+                                <td class="row_@(i+1) col_@i">@Html.Raw(Model[i].Name)</td>
+                                <td class="row_@(i+1) col_@(i+1)">@Html.Raw(Model[i].Value)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

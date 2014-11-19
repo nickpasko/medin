@@ -1,0 +1,49 @@
+﻿@model CategoriesViewModels
+
+
+<h1 class="title" id="page-title">@WebContext.Location.Name</h1>
+
+@{
+    var products = ((IEnumerable<Product>)WebContext.ViewBag.CurrentCategory.AllProducts).ToList();
+    var categories = (List<Category>) WebContext.ViewBag.Categories;
+}
+@Html.Raw(WebContext.Location.Content)    
+
+
+<div class="view view-objects view-id-objects view-display-id-entity_view_1 view-dom-id-4fb39f82e2c2ed96e51affe6caf2e67e">
+    <div class="view-content">
+
+        @for (var i = 0; i < products.Count; i++)
+        {
+
+            string lastWord = string.Empty;
+            if (i == 0)
+            {
+                lastWord = "views-row-first";
+            }
+            if (i == categories.Count - 1)
+            {
+                lastWord = "views-row-last";
+            }
+            <div class="views-row @ByCondition(true, string.Format("views-row-{0}",i+1)) views-row-@ByCondition(i % 2 == 0,"even",i%2!=0, "odd") @lastWord">
+
+                <div class="views-list-latest"></div>
+                <div class="views-field views-field-field-img-preview">
+                    <div class="field-content">
+                        <a href="@products[i].Url">
+                            <img typeof="foaf:Image" src="@Url.Content(products[i].Gallery.With(x => x.Files.FirstOrDefault().With(file=>file.ToString())))" width="209" height="134" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="views-field views-field-title">
+                    <span class="field-content">
+                        <a href="@products[i].Url">@products[i].Name</a>
+                    </span>
+                </div>
+                <div class="views-field views-field-field-number">
+                    <div class="field-content">Каталожный №: 101.602 и 101.603 </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

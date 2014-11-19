@@ -1,0 +1,10 @@
+﻿@model CategoriesViewModels
+
+@if (WebContext.ViewBag.CurrentCategory == null)
+{
+    Html.RenderPartial(MVC.Products.Views._ShortCategoriesView, (List<Category>)WebContext.ViewBag.Categories);
+}
+else
+{
+    Html.RenderPartial(MVC.Products.Views._FullCategoriesView,Model);
+}

@@ -21,7 +21,7 @@ namespace MedIn.Web
 			RegisterUsers();
 		}
 
-		private void RegisterUsers()
+		public void RegisterUsers()
 		{
             //if (Membership.GetUser("admin") == null)
             //{
