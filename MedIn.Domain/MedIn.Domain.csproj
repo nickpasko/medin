@@ -50,16 +50,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Article.cs" />
+    <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\DataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\DescGroup.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\Gallery.cs" />
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\News.cs" />
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Question.cs" />
+    <Compile Include="Entities\TechProperty.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="DatabaseFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -22,6 +22,9 @@ namespace MedIn.Web.App_Start
             routes.MapRoute("news-item", "about/news/{id}", MVC.News.Details(), "news");
             routes.MapRoute("articles", "articles", MVC.Articles.Index(), "articles");
             routes.MapRoute("article", "articles/{alias}", MVC.Articles.Details(), "articles");
+            routes.MapRoute("products", "products", MVC.Products.Categories(), "products", new { category = new CategoriesConstraint() }, new[] { "MedIn.Web.Controllers" });
+            routes.MapRoute("productsSelector", "products/{*categoryAndProduct}", MVC.Products.Details(), "productsSelector", new { product = new ProductConstraint() }, new[] { "MedIn.Web.Controllers" });
+            routes.MapRoute("categorySelector", "products/{*categories}", MVC.Products.Categories(), "categorySelector", new { category = new CategoriesConstraint() }, new[] { "MedIn.Web.Controllers" });
 
             var route = routes.MapRoute("static-pages", "{*location}", MVC.Default.Page(), new { localizationRedirectRouteName = "homepage" }, new { location = new LocationConstraints() });
 			route.DataTokens["RouteName"] = "static-pages";

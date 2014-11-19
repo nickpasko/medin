@@ -4,7 +4,10 @@
 		<siteMapNode title="Карта сайта" controller="Locations" action="index" />
 		<siteMapNode title="Статьи" controller="Article" action="" />
 		<siteMapNode title="Новости" controller="NewsItems" action="" />
-		<siteMapNode title="Галереи" controller="Galleries" action="" />
+    <siteMapNode title="Галереи" controller="Galleries" action="" />
+    <siteMapNode title="Группы с описаниями" controller="DescGroups" action="" />
+    <siteMapNode title="Каталоги" controller="Categories" action="" />
+    <siteMapNode title="Продукты" controller="Products" action="" />
 	</siteMapNode>
 	<siteMapNode title="Обратная связь">
 		<siteMapNode title="Вопросы" controller="Questions" action=""/>

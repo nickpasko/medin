@@ -1,0 +1,51 @@
+﻿<?xml version="1.0"?>
+<settings xmlns="urn:settings" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:settings Settings.xsd">
+  <list>
+    <!--selectRowProperty="IsDefault"-->
+    <global>
+      <create/>
+    </global>
+
+    <actions>
+      <visibility/>
+      <edit/>
+      <delete/>
+    </actions>
+
+    <cols>
+      <string name="Name" title="Название"/>
+      <string name="CatalogPlace" title="Место в каталоге" /> 
+    </cols>
+
+  </list>
+
+  <form>
+    <tab name="Основные">
+      <string name="Name" title="Название" />
+      <string name="CatalogPlace" title="Место в каталоге" />
+      <wysiwyg name="Description" title="Описание" />
+    </tab>
+    <tab name="Опции">
+      <select name="GalleryId" reference="Gallery" title="Прикреплённая галерея">
+        <option>Нет</option>
+      </select>
+      <select name="CategoryId" reference="Category" title="Категория">
+        <option>Нет</option>
+      </select>
+    <select multiple="true" name="DescGroups" reference="DescGroups" optionTitel="Name" title="Табы с описаниями">
+        <option>Нет</option>
+    </select>
+    </tab>
+    <tab name="Технические свойства">
+      <collection name="TechProperties" >
+        <string name="Name" title="Название характеристики"/>
+        <string name="Value" title="Значение характеристики"/>
+      </collection>
+    </tab>
+    <tab name="Метаданные">
+      <string name="MetaTitle" title="MetaTitle" />
+      <string name="MetaKeywords" title="MetaKeywords" />
+      <textarea name="MetaDescription" title="MetaDescription" />
+    </tab>
+  </form>
+</settings>

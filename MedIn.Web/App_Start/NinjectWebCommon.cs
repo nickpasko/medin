@@ -78,6 +78,7 @@ namespace MedIn.Web.App_Start
             kernel.Bind<IMembershipService>().To<AccountMembershipService>();
             kernel.Bind<ISettingsProvider>().To<DefaultSettingsProvider>();
             kernel.Bind<IEmailLogService>().To<EmailLogsService>();
+            kernel.Bind<ITabService>().To<TabService>();
 
             kernel.Bind<AdminWebContext>().ToSelf().InRequestScope();
             kernel.Bind<IWebContext>().To<WebContext>().InRequestScope();

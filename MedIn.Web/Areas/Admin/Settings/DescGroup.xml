@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<settings xmlns="urn:settings" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:settings Settings.xsd">
+  <list orderAsc="Sort">
+    <global>
+      <create/>
+    </global>
+
+    <actions>
+      <visibility/>
+      <sort field="Sort"/>
+      <edit/>
+      <delete/>
+    </actions>
+
+    <cols>
+      <string name="Name" title="Название"/>
+    </cols>
+
+  </list>
+
+  <form>
+    <tab name="General">
+      <string name="Name" title="Название" />
+      <select name="ProductId" reference="Product" title="Продукт">
+        <option>Нет</option>
+      </select>
+      <wysiwyg name="Content" title="Содержание статьи" />
+    </tab>
+  </form>
+</settings>
