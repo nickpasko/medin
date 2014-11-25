@@ -1,0 +1,44 @@
+﻿@model List<Sertificate>
+
+<h1 class="title" id="page-title">@WebContext.Location.Name</h1>
+
+@Html.Raw(WebContext.Location.Content)
+
+<div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+        <div class="content">
+            <div class="view view-certificats view-id-certificats view-display-id-page view-dom-id-114aecc38240dcf6f65cec45aea1371e">
+                <div class="view-content">
+                    <div class="item-list">
+                        <ul>
+                            @for (var i = 0; i < Model.Count; i++)
+                            {
+                                string lastWord = string.Empty;
+                                if (i == 0)
+                                {
+                                    lastWord = "views-row-first";
+                                }
+                                if (i == Model.Count - 1)
+                                {
+                                    lastWord = "views-row-last";
+                                }
+                                <li class="views-row @ByCondition(true, string.Format("views-row-{0}",i+1)) views-row-@ByCondition(i % 2 == 0,"even",i%2!=0, "odd") @lastWord">
+                                    <div class="views-field views-field-field-cert-prev">
+                                        <div class="field-content">
+                                            <a href="@Url.Content(Model[i].File.Name)" title="@Model[i].Name" class="colorbox init-colorbox-processed cboxElement" rel="gallery-node-141">
+                                                <img typeof="foaf:Image" src="@Url.Content(Model[i].File.Name)" width="73" height="104" alt="" title="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="views-field views-field-title">
+                                        <span class="field-content">@Model[i].Name</span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -193,6 +193,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CatalogsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DescGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\GalleriesController.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="Areas\Admin\Controllers\NewsItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SertificatesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SiteSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UtilsController.cs" />
     <Compile Include="Areas\Admin\Models\CommentViewModel.cs" />
@@ -217,11 +219,13 @@
     <Compile Include="Controllers\AboutCompanyController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\CatalogsController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SertificationsController.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\EmailLogsService.cs" />
     <Compile Include="Core\Pages.cs" />
@@ -319,6 +323,7 @@
     <Content Include="Areas\Admin\Scripts\Default\sh_main.min.js" />
     <Content Include="Areas\Admin\Scripts\Default\toastr\toastr.js" />
     <Content Include="Areas\Admin\Settings\Article.xml" />
+    <Content Include="Areas\Admin\Settings\Catalog.xml" />
     <Content Include="Areas\Admin\Settings\Category.xml" />
     <Content Include="Areas\Admin\Settings\DescGroup.xml" />
     <Content Include="Areas\Admin\Settings\Gallery.xml" />
@@ -332,6 +337,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Admin\Settings\Question.xml" />
+    <Content Include="Areas\Admin\Settings\Sertificate.xml" />
     <Content Include="Areas\Admin\Styles\Default\Default.css" />
     <Content Include="Areas\Admin\Styles\Default\fileuploader\fineuploader.css" />
     <Content Include="Areas\Admin\Styles\Default\fontello.svg" />
@@ -567,6 +573,8 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\TabPartialDetails\_ReviewDetails.cshtml" />
     <Content Include="Views\Products\TabPartialDetails\_TechDetails.cshtml" />
+    <Content Include="Views\Catalogs\Index.cshtml" />
+    <Content Include="Views\Sertifications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

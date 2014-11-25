@@ -1,16 +1,102 @@
 ﻿@model ListItemsViewModel<News>
 
-<h1>@WebContext.Location.Header</h1>
+@{
+    var lstNews = Model.Items.ToList();
+}
+<h1 class="title" id="page-title">@WebContext.Location.Header</h1>
+
 @Html.Raw(WebContext.Location.Content)
 
-@Html.DisplayFor(m => m.Pager)
-<div class="news">
-@foreach (var item in Model.Items)
-{
-    <div class="item">
-        <div class="date">@item.PublishDate.ToString("D")</div>
-        <div class="link"><a href="@Url.Action(MVC.News.Details(item.Id))">@Html.Raw(item.Teaser)</a></div>
+<div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+        <div class="content">
+            <div class="view view-news view-id-news view-display-id-page view-dom-id-6185b691d435cd7d5d6ca5e04685aa5e">
+                <div class="view-content">
+                    <div class="item-list">
+                        <ul>
+                            @for (var i = 0; i < lstNews.Count; i++)
+                            {
+
+                                string lastWord = string.Empty;
+                                if (i == 0)
+                                {
+                                    lastWord = "views-row-first";
+                                }
+                                if (i == lstNews.Count - 1)
+                                {
+                                    lastWord = "views-row-last";
+                                }
+                                <li class="views-row @ByCondition(true, string.Format("views-row-{0}",i+1)) views-row-@ByCondition(i % 2 == 0,"even",i%2!=0, "odd") @lastWord">
+                                    @*<div class="date">@item.PublishDate.ToString("D")</div>
+                                        <div class="link"><a href="@Url.Action(MVC.News.Details(item.Id))">@Html.Raw(item.Teaser)</a></div>*@
+
+                                    <div class="views-field views-field-field-image">
+                                        <div class="field-content">
+                                            <a href="@Url.Action(MVC.News.Details(lstNews[i].Id))">
+                                                <img typeof="foaf:Image" src="@Url.Content(lstNews[i].File.Name)" width="215" height="140" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="views-field views-field-field-date">
+                                        <div class="field-content">
+                                            <span class="date-display-single" property="dc:date" datatype="xsd:dateTime" content="2014-11-24T00:00:00+03:00">@lstNews[i].PublishDate.ToString("D")</span>
+                                        </div>
+                                    </div>
+                                    <div class="views-field views-field-title">
+                                        <span class="field-content">
+                                            <a href="@Url.Action(MVC.News.Details(lstNews[i].Id))">@lstNews[i].Name</a>
+                                        </span>
+                                    </div>
+                                    <div class="views-field views-field-body">
+                                        <div class="field-content">
+                                            @Html.Raw(lstNews[i].Teaser)
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+
+                            @*<li class="views-row views-row-2 views-row-even">
+                                    <div class="views-field views-field-field-image">        <div class="field-content"><a href="/o-kompanii/novosti/registraciya-om-delta-plyus-v-rossii"><img typeof="foaf:Image" src="http://www.medin.by/sites/default/files/styles/215x140/public/news_2014-11-20_registratsia_om-delta-plus_v_rossii.jpg" width="215" height="140" alt=""></a></div>  </div>
+                                    <div class="views-field views-field-field-date">        <div class="field-content"><span class="date-display-single" property="dc:date" datatype="xsd:dateTime" content="2014-11-13T00:00:00+03:00">13.11.2014</span></div>  </div>
+                                    <div class="views-field views-field-title">        <span class="field-content"><a href="/o-kompanii/novosti/registraciya-om-delta-plyus-v-rossii">Регистрация ОМ-Дельта Плюс в России</a></span>  </div>
+                                    <div class="views-field views-field-body">
+                                        <div class="field-content">
+                                            Мединдустрия Сервис: успешно завершена регистрация операционного стола ОМ-Дельта Плюс в Российской Федерации!
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="views-row views-row-3 views-row-odd">
+                                    <div class="views-field views-field-field-image">        <div class="field-content"><a href="/o-kompanii/novosti/vnimanie-korrektirovka-cen"><img typeof="foaf:Image" src="http://www.medin.by/sites/default/files/styles/215x140/public/news_2014-11-07_korrektirovka_tsen.jpg" width="215" height="140" alt=""></a></div>  </div>
+                                    <div class="views-field views-field-field-date">        <div class="field-content"><span class="date-display-single" property="dc:date" datatype="xsd:dateTime" content="2014-11-07T00:00:00+03:00">07.11.2014</span></div>  </div>
+                                    <div class="views-field views-field-title">        <span class="field-content"><a href="/o-kompanii/novosti/vnimanie-korrektirovka-cen">Внимание! Корректировка цен!</a></span>  </div>
+                                    <div class="views-field views-field-body">
+                                        <div class="field-content">
+                                            С 10.11.2014 цены в российских рублях будут увеличены на 25%. Новый прайс-лист "Медин" будет введен с 01.01.2015.
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="views-row views-row-6 views-row-even views-row-last">
+                                    <div class="views-field views-field-field-image">        <div class="field-content"><a href="/o-kompanii/novosti/medin-na-ix-sezde-travmatologov-ortopedov"><img typeof="foaf:Image" src="http://www.medin.by/sites/default/files/styles/215x140/public/news_2014-10-13_medin_na_ix_sezde_travmatologov-ortopedov.jpg" width="215" height="140" alt=""></a></div>  </div>
+                                    <div class="views-field views-field-field-date">        <div class="field-content"><span class="date-display-single" property="dc:date" datatype="xsd:dateTime" content="2014-10-13T00:00:00+03:00">13.10.2014</span></div>  </div>
+                                    <div class="views-field views-field-title">        <span class="field-content"><a href="/o-kompanii/novosti/medin-na-ix-sezde-travmatologov-ortopedov">МЕДИН на IX съезде травматологов-ортопедов</a></span>  </div>
+                                    <div class="views-field views-field-body">
+                                        <div class="field-content">
+                                            В рамках данного мероприятия 16 октября в Минске (ул. Радужная-27) наши представители предложат необходимый набор интересующей вас информации о медицинском оборудования торговой марки «Медин», проконсультируют и ответят на все ваши вопросы.
+                                        </div>
+                                    </div>
+                                </li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-}
 </div>
+<ul class="pager">
+    <li class="pager-previous odd first">&nbsp;</li>
+    <li class="pager-current even">1 из 11</li>
+    <li class="pager-next odd last"><a href="/o-kompanii/novosti?year[value]=&amp;page=1">››</a></li>
+</ul>
+
 @Html.DisplayFor(m => m.Pager)

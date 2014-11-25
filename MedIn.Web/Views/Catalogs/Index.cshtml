@@ -1,0 +1,29 @@
+﻿@model ListItemsViewModel<Catalog>
+
+<h1 class="title" id="page-title">Каталоги</h1>
+
+<div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+        <div class="content">
+            <div id="node-17" class="node node-catalogs clearfix" about="/katalog" typeof="sioc:Item foaf:Document">
+                <div class="content">
+                    @foreach (var item in Model.Items.ToList())
+                    {
+                        <div class="catalog_item">
+                            @if (item.File1 != null)
+                            {
+                                <img typeof="foaf:Image" src="@Url.Content(item.File1.Name)" width="73" height="104" alt="">
+                            }
+                            <div class="catalog_name">@item.Name</div>
+                            <div class="catalog_descr">@item.Date.ToString("D")</div>
+                            @if (item.File != null)
+                            {
+                                <a class="download" href="@Url.Content(item.File.Name)" target="_blank">Скачать файл</a>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

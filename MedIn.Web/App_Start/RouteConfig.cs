@@ -21,7 +21,8 @@ namespace MedIn.Web.App_Start
             routes.MapRoute("news", "about/news", MVC.News.Index(), "news");
             routes.MapRoute("news-item", "about/news/{id}", MVC.News.Details(), "news");
             routes.MapRoute("articles", "articles", MVC.Articles.Index(), "articles");
-            routes.MapRoute("article", "articles/{alias}", MVC.Articles.Details(), "articles");
+            routes.MapRoute("catalogs", "catalogs", MVC.Catalogs.Index(), "catalogs", new[] { "MedIn.Web.Controllers" });
+            routes.MapRoute("sertifications", "about/sertifications", MVC.Sertifications.Index(), "sertifications", new[] { "MedIn.Web.Controllers" });
             routes.MapRoute("products", "products", MVC.Products.Categories(), "products", new { category = new CategoriesConstraint() }, new[] { "MedIn.Web.Controllers" });
             routes.MapRoute("productsSelector", "products/{*categoryAndProduct}", MVC.Products.Details(), "productsSelector", new { product = new ProductConstraint() }, new[] { "MedIn.Web.Controllers" });
             routes.MapRoute("categorySelector", "products/{*categories}", MVC.Products.Categories(), "categorySelector", new { category = new CategoriesConstraint() }, new[] { "MedIn.Web.Controllers" });

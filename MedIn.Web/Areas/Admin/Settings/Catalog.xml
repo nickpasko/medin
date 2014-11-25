@@ -1,0 +1,39 @@
+﻿<?xml version="1.0"?>
+<settings xmlns="urn:settings" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:settings Settings.xsd">
+  <list orderAsc="Sort">
+    <!--selectRowProperty="IsDefault"-->
+
+    <global>
+      <create/>
+    </global>
+
+    <actions>
+      <visibility/>
+      <sort field="Sort"/>
+      <edit/>
+      <delete/>
+    </actions>
+
+    <cols>
+      <string name="Name" title="Название"/>
+      <date name="Date" title="Дата"/>
+    </cols>
+
+  </list>
+
+  <form>
+    <tab name="General">
+      <string name="Name" title="Название" />
+      <date name="Date" title="Дата"/>
+    </tab>
+    <tab name="Files">
+      <file name="File" size="300" title="Файл каталога" />
+      <file name="File1" size="60" title="Прикреплённое изображение" isImage="true"/>
+    </tab>
+    <tab name="Metadata">
+      <string name="MetaTitle" title="MetaTitle" />
+      <string name="MetaKeywords" title="MetaKeywords" />
+      <textarea name="MetaDescription" title="MetaDescription" />
+    </tab>
+  </form>
+</settings>

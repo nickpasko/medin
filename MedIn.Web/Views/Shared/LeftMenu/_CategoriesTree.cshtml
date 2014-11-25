@@ -16,10 +16,12 @@
     <ul class="menu">
         @for (int i = 0; i < list.Count; i++)
         {
-            <li class="@(GetLstCategoryClass(list[i].Children.Any(x => x.Visibility), ByCondition(curCategory.With(x => x.Alias == list[i].Alias), "active-trail"), ByCondition(i == 0, "first", i == list.Count - 1, "last")))">
-                <a href="@(root)/@(list[i].Alias)" class="@(ByCondition(curCategory.With(x => x.Alias == list[i].Alias), "active-trail active"))">@(list[i].Name)</a>
+            //подстроенно по вёрстку, соответственно при больших уровнях работать будет криво
+            bool currentIsChild = list[i].Children.Any(x => x.Alias == curCategory.Alias);
+            <li class="@(GetLstCategoryClass(list[i].Children.Any(x => x.Visibility), ByCondition(curCategory.With(x => x.Alias == list[i].Alias) || currentIsChild, "active-trail"), ByCondition(i == 0, "first", i == list.Count - 1, "last")))">
+                <a href="@(root)/@(list[i].Alias)" class="@(ByCondition(curCategory.With(x => x.Alias == list[i].Alias) || currentIsChild, "active-trail active"))">@(list[i].Name)</a>
                 @if (list[i].Children.Any(x => x.Visibility))
-                {   
+                {
                     @RecursiveRender(list[i].Children.Where(c => c.Visibility).OrderBy(c => c.Sort).ToList(), string.Format("{0}/{1}", root, list[i].Alias))
                 }
             </li>

@@ -1,23 +1,31 @@
-﻿@using MedIn.Web
-@model MedIn.Web.Models.ListItemsViewModel<Article>
+﻿@model ListItemsViewModel<Article>
 
-<h1>@WebContext.Location.Header</h1>
-@Html.DisplayFor(m => m.Pager)
-<div class="articles">
-@foreach (var item in Model.Items)
-{
-    <div class="item">
-        @if (item.File != null)
-        {
-            <div class="image">
-                <a href="@Url.Action(MVC.Articles.Details(item.Alias))">@Html.Image(item.File, "width=800")</a>
+<h1 class="title" id="page-title">Статьи о медицинском оборудовании производства Иностранного унитатного предприятия "Мединдустрия Сервис"</h1>
+<div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+        <div class="content">
+            <div id="node-172" class="node node-catalogs clearfix" about="/node/172" typeof="sioc:Item foaf:Document">
+                <div class="content">
+                    @foreach (var item in Model.Items)
+                    {
+
+                        <div class="catalog_item">
+                            @if (item.File1 != null)
+                            {
+                                <img typeof="foaf:Image" src="@Url.Content(item.File1.Name)" width="73" height="104" alt="">
+                            }
+
+                            <div class="catalog_name">@item.Name</div>
+                            <div class="catalog_descr">@Html.Raw(item.Teaser)</div>
+                            @if (item.File != null)
+                            {
+                                <a class="download" href="@Url.Content(item.File.Name)" target="_blank">Скачать файл</a>
+                            }
+                        </div>
+                    }
+                </div>
             </div>
-        }
-        <div class="date">@item.PublishDate.ToString("D")</div>
-        <h3><a href="@Url.Action(MVC.Articles.Details(item.Alias))">@item.Name</a></h3>
-        <div class="teaser">@Html.Raw(item.Teaser)</div>
+        </div>
     </div>
-}
 </div>
 @Html.DisplayFor(m => m.Pager)
-

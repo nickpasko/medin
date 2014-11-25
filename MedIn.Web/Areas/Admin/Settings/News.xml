@@ -26,6 +26,10 @@
 			<textarea name="Teaser" title="Краткое описание новости" />
 			<wysiwyg name="Content" title="Новость целиком" />
 		</tab>
+
+    <tab name="File">
+      <file name="File" isImage="true" size="300" title="Прикреплённое изображения" showTitle="true" />
+    </tab>
 		<tab name="Metadata">
 			<string name="MetaTitle" title="MetaTitle" />
 			<string name="MetaKeywords" title="MetaKeywords" />

@@ -6,8 +6,10 @@
 		<siteMapNode title="Новости" controller="NewsItems" action="" />
     <siteMapNode title="Галереи" controller="Galleries" action="" />
     <siteMapNode title="Группы с описаниями" controller="DescGroups" action="" />
-    <siteMapNode title="Каталоги" controller="Categories" action="" />
+    <siteMapNode title="Категории продукции" controller="Categories" action="" />
     <siteMapNode title="Продукты" controller="Products" action="" />
+    <siteMapNode title="Каталоги" controller="Catalogs" action="" />
+    <siteMapNode title="Сертификаты" controller="Sertificates" action="" />
 	</siteMapNode>
 	<siteMapNode title="Обратная связь">
 		<siteMapNode title="Вопросы" controller="Questions" action=""/>

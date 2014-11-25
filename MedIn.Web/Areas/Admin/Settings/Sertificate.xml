@@ -1,0 +1,29 @@
+﻿<?xml version="1.0"?>
+<settings xmlns="urn:settings" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:settings Settings.xsd">
+  <list orderAsc="Sort">
+    <!--selectRowProperty="IsDefault"-->
+
+    <global>
+      <create/>
+    </global>
+
+    <actions>
+      <visibility/>
+      <sort field="Sort"/>
+      <edit/>
+      <delete/>
+    </actions>
+
+    <cols>
+      <string name="Name" title="Название"/>
+    </cols>
+
+  </list>
+
+  <form>
+    <tab name="General">
+      <string name="Name" title="Название" />
+      <file name="File" size="60" title="Сертификат" isImage="true"/>
+    </tab>
+  </form>
+</settings>

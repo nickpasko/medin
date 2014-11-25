@@ -30,19 +30,19 @@ namespace MedIn.Web.Controllers
 			return View(model);
 		}
 
-		public virtual ActionResult Details(string alias)
-		{
-			var item = GetByAlias<Article>(alias);
-			if (item == null)
-                return HttpNotFound();
-			var model = new ItemViewModel<Article>()
-							{
-								Item = item,
-								ItemPage = GetItemPage(Constants.NewsPageSize, item)
-							};
-			WebContext.Metadata = model.Item;
-			WebContext.PushBreadcrumb(model);
-			return View(model);
-		}
+        //public virtual ActionResult Details(string alias)
+        //{
+        //    var item = GetByAlias<Article>(alias);
+        //    if (item == null)
+        //        return HttpNotFound();
+        //    var model = new ItemViewModel<Article>()
+        //                    {
+        //                        Item = item,
+        //                        ItemPage = GetItemPage(Constants.NewsPageSize, item)
+        //                    };
+        //    WebContext.Metadata = model.Item;
+        //    WebContext.PushBreadcrumb(model);
+        //    return View(model);
+        //}
 	}
 }
