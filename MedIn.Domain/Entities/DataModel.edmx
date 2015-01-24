@@ -28,16 +28,28 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FileId" Type="int" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Alias" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Author" Type="nvarchar(max)" />
           <Property Name="Teaser" Type="nvarchar(max)" />
-          <Property Name="Content" Type="nvarchar(max)" />
-          <Property Name="PublishDate" Type="datetime" Nullable="false" />
           <Property Name="Visibility" Type="bit" Nullable="false" />
           <Property Name="Sort" Type="int" Nullable="false" />
           <Property Name="MetaTitle" Type="nvarchar(max)" />
           <Property Name="MetaKeywords" Type="nvarchar(max)" />
           <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="AvatarId" Type="int" />
+        </EntityType>
+        <EntityType Name="Catalogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="FileId" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Visibility" Type="bit" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="MetaTitle" Type="nvarchar(max)" />
+          <Property Name="MetaKeywords" Type="nvarchar(max)" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="AvatarId" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -174,6 +186,7 @@
           <Property Name="MetaTitle" Type="nvarchar(max)" />
           <Property Name="MetaKeywords" Type="nvarchar(max)" />
           <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="FileId" Type="int" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -223,6 +236,16 @@
           <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Sertificates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="Visibility" Type="bit" Nullable="false" />
+          <Property Name="FileId" Type="int" />
         </EntityType>
         <EntityType Name="SiteSettings">
           <Key>
@@ -297,6 +320,42 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Articles">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articles_Files1">
+          <End Role="Files" Type="Self.Files" Multiplicity="0..1" />
+          <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Files">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="AvatarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Catalogs_Files">
+          <End Role="Files" Type="Self.Files" Multiplicity="0..1" />
+          <End Role="Catalogs" Type="Self.Catalogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Files">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Catalogs">
+              <PropertyRef Name="AvatarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Catalogs_Files1">
+          <End Role="Files" Type="Self.Files" Multiplicity="0..1" />
+          <End Role="Catalogs" Type="Self.Catalogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Files">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Catalogs">
               <PropertyRef Name="FileId" />
             </Dependent>
           </ReferentialConstraint>
@@ -385,6 +444,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_News_Files">
+          <End Role="Files" Type="Self.Files" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Files">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Products_Categories">
           <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -406,6 +477,18 @@
             </Principal>
             <Dependent Role="Products">
               <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sertificates_Files">
+          <End Role="Files" Type="Self.Files" Multiplicity="0..1" />
+          <End Role="Sertificates" Type="Self.Sertificates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Files">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sertificates">
+              <PropertyRef Name="FileId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -527,6 +610,7 @@
           <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ArticleGalleries" EntityType="Self.ArticleGalleries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Catalogs" EntityType="Self.Catalogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DescGroup" EntityType="Self.DescGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmailLogs" EntityType="Self.EmailLogs" Schema="dbo" store:Type="Tables" />
@@ -540,6 +624,7 @@
           <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sertificates" EntityType="Self.Sertificates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiteSettings" EntityType="Self.SiteSettings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TechProperties" EntityType="Self.TechProperties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -555,6 +640,18 @@
           <AssociationSet Name="FK_Articles_Files" Association="Self.FK_Articles_Files">
             <End Role="Files" EntitySet="Files" />
             <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articles_Files1" Association="Self.FK_Articles_Files1">
+            <End Role="Files" EntitySet="Files" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Catalogs_Files" Association="Self.FK_Catalogs_Files">
+            <End Role="Files" EntitySet="Files" />
+            <End Role="Catalogs" EntitySet="Catalogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Catalogs_Files1" Association="Self.FK_Catalogs_Files1">
+            <End Role="Files" EntitySet="Files" />
+            <End Role="Catalogs" EntitySet="Catalogs" />
           </AssociationSet>
           <AssociationSet Name="FK_Categories_Categories" Association="Self.FK_Categories_Categories">
             <End Role="Categories" EntitySet="Categories" />
@@ -584,6 +681,10 @@
             <End Role="Locations" EntitySet="Locations" />
             <End Role="Locations1" EntitySet="Locations" />
           </AssociationSet>
+          <AssociationSet Name="FK_News_Files" Association="Self.FK_News_Files">
+            <End Role="Files" EntitySet="Files" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
           <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
@@ -591,6 +692,10 @@
           <AssociationSet Name="FK_Products_Galleries" Association="Self.FK_Products_Galleries">
             <End Role="Galleries" EntitySet="Galleries" />
             <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sertificates_Files" Association="Self.FK_Sertificates_Files">
+            <End Role="Files" EntitySet="Files" />
+            <End Role="Sertificates" EntitySet="Sertificates" />
           </AssociationSet>
           <AssociationSet Name="FK_TechProperties_Products" Association="Self.FK_TechProperties_Products">
             <End Role="Products" EntitySet="Products" />
@@ -635,9 +740,7 @@
       <Schema Namespace="DataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="DataModelContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applications" EntityType="DataModel.Application" />
-          <EntitySet Name="Articles" EntityType="DataModel.Article" />
           <EntitySet Name="EmailLogs" EntityType="DataModel.EmailLog" />
-          <EntitySet Name="Files" EntityType="DataModel.File" />
           <EntitySet Name="Galleries" EntityType="DataModel.Gallery" />
           <EntitySet Name="Locations" EntityType="DataModel.Location" />
           <EntitySet Name="News" EntityType="DataModel.News" />
@@ -647,14 +750,6 @@
           <EntitySet Name="UserEntities" EntityType="DataModel.UserEntity" />
           <AssociationSet Name="UserApplication" Association="DataModel.UserApplication">
             <End Role="Application" EntitySet="Applications" />
-            <End Role="User" EntitySet="UserEntities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Articles_Files" Association="DataModel.FK_Articles_Files">
-            <End Role="File" EntitySet="Files" />
-            <End Role="Article" EntitySet="Articles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Files" Association="DataModel.FK_Users_Files">
-            <End Role="File" EntitySet="Files" />
             <End Role="User" EntitySet="UserEntities" />
           </AssociationSet>
           <AssociationSet Name="FK_Locations_Galleries" Association="DataModel.FK_Locations_Galleries">
@@ -668,14 +763,6 @@
           <AssociationSet Name="UserProfile" Association="DataModel.UserProfile">
             <End Role="User" EntitySet="UserEntities" />
             <End Role="Profile" EntitySet="Profiles" />
-          </AssociationSet>
-          <AssociationSet Name="ArticleGalleries" Association="DataModel.ArticleGalleries">
-            <End Role="Article" EntitySet="Articles" />
-            <End Role="Gallery" EntitySet="Galleries" />
-          </AssociationSet>
-          <AssociationSet Name="GalleryFiles" Association="DataModel.GalleryFiles">
-            <End Role="File" EntitySet="Files" />
-            <End Role="Gallery" EntitySet="Galleries" />
           </AssociationSet>
           <EntitySet Name="Memberships" EntityType="DataModel.Membership" />
           <EntitySet Name="Roles" EntityType="DataModel.Role" />
@@ -723,6 +810,46 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="DescGroup" EntitySet="DescGroups" />
           </AssociationSet>
+          <EntitySet Name="Files" EntityType="DataModel.File" />
+          <AssociationSet Name="FK_News_Files" Association="DataModel.FK_News_Files">
+            <End Role="File" EntitySet="Files" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Files" Association="DataModel.FK_Users_Files">
+            <End Role="File" EntitySet="Files" />
+            <End Role="UserEntity" EntitySet="UserEntities" />
+          </AssociationSet>
+          <AssociationSet Name="GalleryFiles" Association="DataModel.GalleryFiles">
+            <End Role="File" EntitySet="Files" />
+            <End Role="Gallery" EntitySet="Galleries" />
+          </AssociationSet>
+          <EntitySet Name="Articles" EntityType="DataModel.Article" />
+          <AssociationSet Name="FK_Articles_Files" Association="DataModel.FK_Articles_Files">
+            <End Role="File" EntitySet="Files" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articles_Files1" Association="DataModel.FK_Articles_Files1">
+            <End Role="File" EntitySet="Files" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="ArticleGalleries" Association="DataModel.ArticleGalleries">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Gallery" EntitySet="Galleries" />
+          </AssociationSet>
+          <EntitySet Name="Sertificates" EntityType="DataModel.Sertificate" />
+          <AssociationSet Name="FK_Sertificates_Files" Association="DataModel.FK_Sertificates_Files">
+            <End Role="File" EntitySet="Files" />
+            <End Role="Sertificate" EntitySet="Sertificates" />
+          </AssociationSet>
+          <EntitySet Name="Catalogs" EntityType="DataModel.Catalog" />
+          <AssociationSet Name="FK_Catalogs_Files" Association="DataModel.FK_Catalogs_Files">
+            <End Role="File" EntitySet="Files" />
+            <End Role="Catalog" EntitySet="Catalogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Catalogs_Files1" Association="DataModel.FK_Catalogs_Files1">
+            <End Role="File" EntitySet="Files" />
+            <End Role="Catalog" EntitySet="Catalogs" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Application">
           <Key>
@@ -734,26 +861,6 @@
           <NavigationProperty Name="Users" Relationship="DataModel.UserApplication" FromRole="Application" ToRole="User" />
           <NavigationProperty Name="Memberships" Relationship="DataModel.MembershipApplication" FromRole="Application" ToRole="Membership" />
           <NavigationProperty Name="Roles" Relationship="DataModel.RoleApplication" FromRole="Application" ToRole="Role" />
-        </EntityType>
-        <EntityType Name="Article">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileId" Type="Int32" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Alias" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Teaser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="File" Relationship="DataModel.FK_Articles_Files" FromRole="Article" ToRole="File" />
-          <NavigationProperty Name="Galleries" Relationship="DataModel.ArticleGalleries" FromRole="Article" ToRole="Gallery" />
         </EntityType>
         <EntityType Name="EmailLog">
           <Key>
@@ -770,24 +877,6 @@
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="File">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SourceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Size" Type="Int64" />
-          <Property Name="Alt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Articles" Relationship="DataModel.FK_Articles_Files" FromRole="File" ToRole="Article" />
-          <NavigationProperty Name="Users" Relationship="DataModel.FK_Users_Files" FromRole="File" ToRole="User" />
-          <NavigationProperty Name="Galleries" Relationship="DataModel.GalleryFiles" FromRole="File" ToRole="Gallery" />
-        </EntityType>
         <EntityType Name="Gallery">
           <Key>
             <PropertyRef Name="Id" />
@@ -802,10 +891,10 @@
           <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Locations" Relationship="DataModel.FK_Locations_Galleries" FromRole="Gallery" ToRole="Location" />
-          <NavigationProperty Name="Articles" Relationship="DataModel.ArticleGalleries" FromRole="Gallery" ToRole="Article" />
-          <NavigationProperty Name="Files" Relationship="DataModel.GalleryFiles" FromRole="Gallery" ToRole="File" />
           <NavigationProperty Name="Products" Relationship="DataModel.FK_Products_Galleries" FromRole="Gallery" ToRole="Product" />
           <NavigationProperty Name="Categories" Relationship="DataModel.FK_Categories_Galleries" FromRole="Gallery" ToRole="Category" />
+          <NavigationProperty Name="Files" Relationship="DataModel.GalleryFiles" FromRole="Gallery" ToRole="File" />
+          <NavigationProperty Name="Articles" Relationship="DataModel.ArticleGalleries" FromRole="Gallery" ToRole="Article" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -842,6 +931,8 @@
           <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileId" Type="Int32" />
+          <NavigationProperty Name="File" Relationship="DataModel.FK_News_Files" FromRole="News" ToRole="File" />
         </EntityType>
         <EntityType Name="Profile">
           <Key>
@@ -890,10 +981,10 @@
           <Property Name="FileId" Type="Int32" />
           <Property Name="Key" Type="Guid" />
           <NavigationProperty Name="Application" Relationship="DataModel.UserApplication" FromRole="User" ToRole="Application" />
-          <NavigationProperty Name="File" Relationship="DataModel.FK_Users_Files" FromRole="User" ToRole="File" />
           <NavigationProperty Name="Profile" Relationship="DataModel.UserProfile" FromRole="User" ToRole="Profile" />
           <NavigationProperty Name="Membership" Relationship="DataModel.MembershipUser" FromRole="UserEntity" ToRole="Membership" />
           <NavigationProperty Name="Roles" Relationship="DataModel.UsersInRoles" FromRole="UserEntity" ToRole="Role" />
+          <NavigationProperty Name="File" Relationship="DataModel.FK_Users_Files" FromRole="UserEntity" ToRole="File" />
         </EntityType>
         <Association Name="UserApplication">
           <End Type="DataModel.Application" Role="Application" Multiplicity="1" />
@@ -904,32 +995,6 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Articles_Files">
-          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
-          <End Type="DataModel.Article" Role="Article" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="File">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Article">
-              <PropertyRef Name="FileId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Users_Files">
-          <End Type="DataModel.File" Role="File" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="DataModel.UserEntity" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="File">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="FileId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -968,14 +1033,6 @@
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="ArticleGalleries">
-          <End Type="DataModel.Article" Role="Article" Multiplicity="*" />
-          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="*" />
-        </Association>
-        <Association Name="GalleryFiles">
-          <End Type="DataModel.File" Role="File" Multiplicity="*" />
-          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="*" />
         </Association>
         <EntityType Name="Membership">
           <Key>
@@ -1192,6 +1249,169 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SourceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Size" Type="Int64" />
+          <Property Name="Alt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="News" Relationship="DataModel.FK_News_Files" FromRole="File" ToRole="News" />
+          <NavigationProperty Name="Users" Relationship="DataModel.FK_Users_Files" FromRole="File" ToRole="UserEntity" />
+          <NavigationProperty Name="Galleries" Relationship="DataModel.GalleryFiles" FromRole="File" ToRole="Gallery" />
+          <NavigationProperty Name="Articles" Relationship="DataModel.FK_Articles_Files" FromRole="File" ToRole="Article" />
+          <NavigationProperty Name="Articles1" Relationship="DataModel.FK_Articles_Files1" FromRole="File" ToRole="Article" />
+          <NavigationProperty Name="Sertificates" Relationship="DataModel.FK_Sertificates_Files" FromRole="File" ToRole="Sertificate" />
+          <NavigationProperty Name="Catalogs" Relationship="DataModel.FK_Catalogs_Files" FromRole="File" ToRole="Catalog" />
+          <NavigationProperty Name="Catalogs1" Relationship="DataModel.FK_Catalogs_Files1" FromRole="File" ToRole="Catalog" />
+        </EntityType>
+        <Association Name="FK_News_Files">
+          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
+          <End Type="DataModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Files">
+          <End Type="DataModel.File" Role="File" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.UserEntity" Role="UserEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEntity">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GalleryFiles">
+          <End Type="DataModel.File" Role="File" Multiplicity="*" />
+          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Teaser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AvatarId" Type="Int32" />
+          <NavigationProperty Name="File" Relationship="DataModel.FK_Articles_Files" FromRole="Article" ToRole="File" />
+          <NavigationProperty Name="File1" Relationship="DataModel.FK_Articles_Files1" FromRole="Article" ToRole="File" />
+          <NavigationProperty Name="Galleries" Relationship="DataModel.ArticleGalleries" FromRole="Article" ToRole="Gallery" />
+        </EntityType>
+        <Association Name="FK_Articles_Files">
+          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
+          <End Type="DataModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articles_Files1">
+          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
+          <End Type="DataModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="AvatarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ArticleGalleries">
+          <End Type="DataModel.Article" Role="Article" Multiplicity="*" />
+          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Sertificate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="FileId" Type="Int32" />
+          <NavigationProperty Name="File" Relationship="DataModel.FK_Sertificates_Files" FromRole="Sertificate" ToRole="File" />
+        </EntityType>
+        <Association Name="FK_Sertificates_Files">
+          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
+          <End Type="DataModel.Sertificate" Role="Sertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sertificate">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Catalog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="FileId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AvatarId" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="File" Relationship="DataModel.FK_Catalogs_Files" FromRole="Catalog" ToRole="File" />
+          <NavigationProperty Name="File1" Relationship="DataModel.FK_Catalogs_Files1" FromRole="Catalog" ToRole="File" />
+        </EntityType>
+        <Association Name="FK_Catalogs_Files">
+          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
+          <End Type="DataModel.Catalog" Role="Catalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Catalog">
+              <PropertyRef Name="AvatarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Catalogs_Files1">
+          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
+          <End Type="DataModel.Catalog" Role="Catalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Catalog">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1207,25 +1427,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="DataModel.Article">
-              <MappingFragment StoreEntitySet="Articles">
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Teaser" ColumnName="Teaser" />
-                <ScalarProperty Name="Author" ColumnName="Author" />
-                <ScalarProperty Name="Alias" ColumnName="Alias" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="FileId" ColumnName="FileId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="EmailLogs">
             <EntityTypeMapping TypeName="DataModel.EmailLog">
               <MappingFragment StoreEntitySet="EmailLogs">
@@ -1238,22 +1439,6 @@
                 <ScalarProperty Name="From" ColumnName="From" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Files">
-            <EntityTypeMapping TypeName="DataModel.File">
-              <MappingFragment StoreEntitySet="Files">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Alt" ColumnName="Alt" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1296,6 +1481,7 @@
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="DataModel.News">
               <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
                 <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
                 <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
                 <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
@@ -1358,22 +1544,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ArticleGalleries" TypeName="DataModel.ArticleGalleries" StoreEntitySet="ArticleGalleries">
-            <EndProperty Name="Gallery">
-              <ScalarProperty Name="Id" ColumnName="GalleryId" />
-            </EndProperty>
-            <EndProperty Name="Article">
-              <ScalarProperty Name="Id" ColumnName="ArticleId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="GalleryFiles" TypeName="DataModel.GalleryFiles" StoreEntitySet="GalleryFiles">
-            <EndProperty Name="Gallery">
-              <ScalarProperty Name="Id" ColumnName="GalleryId" />
-            </EndProperty>
-            <EndProperty Name="File">
-              <ScalarProperty Name="Id" ColumnName="FileId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Memberships">
             <EntityTypeMapping TypeName="DataModel.Membership">
               <MappingFragment StoreEntitySet="Memberships">
@@ -1472,6 +1642,81 @@
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="DataModel.File">
+              <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Alt" ColumnName="Alt" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="GalleryFiles" TypeName="DataModel.GalleryFiles" StoreEntitySet="GalleryFiles">
+            <EndProperty Name="Gallery">
+              <ScalarProperty Name="Id" ColumnName="GalleryId" />
+            </EndProperty>
+            <EndProperty Name="File">
+              <ScalarProperty Name="Id" ColumnName="FileId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="DataModel.Article">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="AvatarId" ColumnName="AvatarId" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Teaser" ColumnName="Teaser" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ArticleGalleries" TypeName="DataModel.ArticleGalleries" StoreEntitySet="ArticleGalleries">
+            <EndProperty Name="Gallery">
+              <ScalarProperty Name="Id" ColumnName="GalleryId" />
+            </EndProperty>
+            <EndProperty Name="Article">
+              <ScalarProperty Name="Id" ColumnName="ArticleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Sertificates">
+            <EntityTypeMapping TypeName="DataModel.Sertificate">
+              <MappingFragment StoreEntitySet="Sertificates">
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catalogs">
+            <EntityTypeMapping TypeName="DataModel.Catalog">
+              <MappingFragment StoreEntitySet="Catalogs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AvatarId" ColumnName="AvatarId" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

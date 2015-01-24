@@ -20,13 +20,9 @@ using System.Xml.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("DataModel", "UserApplication", "Application", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Application), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.UserEntity), true)]
-[assembly: EdmRelationshipAttribute("DataModel", "FK_Articles_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Article", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Article), true)]
-[assembly: EdmRelationshipAttribute("DataModel", "FK_Users_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.UserEntity), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Locations_Galleries", "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Gallery), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Location), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Locations_Locations", "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Location), "Location1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Location), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "UserProfile", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.UserEntity), "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Profile), true)]
-[assembly: EdmRelationshipAttribute("DataModel", "ArticleGalleries", "Article", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Article), "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Gallery))]
-[assembly: EdmRelationshipAttribute("DataModel", "GalleryFiles", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.File), "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Gallery))]
 [assembly: EdmRelationshipAttribute("DataModel", "MembershipApplication", "Application", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Application), "Membership", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Membership), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "RoleApplication", "Application", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Application), "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Role), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "MembershipUser", "UserEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.UserEntity), "Membership", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Membership), true)]
@@ -37,6 +33,15 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Products_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Category), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Product), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_TechProperties_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Product), "TechProperty", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.TechProperty), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_DescGroup_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Product), "DescGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.DescGroup), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "FK_News_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "News", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.News), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "FK_Users_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "UserEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.UserEntity), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "GalleryFiles", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.File), "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Gallery))]
+[assembly: EdmRelationshipAttribute("DataModel", "FK_Articles_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Article", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Article), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "FK_Articles_Files1", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Article", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Article), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "ArticleGalleries", "Article", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Article), "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Gallery))]
+[assembly: EdmRelationshipAttribute("DataModel", "FK_Sertificates_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Sertificate", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Sertificate), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "FK_Catalogs_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Catalog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Catalog), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "FK_Catalogs_Files1", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Catalog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Catalog), true)]
 
 #endregion
 
@@ -107,22 +112,6 @@ namespace MedIn.Domain.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Article> Articles
-        {
-            get
-            {
-                if ((_Articles == null))
-                {
-                    _Articles = base.CreateObjectSet<Article>("Articles");
-                }
-                return _Articles;
-            }
-        }
-        private ObjectSet<Article> _Articles;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<EmailLog> EmailLogs
         {
             get
@@ -135,22 +124,6 @@ namespace MedIn.Domain.Entities
             }
         }
         private ObjectSet<EmailLog> _EmailLogs;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<File> Files
-        {
-            get
-            {
-                if ((_Files == null))
-                {
-                    _Files = base.CreateObjectSet<File>("Files");
-                }
-                return _Files;
-            }
-        }
-        private ObjectSet<File> _Files;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -359,6 +332,70 @@ namespace MedIn.Domain.Entities
             }
         }
         private ObjectSet<DescGroup> _DescGroups;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<File> Files
+        {
+            get
+            {
+                if ((_Files == null))
+                {
+                    _Files = base.CreateObjectSet<File>("Files");
+                }
+                return _Files;
+            }
+        }
+        private ObjectSet<File> _Files;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Article> Articles
+        {
+            get
+            {
+                if ((_Articles == null))
+                {
+                    _Articles = base.CreateObjectSet<Article>("Articles");
+                }
+                return _Articles;
+            }
+        }
+        private ObjectSet<Article> _Articles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Sertificate> Sertificates
+        {
+            get
+            {
+                if ((_Sertificates == null))
+                {
+                    _Sertificates = base.CreateObjectSet<Sertificate>("Sertificates");
+                }
+                return _Sertificates;
+            }
+        }
+        private ObjectSet<Sertificate> _Sertificates;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Catalog> Catalogs
+        {
+            get
+            {
+                if ((_Catalogs == null))
+                {
+                    _Catalogs = base.CreateObjectSet<Catalog>("Catalogs");
+                }
+                return _Catalogs;
+            }
+        }
+        private ObjectSet<Catalog> _Catalogs;
 
         #endregion
 
@@ -373,27 +410,11 @@ namespace MedIn.Domain.Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Articles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToArticles(Article article)
-        {
-            base.AddObject("Articles", article);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the EmailLogs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToEmailLogs(EmailLog emailLog)
         {
             base.AddObject("EmailLogs", emailLog);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Files EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToFiles(File file)
-        {
-            base.AddObject("Files", file);
         }
     
         /// <summary>
@@ -498,6 +519,38 @@ namespace MedIn.Domain.Entities
         public void AddToDescGroups(DescGroup descGroup)
         {
             base.AddObject("DescGroups", descGroup);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Files EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFiles(File file)
+        {
+            base.AddObject("Files", file);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Articles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToArticles(Article article)
+        {
+            base.AddObject("Articles", article);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Sertificates EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSertificates(Sertificate sertificate)
+        {
+            base.AddObject("Sertificates", sertificate);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Catalogs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCatalogs(Catalog catalog)
+        {
+            base.AddObject("Catalogs", catalog);
         }
 
         #endregion
@@ -700,17 +753,13 @@ namespace MedIn.Domain.Entities
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="alias">Initial value of the Alias property.</param>
-        /// <param name="publishDate">Initial value of the PublishDate property.</param>
         /// <param name="visibility">Initial value of the Visibility property.</param>
         /// <param name="sort">Initial value of the Sort property.</param>
-        public static Article CreateArticle(global::System.Int32 id, global::System.String name, global::System.String alias, global::System.DateTime publishDate, global::System.Boolean visibility, global::System.Int32 sort)
+        public static Article CreateArticle(global::System.Int32 id, global::System.String name, global::System.Boolean visibility, global::System.Int32 sort)
         {
             Article article = new Article();
             article.Id = id;
             article.Name = name;
-            article.Alias = alias;
-            article.PublishDate = publishDate;
             article.Visibility = visibility;
             article.Sort = sort;
             return article;
@@ -798,54 +847,6 @@ namespace MedIn.Domain.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Alias
-        {
-            get
-            {
-                return _Alias;
-            }
-            set
-            {
-                OnAliasChanging(value);
-                ReportPropertyChanging("Alias");
-                _Alias = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Alias");
-                OnAliasChanged();
-            }
-        }
-        private global::System.String _Alias;
-        partial void OnAliasChanging(global::System.String value);
-        partial void OnAliasChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Author
-        {
-            get
-            {
-                return _Author;
-            }
-            set
-            {
-                OnAuthorChanging(value);
-                ReportPropertyChanging("Author");
-                _Author = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Author");
-                OnAuthorChanged();
-            }
-        }
-        private global::System.String _Author;
-        partial void OnAuthorChanging(global::System.String value);
-        partial void OnAuthorChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Teaser
@@ -866,54 +867,6 @@ namespace MedIn.Domain.Entities
         private global::System.String _Teaser;
         partial void OnTeaserChanging(global::System.String value);
         partial void OnTeaserChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Content
-        {
-            get
-            {
-                return _Content;
-            }
-            set
-            {
-                OnContentChanging(value);
-                ReportPropertyChanging("Content");
-                _Content = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Content");
-                OnContentChanged();
-            }
-        }
-        private global::System.String _Content;
-        partial void OnContentChanging(global::System.String value);
-        partial void OnContentChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime PublishDate
-        {
-            get
-            {
-                return _PublishDate;
-            }
-            set
-            {
-                OnPublishDateChanging(value);
-                ReportPropertyChanging("PublishDate");
-                _PublishDate = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PublishDate");
-                OnPublishDateChanged();
-            }
-        }
-        private global::System.DateTime _PublishDate;
-        partial void OnPublishDateChanging(global::System.DateTime value);
-        partial void OnPublishDateChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1034,6 +987,30 @@ namespace MedIn.Domain.Entities
         private global::System.String _MetaDescription;
         partial void OnMetaDescriptionChanging(global::System.String value);
         partial void OnMetaDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> AvatarId
+        {
+            get
+            {
+                return _AvatarId;
+            }
+            set
+            {
+                OnAvatarIdChanging(value);
+                ReportPropertyChanging("AvatarId");
+                _AvatarId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AvatarId");
+                OnAvatarIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _AvatarId;
+        partial void OnAvatarIdChanging(Nullable<global::System.Int32> value);
+        partial void OnAvatarIdChanged();
 
         #endregion
 
@@ -1084,6 +1061,44 @@ namespace MedIn.Domain.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Articles_Files1", "File")]
+        public File File1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Articles_Files1", "File").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Articles_Files1", "File").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<File> File1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Articles_Files1", "File");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<File>("DataModel.FK_Articles_Files1", "File", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("DataModel", "ArticleGalleries", "Gallery")]
         public EntityCollection<Gallery> Galleries
         {
@@ -1096,6 +1111,367 @@ namespace MedIn.Domain.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Gallery>("DataModel.ArticleGalleries", "Gallery", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DataModel", Name="Catalog")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Catalog : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Catalog object.
+        /// </summary>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="date">Initial value of the Date property.</param>
+        /// <param name="visibility">Initial value of the Visibility property.</param>
+        /// <param name="sort">Initial value of the Sort property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
+        public static Catalog CreateCatalog(global::System.String name, global::System.DateTime date, global::System.Boolean visibility, global::System.Int32 sort, global::System.Int32 id)
+        {
+            Catalog catalog = new Catalog();
+            catalog.Name = name;
+            catalog.Date = date;
+            catalog.Visibility = visibility;
+            catalog.Sort = sort;
+            catalog.Id = id;
+            return catalog;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> FileId
+        {
+            get
+            {
+                return _FileId;
+            }
+            set
+            {
+                OnFileIdChanging(value);
+                ReportPropertyChanging("FileId");
+                _FileId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FileId");
+                OnFileIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _FileId;
+        partial void OnFileIdChanging(Nullable<global::System.Int32> value);
+        partial void OnFileIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Visibility
+        {
+            get
+            {
+                return _Visibility;
+            }
+            set
+            {
+                OnVisibilityChanging(value);
+                ReportPropertyChanging("Visibility");
+                _Visibility = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visibility");
+                OnVisibilityChanged();
+            }
+        }
+        private global::System.Boolean _Visibility;
+        partial void OnVisibilityChanging(global::System.Boolean value);
+        partial void OnVisibilityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Sort
+        {
+            get
+            {
+                return _Sort;
+            }
+            set
+            {
+                OnSortChanging(value);
+                ReportPropertyChanging("Sort");
+                _Sort = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Sort");
+                OnSortChanged();
+            }
+        }
+        private global::System.Int32 _Sort;
+        partial void OnSortChanging(global::System.Int32 value);
+        partial void OnSortChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MetaTitle
+        {
+            get
+            {
+                return _MetaTitle;
+            }
+            set
+            {
+                OnMetaTitleChanging(value);
+                ReportPropertyChanging("MetaTitle");
+                _MetaTitle = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaTitle");
+                OnMetaTitleChanged();
+            }
+        }
+        private global::System.String _MetaTitle;
+        partial void OnMetaTitleChanging(global::System.String value);
+        partial void OnMetaTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MetaKeywords
+        {
+            get
+            {
+                return _MetaKeywords;
+            }
+            set
+            {
+                OnMetaKeywordsChanging(value);
+                ReportPropertyChanging("MetaKeywords");
+                _MetaKeywords = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaKeywords");
+                OnMetaKeywordsChanged();
+            }
+        }
+        private global::System.String _MetaKeywords;
+        partial void OnMetaKeywordsChanging(global::System.String value);
+        partial void OnMetaKeywordsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MetaDescription
+        {
+            get
+            {
+                return _MetaDescription;
+            }
+            set
+            {
+                OnMetaDescriptionChanging(value);
+                ReportPropertyChanging("MetaDescription");
+                _MetaDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaDescription");
+                OnMetaDescriptionChanged();
+            }
+        }
+        private global::System.String _MetaDescription;
+        partial void OnMetaDescriptionChanging(global::System.String value);
+        partial void OnMetaDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> AvatarId
+        {
+            get
+            {
+                return _AvatarId;
+            }
+            set
+            {
+                OnAvatarIdChanging(value);
+                ReportPropertyChanging("AvatarId");
+                _AvatarId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AvatarId");
+                OnAvatarIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _AvatarId;
+        partial void OnAvatarIdChanging(Nullable<global::System.Int32> value);
+        partial void OnAvatarIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Catalogs_Files", "File")]
+        public File File
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Catalogs_Files", "File").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Catalogs_Files", "File").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<File> FileReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Catalogs_Files", "File");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<File>("DataModel.FK_Catalogs_Files", "File", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Catalogs_Files1", "File")]
+        public File File1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Catalogs_Files1", "File").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Catalogs_Files1", "File").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<File> File1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Catalogs_Files1", "File");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<File>("DataModel.FK_Catalogs_Files1", "File", value);
                 }
             }
         }
@@ -2322,18 +2698,18 @@ namespace MedIn.Domain.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Articles_Files", "Article")]
-        public EntityCollection<Article> Articles
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_News_Files", "News")]
+        public EntityCollection<News> News
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Article>("DataModel.FK_Articles_Files", "Article");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<News>("DataModel.FK_News_Files", "News");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Article>("DataModel.FK_Articles_Files", "Article", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<News>("DataModel.FK_News_Files", "News", value);
                 }
             }
         }
@@ -2344,18 +2720,18 @@ namespace MedIn.Domain.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Users_Files", "User")]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Users_Files", "UserEntity")]
         public EntityCollection<UserEntity> Users
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserEntity>("DataModel.FK_Users_Files", "User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserEntity>("DataModel.FK_Users_Files", "UserEntity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserEntity>("DataModel.FK_Users_Files", "User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserEntity>("DataModel.FK_Users_Files", "UserEntity", value);
                 }
             }
         }
@@ -2378,6 +2754,116 @@ namespace MedIn.Domain.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Gallery>("DataModel.GalleryFiles", "Gallery", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Articles_Files", "Article")]
+        public EntityCollection<Article> Articles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Article>("DataModel.FK_Articles_Files", "Article");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Article>("DataModel.FK_Articles_Files", "Article", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Articles_Files1", "Article")]
+        public EntityCollection<Article> Articles1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Article>("DataModel.FK_Articles_Files1", "Article");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Article>("DataModel.FK_Articles_Files1", "Article", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Sertificates_Files", "Sertificate")]
+        public EntityCollection<Sertificate> Sertificates
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Sertificate>("DataModel.FK_Sertificates_Files", "Sertificate");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sertificate>("DataModel.FK_Sertificates_Files", "Sertificate", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Catalogs_Files", "Catalog")]
+        public EntityCollection<Catalog> Catalogs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Catalog>("DataModel.FK_Catalogs_Files", "Catalog");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Catalog>("DataModel.FK_Catalogs_Files", "Catalog", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Catalogs_Files1", "Catalog")]
+        public EntityCollection<Catalog> Catalogs1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Catalog>("DataModel.FK_Catalogs_Files1", "Catalog");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Catalog>("DataModel.FK_Catalogs_Files1", "Catalog", value);
                 }
             }
         }
@@ -2671,50 +3157,6 @@ namespace MedIn.Domain.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DataModel", "ArticleGalleries", "Article")]
-        public EntityCollection<Article> Articles
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Article>("DataModel.ArticleGalleries", "Article");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Article>("DataModel.ArticleGalleries", "Article", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DataModel", "GalleryFiles", "File")]
-        public EntityCollection<File> Files
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<File>("DataModel.GalleryFiles", "File");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<File>("DataModel.GalleryFiles", "File", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Products_Galleries", "Product")]
         public EntityCollection<Product> Products
         {
@@ -2749,6 +3191,50 @@ namespace MedIn.Domain.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Category>("DataModel.FK_Categories_Galleries", "Category", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "GalleryFiles", "File")]
+        public EntityCollection<File> Files
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<File>("DataModel.GalleryFiles", "File");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<File>("DataModel.GalleryFiles", "File", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "ArticleGalleries", "Article")]
+        public EntityCollection<Article> Articles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Article>("DataModel.ArticleGalleries", "Article");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Article>("DataModel.ArticleGalleries", "Article", value);
                 }
             }
         }
@@ -4082,10 +4568,76 @@ namespace MedIn.Domain.Entities
         private global::System.String _MetaDescription;
         partial void OnMetaDescriptionChanging(global::System.String value);
         partial void OnMetaDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> FileId
+        {
+            get
+            {
+                return _FileId;
+            }
+            set
+            {
+                OnFileIdChanging(value);
+                ReportPropertyChanging("FileId");
+                _FileId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FileId");
+                OnFileIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _FileId;
+        partial void OnFileIdChanging(Nullable<global::System.Int32> value);
+        partial void OnFileIdChanged();
 
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_News_Files", "File")]
+        public File File
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_News_Files", "File").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_News_Files", "File").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<File> FileReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_News_Files", "File");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<File>("DataModel.FK_News_Files", "File", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -5179,6 +5731,205 @@ namespace MedIn.Domain.Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DataModel", Name="Sertificate")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Sertificate : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Sertificate object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="sort">Initial value of the Sort property.</param>
+        /// <param name="visibility">Initial value of the Visibility property.</param>
+        public static Sertificate CreateSertificate(global::System.Int32 id, global::System.Int32 sort, global::System.Boolean visibility)
+        {
+            Sertificate sertificate = new Sertificate();
+            sertificate.Id = id;
+            sertificate.Sort = sort;
+            sertificate.Visibility = visibility;
+            return sertificate;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Sort
+        {
+            get
+            {
+                return _Sort;
+            }
+            set
+            {
+                OnSortChanging(value);
+                ReportPropertyChanging("Sort");
+                _Sort = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Sort");
+                OnSortChanged();
+            }
+        }
+        private global::System.Int32 _Sort;
+        partial void OnSortChanging(global::System.Int32 value);
+        partial void OnSortChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Visibility
+        {
+            get
+            {
+                return _Visibility;
+            }
+            set
+            {
+                OnVisibilityChanging(value);
+                ReportPropertyChanging("Visibility");
+                _Visibility = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visibility");
+                OnVisibilityChanged();
+            }
+        }
+        private global::System.Boolean _Visibility;
+        partial void OnVisibilityChanging(global::System.Boolean value);
+        partial void OnVisibilityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> FileId
+        {
+            get
+            {
+                return _FileId;
+            }
+            set
+            {
+                OnFileIdChanging(value);
+                ReportPropertyChanging("FileId");
+                _FileId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FileId");
+                OnFileIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _FileId;
+        partial void OnFileIdChanging(Nullable<global::System.Int32> value);
+        partial void OnFileIdChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Sertificates_Files", "File")]
+        public File File
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Sertificates_Files", "File").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Sertificates_Files", "File").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<File> FileReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Sertificates_Files", "File");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<File>("DataModel.FK_Sertificates_Files", "File", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="DataModel", Name="SiteSetting")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -5811,44 +6562,6 @@ namespace MedIn.Domain.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Users_Files", "File")]
-        public File File
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Users_Files", "File").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Users_Files", "File").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<File> FileReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Users_Files", "File");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<File>("DataModel.FK_Users_Files", "File", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("DataModel", "UserProfile", "Profile")]
         public Profile Profile
         {
@@ -5937,6 +6650,44 @@ namespace MedIn.Domain.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Role>("DataModel.UsersInRoles", "Role", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Users_Files", "File")]
+        public File File
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Users_Files", "File").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Users_Files", "File").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<File> FileReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<File>("DataModel.FK_Users_Files", "File");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<File>("DataModel.FK_Users_Files", "File", value);
                 }
             }
         }

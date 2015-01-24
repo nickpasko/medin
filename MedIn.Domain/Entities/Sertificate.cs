@@ -2,7 +2,7 @@
 
 namespace MedIn.Domain.Entities
 {
-    partial class Article : IVisibleEntity, ISortableEntity, IMetadataEntity
+    public partial class Sertificate : IVisibleEntity, ISortableEntity
     {
         public override string ToString()
         {

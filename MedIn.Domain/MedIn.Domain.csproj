@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Article.cs" />
+    <Compile Include="Entities\Catalog.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\DataModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -63,6 +64,7 @@
     <Compile Include="Entities\News.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Question.cs" />
+    <Compile Include="Entities\Sertificate.cs" />
     <Compile Include="Entities\TechProperty.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="DatabaseFactory.cs" />
