@@ -238,8 +238,8 @@ var calculator = {
             result = 4000;
         return result;
     },
-    _3dPhoto_3Dphoto: function () {
-        if (checked("_3dPhoto_3Dphoto"))
+    _Photo_photo: function () {
+        if (checked("_Photo_photo"))
             return 2000;
         return 0;
     },
@@ -272,7 +272,7 @@ $(function () {
         switch (val) {
             case "marks": // низкое
                 showElem("#scull-wrap-23x26");
-                show("3dPhoto_3Dphoto");
+                show("Photo_photo");
                 show("VNCHSsplint");
                 showElem("#pazuhi_whole_wrap");
                 showElem("#splint_wrap");
@@ -294,7 +294,7 @@ $(function () {
 
                 break;
             case "mayak": // низкое
-                hide("3dPhoto_3Dphoto");
+                hide("Photo_photo");
                 hide("VNCHSsplint", true);
                 hideElem("#scull-wrap-23x26");
                 hideElem("#scull-wrap-17x22");
@@ -317,7 +317,7 @@ $(function () {
 
                 break;
             case "suhar": // низкое
-                hide("3dPhoto_3Dphoto");
+                hide("Photo_photo");
                 hide("VNCHSsplint", true);
                 hideElem("#scull-wrap-23x26");
                 hideElem("#scull-wrap-17x22");
@@ -340,7 +340,7 @@ $(function () {
 
                 break;
             case "kropt": // высокое
-                hide("3dPhoto_3Dphoto");
+                hide("Photo_photo");
                 hide("VNCHSsplint", true);
                 hideElem("#scull-wrap-23x26");
                 showElem("#scull-wrap-17x22");
@@ -359,7 +359,7 @@ $(function () {
 
                 break;
             case "octob": // высокое
-                hide("3dPhoto_3Dphoto");
+                hide("Photo_photo");
                 hide("VNCHSsplint", true);
                 hideElem("#scull-wrap-23x26");
                 showElem("#scull-wrap-17x22");
@@ -378,7 +378,7 @@ $(function () {
 
                 break;
             default:
-                show("3dPhoto_3Dphoto");
+                show("Photo_photo");
                 show("VNCHSsplint");
                 showElem("#scull-wrap");
                 showElem("#pazuhi_whole_wrap");

@@ -443,11 +443,11 @@
     </None>
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\ReferralExplains.cshtml" />
     <Content Include="mailSettings.config" />
-    <None Include="Properties\PublishProfiles\mastertest.pubxml" />
     <Content Include="rewriteMaps.config" />
     <Content Include="rewriteRules.config" />
     <Content Include="Scripts\costReferrals.js" />
     <Content Include="Scripts\default.js" />
+    <None Include="Properties\PublishProfiles\somee.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />

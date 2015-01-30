@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0"?>
 <siteMap>
-	<siteMapNode title="3d лаборатория">
+	<siteMapNode title="Konig Labs">
 		<siteMapNode title="Карта сайта" controller="Locations" action="index" />
 		<siteMapNode title="Статьи" controller="Article" action="" />
 		<siteMapNode title="Новости" controller="NewsItems" action="" />
