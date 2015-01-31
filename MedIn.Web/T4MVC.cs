@@ -34,9 +34,12 @@ public static partial class MVC
     public static MedIn.Web.Controllers.ContactsController Contacts = new MedIn.Web.Controllers.T4MVC_ContactsController();
     public static MedIn.Web.Controllers.DefaultController Default = new MedIn.Web.Controllers.T4MVC_DefaultController();
     public static MedIn.Web.Controllers.FaqController Faq = new MedIn.Web.Controllers.T4MVC_FaqController();
+    public static MedIn.Web.Controllers.GuarantyController Guaranty = new MedIn.Web.Controllers.T4MVC_GuarantyController();
     public static MedIn.Web.Controllers.NewsController News = new MedIn.Web.Controllers.T4MVC_NewsController();
+    public static MedIn.Web.Controllers.PostGuarantyController PostGuaranty = new MedIn.Web.Controllers.T4MVC_PostGuarantyController();
     public static MedIn.Web.Controllers.ProductsController Products = new MedIn.Web.Controllers.T4MVC_ProductsController();
     public static MedIn.Web.Controllers.SertificationsController Sertifications = new MedIn.Web.Controllers.T4MVC_SertificationsController();
+    public static MedIn.Web.Controllers.ServiceController Service = new MedIn.Web.Controllers.T4MVC_ServiceController();
     public static T4MVC.MailsController Mails = new T4MVC.MailsController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
@@ -115,12 +118,15 @@ namespace Links
         public static readonly string costReferrals_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/costReferrals.min.js") ? Url("costReferrals.min.js") : Url("costReferrals.js");
         public static readonly string default_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/default.min.js") ? Url("default.min.js") : Url("default.js");
         public static readonly string jquery_2_1_1_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.1.intellisense.min.js") ? Url("jquery-2.1.1.intellisense.min.js") : Url("jquery-2.1.1.intellisense.js");
+        public static readonly string jquery_2_1_1_intellisense_js_ = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.1.intellisense.min.js") ? Url("jquery-2.1.1.intellisense.min.js") : Url("jquery-2.1.1.intellisense.js");
         public static readonly string jquery_2_1_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.1.min.js") ? Url("jquery-2.1.1.min.js") : Url("jquery-2.1.1.js");
         public static readonly string jquery_2_1_1_min_js = Url("jquery-2.1.1.min.js");
         public static readonly string jquery_2_1_1_min_map = Url("jquery-2.1.1.min.map");
+        public static readonly string jquery_ui_1_11_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui-1.11.1.min.js") ? Url("jquery-ui-1.11.1.min.js") : Url("jquery-ui-1.11.1.js");
         public static readonly string jquery_ui_1_11_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui-1.11.2.min.js") ? Url("jquery-ui-1.11.2.min.js") : Url("jquery-ui-1.11.2.js");
         public static readonly string jquery_ui_1_11_2_min_js = Url("jquery-ui-1.11.2.min.js");
         public static readonly string jquery_ui_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui.min.js") ? Url("jquery-ui.min.js") : Url("jquery-ui.js");
+        public static readonly string jquery_ui_min_1_11_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui.min-1.11.1.min.js") ? Url("jquery-ui.min-1.11.1.min.js") : Url("jquery-ui.min-1.11.1.js");
         public static readonly string jquery_ui_min_js = Url("jquery-ui.min.js");
         public static readonly string jquery_cookie_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.cookie.min.js") ? Url("jquery.cookie.min.js") : Url("jquery.cookie.js");
         public static readonly string jquery_galleriffic_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.galleriffic.min.js") ? Url("jquery.galleriffic.min.js") : Url("jquery.galleriffic.js");
@@ -138,6 +144,8 @@ namespace Links
         public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
         public static readonly string knockout_2_2_1_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout-2.2.1.debug.min.js") ? Url("knockout-2.2.1.debug.min.js") : Url("knockout-2.2.1.debug.js");
         public static readonly string knockout_2_2_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout-2.2.1.min.js") ? Url("knockout-2.2.1.min.js") : Url("knockout-2.2.1.js");
+        public static readonly string knockout_3_2_0_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout-3.2.0.debug.min.js") ? Url("knockout-3.2.0.debug.min.js") : Url("knockout-3.2.0.debug.js");
+        public static readonly string knockout_3_2_0_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout-3.2.0.min.js") ? Url("knockout-3.2.0.min.js") : Url("knockout-3.2.0.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class mp {
             private const string URLPATH = "~/Scripts/mp";
@@ -157,6 +165,14 @@ namespace Links
         private const string URLPATH = "~/Content";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Docs {
+            private const string URLPATH = "~/Content/Docs";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string act_reklamaciya_docx = Url("act-reklamaciya.docx");
+        }
+    
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class i {
             private const string URLPATH = "~/Content/i";
@@ -1607,6 +1623,133 @@ namespace MedIn.Web.Controllers
 
 namespace MedIn.Web.Controllers
 {
+    public partial class GuarantyController
+    {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public GuarantyController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected GuarantyController(Dummy d) { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SetLanguage()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetLanguage);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public GuarantyController Actions { get { return MVC.Guaranty; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "Guaranty";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "Guaranty";
+
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string Guaranty = "Guaranty";
+            public readonly string SetLanguage = "SetLanguage";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string Guaranty = "Guaranty";
+            public const string SetLanguage = "SetLanguage";
+        }
+
+
+        static readonly ActionParamsClass_SetLanguage s_params_SetLanguage = new ActionParamsClass_SetLanguage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SetLanguage SetLanguageParams { get { return s_params_SetLanguage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SetLanguage
+        {
+            public readonly string l = "l";
+        }
+        static readonly ViewsClass s_views = new ViewsClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ViewsClass Views { get { return s_views; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ViewsClass
+        {
+            static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+            public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+            public class _ViewNamesClass
+            {
+                public readonly string Guaranty = "Guaranty";
+                public readonly string PostGuaranty = "PostGuaranty";
+            }
+            public readonly string Guaranty = "~/Views/Guaranty/Guaranty.cshtml";
+            public readonly string PostGuaranty = "~/Views/Guaranty/PostGuaranty.cshtml";
+        }
+    }
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_GuarantyController : MedIn.Web.Controllers.GuarantyController
+    {
+        public T4MVC_GuarantyController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void GuarantyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Guaranty()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Guaranty);
+            GuarantyOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SetLanguageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string l);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SetLanguage(string l)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetLanguage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "l", l);
+            SetLanguageOverride(callInfo, l);
+            return callInfo;
+        }
+
+    }
+}
+
+namespace MedIn.Web.Controllers
+{
     public partial class NewsController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -1757,6 +1900,151 @@ namespace MedIn.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             DetailsOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SetLanguageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string l);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SetLanguage(string l)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetLanguage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "l", l);
+            SetLanguageOverride(callInfo, l);
+            return callInfo;
+        }
+
+    }
+}
+
+namespace MedIn.Web.Controllers
+{
+    public partial class PostGuarantyController
+    {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public PostGuarantyController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected PostGuarantyController(Dummy d) { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SetLanguage()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetLanguage);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public PostGuarantyController Actions { get { return MVC.PostGuaranty; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "PostGuaranty";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "PostGuaranty";
+
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string PostGuaranty = "PostGuaranty";
+            public readonly string SetLanguage = "SetLanguage";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string PostGuaranty = "PostGuaranty";
+            public const string SetLanguage = "SetLanguage";
+        }
+
+
+        static readonly ActionParamsClass_PostGuaranty s_params_PostGuaranty = new ActionParamsClass_PostGuaranty();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_PostGuaranty PostGuarantyParams { get { return s_params_PostGuaranty; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_PostGuaranty
+        {
+            public readonly string vm = "vm";
+        }
+        static readonly ActionParamsClass_SetLanguage s_params_SetLanguage = new ActionParamsClass_SetLanguage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SetLanguage SetLanguageParams { get { return s_params_SetLanguage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SetLanguage
+        {
+            public readonly string l = "l";
+        }
+        static readonly ViewsClass s_views = new ViewsClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ViewsClass Views { get { return s_views; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ViewsClass
+        {
+            static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+            public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+            public class _ViewNamesClass
+            {
+                public readonly string PostGuaranty = "PostGuaranty";
+            }
+            public readonly string PostGuaranty = "~/Views/PostGuaranty/PostGuaranty.cshtml";
+        }
+    }
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_PostGuarantyController : MedIn.Web.Controllers.PostGuarantyController
+    {
+        public T4MVC_PostGuarantyController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void PostGuarantyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult PostGuaranty()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PostGuaranty);
+            PostGuarantyOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PostGuarantyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, MedIn.Web.Models.PostGuarantyViewModel vm);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult PostGuaranty(MedIn.Web.Models.PostGuarantyViewModel vm)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PostGuaranty);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);
+            PostGuarantyOverride(callInfo, vm);
             return callInfo;
         }
 
@@ -2086,6 +2374,133 @@ namespace MedIn.Web.Controllers
     }
 }
 
+namespace MedIn.Web.Controllers
+{
+    public partial class ServiceController
+    {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ServiceController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected ServiceController(Dummy d) { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SetLanguage()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetLanguage);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ServiceController Actions { get { return MVC.Service; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "Service";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "Service";
+
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string Index = "Index";
+            public readonly string SetLanguage = "SetLanguage";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string Index = "Index";
+            public const string SetLanguage = "SetLanguage";
+        }
+
+
+        static readonly ActionParamsClass_SetLanguage s_params_SetLanguage = new ActionParamsClass_SetLanguage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SetLanguage SetLanguageParams { get { return s_params_SetLanguage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SetLanguage
+        {
+            public readonly string l = "l";
+        }
+        static readonly ViewsClass s_views = new ViewsClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ViewsClass Views { get { return s_views; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ViewsClass
+        {
+            static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+            public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+            public class _ViewNamesClass
+            {
+                public readonly string Index = "Index";
+                public readonly string ServiceContactInfo = "ServiceContactInfo";
+            }
+            public readonly string Index = "~/Views/Service/Index.cshtml";
+            public readonly string ServiceContactInfo = "~/Views/Service/ServiceContactInfo.cshtml";
+        }
+    }
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_ServiceController : MedIn.Web.Controllers.ServiceController
+    {
+        public T4MVC_ServiceController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Index()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SetLanguageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string l);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SetLanguage(string l)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetLanguage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "l", l);
+            SetLanguageOverride(callInfo, l);
+            return callInfo;
+        }
+
+    }
+}
+
 namespace T4MVC
 {
     public class MailsController
@@ -2160,10 +2575,10 @@ namespace T4MVC
             public partial class _EditorTemplatesClass
             {
                 public readonly string LogInViewModel = "LogInViewModel";
+                public readonly string PostGuarantyViewModel = "PostGuarantyViewModel";
                 public readonly string RecPasswordViewModel = "RecPasswordViewModel";
                 public readonly string ReferralViewModel = "ReferralViewModel";
                 public readonly string RegisterViewModel = "RegisterViewModel";
-                public readonly string SettingsViewModel = "SettingsViewModel";
                 static readonly _FieldsClass s_Fields = new _FieldsClass();
                 public _FieldsClass Fields { get { return s_Fields; } }
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

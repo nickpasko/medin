@@ -14,7 +14,10 @@ namespace MedIn.Web.App_Start
 
             routes.MapRoute("homepage", "", MVC.Default.Index(), "default");
             routes.MapRoute("homepage2", "", MVC.Default.Index(), "");
-            routes.MapRoute("about","",MVC.AboutCompany.Index(),"about");
+            routes.MapRoute("about", "", MVC.AboutCompany.Index(), "about");
+            routes.MapRoute("service", "", MVC.Service.Index(), "service");
+            routes.MapRoute("guaranty", "service/guaranty", MVC.Guaranty.Guaranty(), "service");
+            routes.MapRoute("postguaranty", "service/postguaranty", MVC.PostGuaranty.PostGuaranty(), "postguaranty");
 
             routes.MapRoute("faq", "faq", MVC.Faq.Index(), "faq");
             routes.MapRoute("contacts", "contacts", MVC.Contacts.Index(), "contacts");

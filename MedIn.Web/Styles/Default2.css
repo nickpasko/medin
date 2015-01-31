@@ -259,8 +259,14 @@ ul#lang li a {
 }
 
 #content {
-    padding: 0 0 0 254px; /*TODO добавить 0px в конец*/
+    padding: 0 0 0 0; /*TODO добавить 0px в конец*/
 }
+
+#sideLeft + #container {
+    position: relative;
+    width: 72%;
+    float: right;
+} 
 
 #main_slider {
     width: 919px;
@@ -399,7 +405,7 @@ ul#lang li a {
 #sideLeft {
     float: left;
     width: 217px;
-    margin-left: -100%;
+    /*margin-left: -100%;*/
     position: relative;
     margin-top: 3px;
 }

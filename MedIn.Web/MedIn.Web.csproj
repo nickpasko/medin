@@ -223,9 +223,12 @@
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
+    <Compile Include="Controllers\GuarantyController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PostGuarantyController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SertificationsController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\EmailLogsService.cs" />
     <Compile Include="Core\Pages.cs" />
@@ -242,6 +245,7 @@
     <Compile Include="Models\ItemViewModel.cs" />
     <Compile Include="Models\ListItemsViewModel.cs" />
     <Compile Include="Models\LogInViewModel.cs" />
+    <Compile Include="Models\PostGuarantyViewModel.cs" />
     <Compile Include="Models\ProductTabViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\RecPasswordViewModel.cs" />
@@ -445,9 +449,12 @@
     <Content Include="mailSettings.config" />
     <Content Include="rewriteMaps.config" />
     <Content Include="rewriteRules.config" />
+    <Content Include="Content\Docs\act-reklamaciya.docx" />
     <None Include="Properties\PublishProfiles\somee.pubxml" />
     <Content Include="Scripts\costReferrals.js" />
     <Content Include="Scripts\default.js" />
+    <None Include="Properties\PublishProfiles\somee.pubxml" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -504,6 +511,7 @@
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -527,7 +535,6 @@
     <Content Include="Views\Accounts\ConfirmRegistration.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\LogInViewModel.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\SettingsViewModel.cshtml" />
     <Content Include="Views\Default\NewsBlock.cshtml" />
     <Content Include="Views\Default\AnnounceBlock.cshtml" />
     <Content Include="Views\Default\ChildrenBlock.cshtml" />
@@ -579,6 +586,11 @@
     <Content Include="Views\Products\TabPartialDetails\_TechDetails.cshtml" />
     <Content Include="Views\Catalogs\Index.cshtml" />
     <Content Include="Views\Sertifications\Index.cshtml" />
+    <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Guaranty\Guaranty.cshtml" />
+    <Content Include="Views\Service\ServiceContactInfo.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PostGuarantyViewModel.cshtml" />
+    <Content Include="Views\PostGuaranty\PostGuaranty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

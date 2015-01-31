@@ -1,0 +1,63 @@
+﻿@model PostGuarantyViewModel
+<h1 class="title" id="page-title">@WebContext.Location.Header</h1>
+
+<div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+        <div class="content">
+            <div id="node-13" class="node node-webform node-promoted clearfix"
+                 about="/servisy/postgarantijnoe-obsluzhivanie" typeof="sioc:Item foaf:Document">
+                <div class="content">
+                    <div class="field field-name-body field-type-text-with-summary field-label-hidden">
+                        <div class="field-items">
+                            <div class="field-item even" property="content:encoded">
+                                <div>
+                                    @Html.Raw(WebContext.Location.Content)
+                                </div>
+                                <h2>
+                                    <span style="color:121212;">
+                                        <strong>
+                                            <span style="font-size: 14px; ">
+                                                <span style="font-family: arial, helvetica, sans-serif; ">Сделать запрос по не гарантийному случаю</span>
+                                            </span>
+                                        </strong>
+                                    </span>
+                                </h2>
+                                <p style="margin-bottom:14px;">
+                                    <span style="color:#7d7d7d;">
+                                        <em>
+                                            <span style="font-size: 12px; ">
+                                                <span style="font-family: arial, helvetica, sans-serif; ">(</span>
+                                            </span>
+                                        </em>
+                                    </span>
+                                    <span style="color:#ff4300;">*</span>
+                                    <span style="color:#7d7d7d;">
+                                        <em>
+                                            <span style="font-size: 12px; ">
+                                                <span style="font-family: arial, helvetica, sans-serif; ">)- поля обязательные для заполнения</span>
+                                            </span>
+                                        </em>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    @using (Html.BeginForm(MVC.PostGuaranty.PostGuaranty(), FormMethod.Post, new { id = "webform-client-form-13" }))
+                    {
+                        <div>
+                            @Html.ValidationSummary(true)
+                            @Html.AntiForgeryToken()
+                            @Html.EditorForModel()
+                            <input type="submit" id="edit-submit" name="op" value="Отправить" class="form-submit">
+                        </div>
+                    }
+
+                    @{
+                        Html.RenderPartial(MVC.Service.Views.ServiceContactInfo);
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

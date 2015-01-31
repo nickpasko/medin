@@ -1,0 +1,13 @@
+﻿<h1 class="title" id="page-title">
+    @WebContext.Location.Header
+</h1>
+
+    @Html.Raw(WebContext.Location.Content)
+
+<p>
+    <a class="form_download" href="@Url.Content("~/Content/Docs/act-reklamaciya.docx")" target="_blank">Скачать форму</a>
+</p>
+
+@{
+    Html.RenderPartial(MVC.Service.Views.ServiceContactInfo);
+}
