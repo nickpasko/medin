@@ -31,7 +31,7 @@ namespace MedIn.Web.Controllers
 						Subject = AppConfig.GetValue("ContactsSubject"),
 						To = AppConfig.GetValue("ContactsToEmail"),
 						ViewModel = model,
-						TemplateName = MVC.Mails.Views.Contacts
+						TemplateName = MVC.Mails.Views.SuccessSend
 					}, ControllerContext);
 					ModelState.Clear();
 					return PartialView(new FeedbackViewModel { ToastrMessage = L("MessageSent"), Success = true });

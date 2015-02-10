@@ -200,6 +200,7 @@
     <Compile Include="Areas\Admin\Controllers\LocationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProjectsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SertificatesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SiteSettingsController.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PostGuarantyController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\SertificationsController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Core\Constants.cs" />
@@ -340,6 +342,7 @@
     <Content Include="Areas\Admin\Settings\Product.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Admin\Settings\Project.xml" />
     <Content Include="Areas\Admin\Settings\Question.xml" />
     <Content Include="Areas\Admin\Settings\Sertificate.xml" />
     <Content Include="Areas\Admin\Styles\Default\Default.css" />
@@ -528,7 +531,6 @@
     <Content Include="Views\Shared\DisplayTemplates\PagerViewModel.cshtml" />
     <Content Include="Views\Articles\Index.cshtml" />
     <Content Include="Views\Articles\Details.cshtml" />
-    <Content Include="Views\Mails\ConfirmRegistration.cshtml" />
     <Content Include="Views\Accounts\Register.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\RegisterViewModel.cshtml" />
     <Content Include="Views\Accounts\SuccessRegistration.cshtml" />
@@ -539,7 +541,6 @@
     <Content Include="Views\Default\AnnounceBlock.cshtml" />
     <Content Include="Views\Default\ChildrenBlock.cshtml" />
     <Content Include="Views\Accounts\ForgotPassword.cshtml" />
-    <Content Include="Views\Mails\ForgotPassword.cshtml" />
     <Content Include="Views\Accounts\RecoveryPassword.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\RecPasswordViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Fields\checkbox.cshtml" />
@@ -551,23 +552,18 @@
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Contacts\_Form.cshtml" />
     <Content Include="Views\Contacts\WriteUs.cshtml" />
-    <Content Include="Views\Mails\Contacts.cshtml" />
     <Content Include="Views\Faq\Index.cshtml" />
     <Content Include="Views\Faq\_Form.cshtml" />
     <Content Include="Views\Faq\WriteUs.cshtml" />
-    <Content Include="Views\Mails\Question.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Fields\string.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Fields\stringcheckbox.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Fields\textarea.cshtml" />
-    <Content Include="Views\Mails\Distribution.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ReferralViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\File.cshtml" />
     <Content Include="Views\Default\GalleryFiles.cshtml" />
-    <Content Include="Views\Mails\ReferralChanged.cshtml" />
     <Content Include="Styles\fonts\fontello.eot" />
     <Content Include="Styles\fonts\fontello.ttf" />
     <Content Include="Styles\fonts\fontello.woff" />
-    <Content Include="Views\Mails\ConfirmSubscription.cshtml" />
     <Content Include="Views\Default\SiteMap.cshtml" />
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt">
@@ -591,6 +587,10 @@
     <Content Include="Views\Service\ServiceContactInfo.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PostGuarantyViewModel.cshtml" />
     <Content Include="Views\PostGuaranty\PostGuaranty.cshtml" />
+    <Content Include="Views\Mails\PostGuarantyMail.cshtml" />
+    <Content Include="Views\Mails\SuccessSend.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

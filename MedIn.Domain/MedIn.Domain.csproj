@@ -63,10 +63,11 @@
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\News.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\Sertificate.cs" />
     <Compile Include="Entities\TechProperty.cs" />
-    <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="DatabaseFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0"?>
+<settings xmlns="urn:settings" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="urn:settings Settings.xsd">
+  <list>
+    <!--selectRowProperty="IsDefault"-->
+    <global>
+      <create/>
+    </global>
+
+    <actions>
+      <visibility/>
+      <edit/>
+      <delete/>
+    </actions>
+
+    <cols>
+      <string name="Name" title="Название"/>
+      <string name="Alias" title="Псевдоним" />
+    </cols>
+
+  </list>
+
+  <form>
+    <tab name="Основные">
+      <string name="Name" title="Название" />
+      <string name="Alias" title="Псевдоним" />
+      <wysiwyg name="Teaser" title="Вступление" />
+      <wysiwyg name="Content" title="Описание" />
+    </tab>
+    <tab name="Опции">
+      <select name="GalleryId" reference="Gallery" title="Прикреплённая галерея">
+        <option>Нет</option>
+      </select>
+    </tab>
+    <tab name="Метаданные">
+      <string name="MetaTitle" title="MetaTitle" />
+      <string name="MetaKeywords" title="MetaKeywords" />
+      <textarea name="MetaDescription" title="MetaDescription" />
+    </tab>
+  </form>
+</settings>

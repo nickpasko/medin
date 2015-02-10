@@ -19,15 +19,17 @@ namespace MedIn.Web.Core
 
 		public static class Keys
 		{
-		    public const string RegisterFromEmail = "RegisterFromEmail";
-			public const string RegisterBccEmail = "RegisterBccEmail";
-			public const string RegisterSenderName = "RegisterSenderName";
-			public const string RegisterSubject = "RegisterSubject";
-			public const string AvatarRelativePath = "AvatarRelativePath";
+            //public const string RegisterFromEmail = "RegisterFromEmail";
+            //public const string RegisterBccEmail = "RegisterBccEmail";
+            //public const string RegisterSenderName = "RegisterSenderName";
+            //public const string RegisterSubject = "RegisterSubject";
+            //public const string AvatarRelativePath = "AvatarRelativePath";
 
-            public const string SubscriptionFromEmail = "SubscriptionFromEmail";
-            public const string SubscriptionSenderName = "SubscriptionSenderName";
-		    public const string SubscriptionSubject = "SubscriptionSubject";
+            //public const string SubscriptionFromEmail = "SubscriptionFromEmail";
+            //public const string SubscriptionSenderName = "SubscriptionSenderName";
+            public const string PostGuarantyFromEmail = "PostGuarantyFromEmail";
+            public const string PostGuarantyBccEmail = "PostGuarantyBccEmail";
+            public const string PostGuarantyName = "PostGuarantyName";
 		}
 	}
 }

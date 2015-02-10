@@ -19,14 +19,14 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("DataModel", "UserApplication", "Application", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Application), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.UserEntity), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "UserApplication", "Application", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Application), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.User), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Locations_Galleries", "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Gallery), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Location), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Locations_Locations", "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Location), "Location1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Location), true)]
-[assembly: EdmRelationshipAttribute("DataModel", "UserProfile", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.UserEntity), "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Profile), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "UserProfile", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.User), "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Profile), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "MembershipApplication", "Application", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Application), "Membership", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Membership), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "RoleApplication", "Application", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Application), "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Role), true)]
-[assembly: EdmRelationshipAttribute("DataModel", "MembershipUser", "UserEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.UserEntity), "Membership", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Membership), true)]
-[assembly: EdmRelationshipAttribute("DataModel", "UsersInRoles", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Role), "UserEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.UserEntity))]
+[assembly: EdmRelationshipAttribute("DataModel", "MembershipUser", "UserEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.User), "Membership", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Membership), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "UsersInRoles", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Role), "UserEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.User))]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Products_Galleries", "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Gallery), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Product), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Categories_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Category), "Category1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Category), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Categories_Galleries", "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Gallery), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Category), true)]
@@ -34,7 +34,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("DataModel", "FK_TechProperties_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Product), "TechProperty", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.TechProperty), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_DescGroup_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MedIn.Domain.Entities.Product), "DescGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.DescGroup), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_News_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "News", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.News), true)]
-[assembly: EdmRelationshipAttribute("DataModel", "FK_Users_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "UserEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.UserEntity), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "FK_Users_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "UserEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.User), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "GalleryFiles", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.File), "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Gallery))]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Articles_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Article", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Article), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Articles_Files1", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Article", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Article), true)]
@@ -42,6 +42,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Sertificates_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Sertificate", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Sertificate), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Catalogs_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Catalog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Catalog), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Catalogs_Files1", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Catalog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Catalog), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "FK_Projects_Galleries", "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Gallery), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Project), true)]
 
 #endregion
 
@@ -224,18 +225,18 @@ namespace MedIn.Domain.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<UserEntity> UserEntities
+        public ObjectSet<User> Users
         {
             get
             {
-                if ((_UserEntities == null))
+                if ((_Users == null))
                 {
-                    _UserEntities = base.CreateObjectSet<UserEntity>("UserEntities");
+                    _Users = base.CreateObjectSet<User>("Users");
                 }
-                return _UserEntities;
+                return _Users;
             }
         }
-        private ObjectSet<UserEntity> _UserEntities;
+        private ObjectSet<User> _Users;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -396,6 +397,38 @@ namespace MedIn.Domain.Entities
             }
         }
         private ObjectSet<Catalog> _Catalogs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Project> Projects
+        {
+            get
+            {
+                if ((_Projects == null))
+                {
+                    _Projects = base.CreateObjectSet<Project>("Projects");
+                }
+                return _Projects;
+            }
+        }
+        private ObjectSet<Project> _Projects;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<DescGroup1> DescGroups1
+        {
+            get
+            {
+                if ((_DescGroups1 == null))
+                {
+                    _DescGroups1 = base.CreateObjectSet<DescGroup1>("DescGroups1");
+                }
+                return _DescGroups1;
+            }
+        }
+        private ObjectSet<DescGroup1> _DescGroups1;
 
         #endregion
 
@@ -466,11 +499,11 @@ namespace MedIn.Domain.Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the UserEntities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToUserEntities(UserEntity userEntity)
+        public void AddToUsers(User user)
         {
-            base.AddObject("UserEntities", userEntity);
+            base.AddObject("Users", user);
         }
     
         /// <summary>
@@ -551,6 +584,22 @@ namespace MedIn.Domain.Entities
         public void AddToCatalogs(Catalog catalog)
         {
             base.AddObject("Catalogs", catalog);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Projects EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProjects(Project project)
+        {
+            base.AddObject("Projects", project);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the DescGroups1 EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDescGroups1(DescGroup1 descGroup1)
+        {
+            base.AddObject("DescGroups1", descGroup1);
         }
 
         #endregion
@@ -675,17 +724,17 @@ namespace MedIn.Domain.Entities
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("DataModel", "UserApplication", "User")]
-        public EntityCollection<UserEntity> Users
+        public EntityCollection<User> Users
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserEntity>("DataModel.UserApplication", "User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("DataModel.UserApplication", "User");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserEntity>("DataModel.UserApplication", "User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("DataModel.UserApplication", "User", value);
                 }
             }
         }
@@ -2137,6 +2186,189 @@ namespace MedIn.Domain.Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DataModel", Name="DescGroup1")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DescGroup1 : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DescGroup1 object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="productId">Initial value of the ProductId property.</param>
+        /// <param name="sort">Initial value of the Sort property.</param>
+        /// <param name="visibility">Initial value of the Visibility property.</param>
+        public static DescGroup1 CreateDescGroup1(global::System.Int32 id, global::System.Int32 productId, global::System.Int32 sort, global::System.Boolean visibility)
+        {
+            DescGroup1 descGroup1 = new DescGroup1();
+            descGroup1.Id = id;
+            descGroup1.ProductId = productId;
+            descGroup1.Sort = sort;
+            descGroup1.Visibility = visibility;
+            return descGroup1;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProductId
+        {
+            get
+            {
+                return _ProductId;
+            }
+            set
+            {
+                OnProductIdChanging(value);
+                ReportPropertyChanging("ProductId");
+                _ProductId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProductId");
+                OnProductIdChanged();
+            }
+        }
+        private global::System.Int32 _ProductId;
+        partial void OnProductIdChanging(global::System.Int32 value);
+        partial void OnProductIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Sort
+        {
+            get
+            {
+                return _Sort;
+            }
+            set
+            {
+                OnSortChanging(value);
+                ReportPropertyChanging("Sort");
+                _Sort = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Sort");
+                OnSortChanged();
+            }
+        }
+        private global::System.Int32 _Sort;
+        partial void OnSortChanging(global::System.Int32 value);
+        partial void OnSortChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Visibility
+        {
+            get
+            {
+                return _Visibility;
+            }
+            set
+            {
+                OnVisibilityChanging(value);
+                ReportPropertyChanging("Visibility");
+                _Visibility = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visibility");
+                OnVisibilityChanged();
+            }
+        }
+        private global::System.Boolean _Visibility;
+        partial void OnVisibilityChanging(global::System.Boolean value);
+        partial void OnVisibilityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                OnContentChanging(value);
+                ReportPropertyChanging("Content");
+                _Content = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Content");
+                OnContentChanged();
+            }
+        }
+        private global::System.String _Content;
+        partial void OnContentChanging(global::System.String value);
+        partial void OnContentChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="DataModel", Name="EmailLog")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -2721,17 +2953,17 @@ namespace MedIn.Domain.Entities
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Users_Files", "UserEntity")]
-        public EntityCollection<UserEntity> Users
+        public EntityCollection<User> Users
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserEntity>("DataModel.FK_Users_Files", "UserEntity");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("DataModel.FK_Users_Files", "UserEntity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserEntity>("DataModel.FK_Users_Files", "UserEntity", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("DataModel.FK_Users_Files", "UserEntity", value);
                 }
             }
         }
@@ -3235,6 +3467,28 @@ namespace MedIn.Domain.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Article>("DataModel.ArticleGalleries", "Article", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Projects_Galleries", "Project")]
+        public EntityCollection<Project> Projects
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("DataModel.FK_Projects_Galleries", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("DataModel.FK_Projects_Galleries", "Project", value);
                 }
             }
         }
@@ -4286,15 +4540,15 @@ namespace MedIn.Domain.Entities
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("DataModel", "MembershipUser", "UserEntity")]
-        public UserEntity User
+        public User User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserEntity>("DataModel.MembershipUser", "UserEntity").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DataModel.MembershipUser", "UserEntity").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserEntity>("DataModel.MembershipUser", "UserEntity").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DataModel.MembershipUser", "UserEntity").Value = value;
             }
         }
         /// <summary>
@@ -4302,17 +4556,17 @@ namespace MedIn.Domain.Entities
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<UserEntity> UserReference
+        public EntityReference<User> UserReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserEntity>("DataModel.MembershipUser", "UserEntity");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DataModel.MembershipUser", "UserEntity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserEntity>("DataModel.MembershipUser", "UserEntity", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("DataModel.MembershipUser", "UserEntity", value);
                 }
             }
         }
@@ -5287,15 +5541,15 @@ namespace MedIn.Domain.Entities
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("DataModel", "UserProfile", "User")]
-        public UserEntity User
+        public User User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserEntity>("DataModel.UserProfile", "User").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DataModel.UserProfile", "User").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserEntity>("DataModel.UserProfile", "User").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DataModel.UserProfile", "User").Value = value;
             }
         }
         /// <summary>
@@ -5303,17 +5557,362 @@ namespace MedIn.Domain.Entities
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<UserEntity> UserReference
+        public EntityReference<User> UserReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserEntity>("DataModel.UserProfile", "User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DataModel.UserProfile", "User");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserEntity>("DataModel.UserProfile", "User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("DataModel.UserProfile", "User", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DataModel", Name="Project")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Project : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Project object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="visibility">Initial value of the Visibility property.</param>
+        /// <param name="alias">Initial value of the Alias property.</param>
+        /// <param name="sort">Initial value of the Sort property.</param>
+        public static Project CreateProject(global::System.Int32 id, global::System.Boolean visibility, global::System.String alias, global::System.Int32 sort)
+        {
+            Project project = new Project();
+            project.Id = id;
+            project.Visibility = visibility;
+            project.Alias = alias;
+            project.Sort = sort;
+            return project;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                OnContentChanging(value);
+                ReportPropertyChanging("Content");
+                _Content = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Content");
+                OnContentChanged();
+            }
+        }
+        private global::System.String _Content;
+        partial void OnContentChanging(global::System.String value);
+        partial void OnContentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Visibility
+        {
+            get
+            {
+                return _Visibility;
+            }
+            set
+            {
+                OnVisibilityChanging(value);
+                ReportPropertyChanging("Visibility");
+                _Visibility = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Visibility");
+                OnVisibilityChanged();
+            }
+        }
+        private global::System.Boolean _Visibility;
+        partial void OnVisibilityChanging(global::System.Boolean value);
+        partial void OnVisibilityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MetaTitle
+        {
+            get
+            {
+                return _MetaTitle;
+            }
+            set
+            {
+                OnMetaTitleChanging(value);
+                ReportPropertyChanging("MetaTitle");
+                _MetaTitle = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaTitle");
+                OnMetaTitleChanged();
+            }
+        }
+        private global::System.String _MetaTitle;
+        partial void OnMetaTitleChanging(global::System.String value);
+        partial void OnMetaTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MetaKeywords
+        {
+            get
+            {
+                return _MetaKeywords;
+            }
+            set
+            {
+                OnMetaKeywordsChanging(value);
+                ReportPropertyChanging("MetaKeywords");
+                _MetaKeywords = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaKeywords");
+                OnMetaKeywordsChanged();
+            }
+        }
+        private global::System.String _MetaKeywords;
+        partial void OnMetaKeywordsChanging(global::System.String value);
+        partial void OnMetaKeywordsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MetaDescription
+        {
+            get
+            {
+                return _MetaDescription;
+            }
+            set
+            {
+                OnMetaDescriptionChanging(value);
+                ReportPropertyChanging("MetaDescription");
+                _MetaDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaDescription");
+                OnMetaDescriptionChanged();
+            }
+        }
+        private global::System.String _MetaDescription;
+        partial void OnMetaDescriptionChanging(global::System.String value);
+        partial void OnMetaDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> GalleryId
+        {
+            get
+            {
+                return _GalleryId;
+            }
+            set
+            {
+                OnGalleryIdChanging(value);
+                ReportPropertyChanging("GalleryId");
+                _GalleryId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GalleryId");
+                OnGalleryIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _GalleryId;
+        partial void OnGalleryIdChanging(Nullable<global::System.Int32> value);
+        partial void OnGalleryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Alias
+        {
+            get
+            {
+                return _Alias;
+            }
+            set
+            {
+                OnAliasChanging(value);
+                ReportPropertyChanging("Alias");
+                _Alias = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Alias");
+                OnAliasChanged();
+            }
+        }
+        private global::System.String _Alias;
+        partial void OnAliasChanging(global::System.String value);
+        partial void OnAliasChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Sort
+        {
+            get
+            {
+                return _Sort;
+            }
+            set
+            {
+                OnSortChanging(value);
+                ReportPropertyChanging("Sort");
+                _Sort = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Sort");
+                OnSortChanged();
+            }
+        }
+        private global::System.Int32 _Sort;
+        partial void OnSortChanging(global::System.Int32 value);
+        partial void OnSortChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Teaser
+        {
+            get
+            {
+                return _Teaser;
+            }
+            set
+            {
+                OnTeaserChanging(value);
+                ReportPropertyChanging("Teaser");
+                _Teaser = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Teaser");
+                OnTeaserChanged();
+            }
+        }
+        private global::System.String _Teaser;
+        partial void OnTeaserChanging(global::System.String value);
+        partial void OnTeaserChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "FK_Projects_Galleries", "Gallery")]
+        public Gallery Gallery
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Gallery>("DataModel.FK_Projects_Galleries", "Gallery").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Gallery>("DataModel.FK_Projects_Galleries", "Gallery").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Gallery> GalleryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Gallery>("DataModel.FK_Projects_Galleries", "Gallery");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Gallery>("DataModel.FK_Projects_Galleries", "Gallery", value);
                 }
             }
         }
@@ -5709,17 +6308,17 @@ namespace MedIn.Domain.Entities
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("DataModel", "UsersInRoles", "UserEntity")]
-        public EntityCollection<UserEntity> Users
+        public EntityCollection<User> Users
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserEntity>("DataModel.UsersInRoles", "UserEntity");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("DataModel.UsersInRoles", "UserEntity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserEntity>("DataModel.UsersInRoles", "UserEntity", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("DataModel.UsersInRoles", "UserEntity", value);
                 }
             }
         }
@@ -6238,15 +6837,15 @@ namespace MedIn.Domain.Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="DataModel", Name="UserEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="DataModel", Name="User")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class UserEntity : EntityObject
+    public partial class User : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new UserEntity object.
+        /// Create a new User object.
         /// </summary>
         /// <param name="applicationId">Initial value of the ApplicationId property.</param>
         /// <param name="userId">Initial value of the UserId property.</param>
@@ -6254,16 +6853,16 @@ namespace MedIn.Domain.Entities
         /// <param name="userName">Initial value of the UserName property.</param>
         /// <param name="isAnonymous">Initial value of the IsAnonymous property.</param>
         /// <param name="lastActivityDate">Initial value of the LastActivityDate property.</param>
-        public static UserEntity CreateUserEntity(global::System.Guid applicationId, global::System.Guid userId, global::System.Int32 id, global::System.String userName, global::System.Boolean isAnonymous, global::System.DateTime lastActivityDate)
+        public static User CreateUser(global::System.Guid applicationId, global::System.Guid userId, global::System.Int32 id, global::System.String userName, global::System.Boolean isAnonymous, global::System.DateTime lastActivityDate)
         {
-            UserEntity userEntity = new UserEntity();
-            userEntity.ApplicationId = applicationId;
-            userEntity.UserId = userId;
-            userEntity.Id = id;
-            userEntity.UserName = userName;
-            userEntity.IsAnonymous = isAnonymous;
-            userEntity.LastActivityDate = lastActivityDate;
-            return userEntity;
+            User user = new User();
+            user.ApplicationId = applicationId;
+            user.UserId = userId;
+            user.Id = id;
+            user.UserName = userName;
+            user.IsAnonymous = isAnonymous;
+            user.LastActivityDate = lastActivityDate;
+            return user;
         }
 
         #endregion

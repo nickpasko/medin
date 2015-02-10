@@ -228,7 +228,7 @@ namespace MedIn.Web.Areas.Admin.Controllers
 
 	                using (var db = new DataModelContext())
 	                {
-		                var user = db.UserEntities.FirstOrDefault(entity => entity.UserId == model.ProviderUserKey);
+		                var user = db.Users.FirstOrDefault(entity => entity.UserId == model.ProviderUserKey);
 		                Debug.Assert(user != null);
 		                user.Key = Guid.NewGuid();
 		                user.Membership.IsApproved = true;

@@ -21,6 +21,11 @@ namespace MedIn.Web.App_Start
 
             routes.MapRoute("faq", "faq", MVC.Faq.Index(), "faq");
             routes.MapRoute("contacts", "contacts", MVC.Contacts.Index(), "contacts");
+
+            routes.MapRoute("projects", "projects", MVC.Projects.Index(), "projectList", new[] { "MedIn.Web.Controllers" });
+            routes.MapRoute("project", "projects/{alias}", MVC.Projects.Details(), "projectDetails", new[] { "MedIn.Web.Controllers" });
+
+
             routes.MapRoute("news", "about/news", MVC.News.Index(), "news");
             routes.MapRoute("news-item", "about/news/{id}", MVC.News.Details(), "news");
             routes.MapRoute("articles", "articles", MVC.Articles.Index(), "articles");

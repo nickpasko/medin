@@ -1,0 +1,56 @@
+﻿@model ListItemsViewModel<Project>
+@{
+    var items = Model.Items.ToArray();
+}
+    
+<h1 class="title" id="page-title">Проекты</h1>
+
+<div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+
+        <div class="content">
+            <div class="view view-projects view-id-projects view-display-id-page view-dom-id-598e1cb2915499bd07883d8a3b9712bd">
+                <div class="view-content">
+                    <table class="views-view-grid cols-2">
+                        <tbody>
+                            @for (var i = 0; i < items.Length; i++)
+                            {
+                                if (i%2 == 0)
+                                {
+                                    @:<tr class="row-@(i+1) @ByCondition(i == 0, "row-first", i == Model.Items.Count(), "row-last")">
+                                 }
+                                        <td class="col-@ByCondition(i % 2 == 0, "2 col-last", i % 2 != 0, "1 col-first") ">
+                                            <div class="views-field views-field-field-image">
+                                                <div class="field-content">
+                                                    <a href="@Url.Action(MVC.Projects.Details(items[i].Alias))">
+                                                        <img typeof="foaf:Image" src="@Url.Content(items[i].Gallery.Files.First().Name)" width="149" height="96" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="views-field views-field-title">
+                                                <span class="field-content">
+                                                    <a href="@Url.Action(MVC.Projects.Details(items[i].Alias))">@items[i].Name</a>
+                                                </span>
+                                            </div>
+
+                                            <div class="views-field views-field-body">
+                                                <div class="field-content">
+                                                    @if (items[i].Teaser != null)
+                                                    {
+                                                        <p>@Html.Raw(items[i].Teaser)</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </td>
+                                        if (i % 2 != 0 || i == items.Length-1)
+                                        {
+                                            @:</tr >
+                                        }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

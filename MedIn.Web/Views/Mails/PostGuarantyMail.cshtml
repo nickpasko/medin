@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+@model PostGuarantyViewModel
+
+<h2>
+    Заявка на постгарантийное обслуживание от клиента: @Model.Persone
+</h2>
+<br />
+
+Данные по заявке:
+<br />
+
+Организация: @Model.Organization
+<br />
+Телефон: @Model.Phone
+<br />
+Email: @Model.Email
+<br />
+<br/>
+Название изделия и модель: @Model.ProductName
+<br />
+Год выпуска: @Model.Year
+<br />
+Описание:
+@Model.Description

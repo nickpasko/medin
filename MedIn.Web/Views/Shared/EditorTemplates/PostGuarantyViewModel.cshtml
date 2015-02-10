@@ -6,36 +6,35 @@
             <span class="form-required" title="Обязательно для заполнения.">*</span>
         </label>
 
-        @Html.EditorFor(x => x.Organization, new { size = "60", placeholder = "Организация" })
+        @Html.TextBoxFor(x => x.Organization, new { size = "60", @placeholder = "Организация" })
         @*<input type="text" id="edit-submitted-organizaciya" name="submitted[organizaciya]" value=""  maxlength="128" class="form-text required">*@
     </div>
     <div class="form-item webform-component webform-component-textfield" id="webform-component-kontaktnoe-lico">
         <label for="edit-submitted-kontaktnoe-lico">
             Контактное лицо  <span class="form-required" title="Обязательно для заполнения.">*</span>
         </label>
-        @Html.EditorFor(x => x.Persone, new { size = "60" })
+        @Html.TextBoxFor(x => x.Persone, new { size = "60", @placeholder = "Контактное лицо" })
     </div>
     <div class="form-item webform-component webform-component-textfield" id="webform-component-telefon">
         <label for="edit-submitted-telefon">
-            Телефон
-            <span class="form-required" title="Обязательно для заполнения.">*</span>
+            Телефон <span class="form-required" title="Обязательно для заполнения.">*</span>
         </label>
-        @Html.EditorFor(x => x.Persone, new { size = "60" })
+        @Html.TextBoxFor(x => x.Phone, new { size = "60", @placeholder = "Телефон" })
     </div>
-    <div class="form-item webform-component webform-component-email" id="webform-component-email">
-        <label for="edit-submitted-email">
+    <div class="form-item webform-component webform-component-textfield" id="webform-component-email">
+        <label for="Email">
             Email
             <span class="form-required" title="Обязательно для заполнения.">*</span>
         </label>
-        @Html.EditorFor(x => x.Email, new { size = "60" })
+        @Html.TextBoxFor(x => x.Email, new { size = "60", @placeholder = "Email" })
     </div>
     <div class="form-item webform-component webform-component-textfield" id="webform-component-nazvanie-izdeliya-i-model">
         <label for="edit-submitted-nazvanie-izdeliya-i-model">Название изделия и модель  </label>
-        @Html.EditorFor(x => x.ProductName, new { size = "60" })
+        @Html.TextBoxFor(x => x.ProductName, new { size = "60", @placeholder = "Название изделия и модель" })
     </div>
     <div class="form-item webform-component webform-component-textfield" id="webform-component-god-vypuska">
         <label for="edit-submitted-god-vypuska">Год выпуска  </label>
-        @Html.EditorFor(x => x.Year, new { size = "60" })
+        @Html.TextBoxFor(x => x.Year, new { size = "60", @placeholder = "Год выпуска" })
     </div>
     <div class="form-item webform-component webform-component-textarea" id="webform-component-opisanie-problemy">
         <label for="edit-submitted-opisanie-problemy">Описание проблемы  </label>
@@ -44,16 +43,19 @@
             <div class="grippie"></div>
         </div>
     </div>
-    @*<div id="edit-submitted-prikrepit-foto-ajax-wrapper">
-        <div class="form-item webform-component webform-component-managed_file" id="webform-component-prikrepit-foto">
-            <label for="edit-submitted-prikrepit-foto">Прикрепить фото </label>
-            <div id="edit-submitted-prikrepit-foto" class="form-managed-file">
-                <div class="customInputFile customInputFile-1">Прикрепить фото</div><div class="customInputFileWrapper" style="position: absolute; visibility: hidden; overflow: hidden; z-index: 10000000; opacity: 0; left: 257px; top: 0px; width: 135px; height: 33px; margin: 0px; padding: 0px; direction: ltr;"><input type="file" id="edit-submitted-prikrepit-foto-upload" name="files[submitted_prikrepit_foto]" size="22" class="form-file" style="font-size: 600px; position: absolute; right: 0px; top: 0px; height: 25px; cursor: pointer; margin: 0px; padding: 0px;"></div><input type="submit" id="edit-submitted-prikrepit-foto-upload-button" name="submitted_prikrepit_foto_upload_button" value="Закачать" class="form-submit ajax-processed"><input type="hidden" name="submitted[prikrepit_foto][fid]" value="0">
-                <div id="file-label" class="customInputFileName-1"></div>
-            </div>
+    <div id="edit-submitted-prikrepit-foto-ajax-wrapper">
+        @*<div class="form-item webform-component webform-component-managed_file" id="webform-component-prikrepit-foto">
+                <label for="edit-submitted-prikrepit-foto">Прикрепить фото </label>
+                <div id="edit-submitted-prikrepit-foto" class="form-managed-file">
+                    <div class="customInputFile customInputFile-1">Прикрепить фото</div><div class="customInputFileWrapper" style="position: absolute; visibility: hidden; overflow: hidden; z-index: 10000000; opacity: 0; left: 257px; top: 0px; width: 135px; height: 33px; margin: 0px; padding: 0px; direction: ltr;"><input type="file" id="edit-submitted-prikrepit-foto-upload" name="files[submitted_prikrepit_foto]" size="22" class="form-file" style="font-size: 600px; position: absolute; right: 0px; top: 0px; height: 25px; cursor: pointer; margin: 0px; padding: 0px;"></div><input type="submit" id="edit-submitted-prikrepit-foto-upload-button" name="submitted_prikrepit_foto_upload_button" value="Закачать" class="form-submit ajax-processed"><input type="hidden" name="submitted[prikrepit_foto][fid]" value="0">
+                    <div id="file-label" class="customInputFileName-1"></div>
+                </div>
+            </div>*@
+        <div class="form-actions form-wrapper" id="edit-actions">
+            <input type="submit" id="edit-submit" name="op" value="Отправить" class="form-submit">
         </div>
-    </div>*@
-    
+    </div>
+
     <div class="form-actions form-wrapper" id="edit-actions">
     </div>
 </div>

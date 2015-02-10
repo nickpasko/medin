@@ -2,7 +2,7 @@
 
 namespace MedIn.Domain.Entities
 {
-	partial class UserEntity : IEntity
+	partial class User : IEntity
 	{
 		public override string ToString()
 		{

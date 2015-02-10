@@ -38,6 +38,7 @@ public static partial class MVC
     public static MedIn.Web.Controllers.NewsController News = new MedIn.Web.Controllers.T4MVC_NewsController();
     public static MedIn.Web.Controllers.PostGuarantyController PostGuaranty = new MedIn.Web.Controllers.T4MVC_PostGuarantyController();
     public static MedIn.Web.Controllers.ProductsController Products = new MedIn.Web.Controllers.T4MVC_ProductsController();
+    public static MedIn.Web.Controllers.ProjectsController Projects = new MedIn.Web.Controllers.T4MVC_ProjectsController();
     public static MedIn.Web.Controllers.SertificationsController Sertifications = new MedIn.Web.Controllers.T4MVC_SertificationsController();
     public static MedIn.Web.Controllers.ServiceController Service = new MedIn.Web.Controllers.T4MVC_ServiceController();
     public static T4MVC.MailsController Mails = new T4MVC.MailsController();
@@ -59,6 +60,7 @@ namespace T4MVC
         public MedIn.Web.Areas.Admin.Controllers.LocationsController Locations = new MedIn.Web.Areas.Admin.Controllers.T4MVC_LocationsController();
         public MedIn.Web.Areas.Admin.Controllers.NewsItemsController NewsItems = new MedIn.Web.Areas.Admin.Controllers.T4MVC_NewsItemsController();
         public MedIn.Web.Areas.Admin.Controllers.ProductsController Products = new MedIn.Web.Areas.Admin.Controllers.T4MVC_ProductsController();
+        public MedIn.Web.Areas.Admin.Controllers.ProjectsController Projects = new MedIn.Web.Areas.Admin.Controllers.T4MVC_ProjectsController();
         public MedIn.Web.Areas.Admin.Controllers.QuestionsController Questions = new MedIn.Web.Areas.Admin.Controllers.T4MVC_QuestionsController();
         public MedIn.Web.Areas.Admin.Controllers.SertificatesController Sertificates = new MedIn.Web.Areas.Admin.Controllers.T4MVC_SertificatesController();
         public MedIn.Web.Areas.Admin.Controllers.SiteSettingsController SiteSettings = new MedIn.Web.Areas.Admin.Controllers.T4MVC_SiteSettingsController();
@@ -1710,10 +1712,8 @@ namespace MedIn.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Guaranty = "Guaranty";
-                public readonly string PostGuaranty = "PostGuaranty";
             }
             public readonly string Guaranty = "~/Views/Guaranty/Guaranty.cshtml";
-            public readonly string PostGuaranty = "~/Views/Guaranty/PostGuaranty.cshtml";
         }
     }
 
@@ -2251,6 +2251,174 @@ namespace MedIn.Web.Controllers
 
 namespace MedIn.Web.Controllers
 {
+    public partial class ProjectsController
+    {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ProjectsController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected ProjectsController(Dummy d) { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Index()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Details()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SetLanguage()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetLanguage);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ProjectsController Actions { get { return MVC.Projects; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "Projects";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "Projects";
+
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string Index = "Index";
+            public readonly string Details = "Details";
+            public readonly string SetLanguage = "SetLanguage";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string Index = "Index";
+            public const string Details = "Details";
+            public const string SetLanguage = "SetLanguage";
+        }
+
+
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Index
+        {
+            public readonly string page = "page";
+        }
+        static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Details
+        {
+            public readonly string alias = "alias";
+        }
+        static readonly ActionParamsClass_SetLanguage s_params_SetLanguage = new ActionParamsClass_SetLanguage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SetLanguage SetLanguageParams { get { return s_params_SetLanguage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SetLanguage
+        {
+            public readonly string l = "l";
+        }
+        static readonly ViewsClass s_views = new ViewsClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ViewsClass Views { get { return s_views; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ViewsClass
+        {
+            static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+            public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+            public class _ViewNamesClass
+            {
+                public readonly string Index = "Index";
+            }
+            public readonly string Index = "~/Views/Projects/Index.cshtml";
+        }
+    }
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_ProjectsController : MedIn.Web.Controllers.ProjectsController
+    {
+        public T4MVC_ProjectsController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? page);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Index(int? page)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "page", page);
+            IndexOverride(callInfo, page);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string alias);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Details(string alias)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "alias", alias);
+            DetailsOverride(callInfo, alias);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SetLanguageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string l);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SetLanguage(string l)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetLanguage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "l", l);
+            SetLanguageOverride(callInfo, l);
+            return callInfo;
+        }
+
+    }
+}
+
+namespace MedIn.Web.Controllers
+{
     public partial class SertificationsController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -2516,21 +2684,11 @@ namespace T4MVC
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string ConfirmRegistration = "ConfirmRegistration";
-                public readonly string ConfirmSubscription = "ConfirmSubscription";
-                public readonly string Contacts = "Contacts";
-                public readonly string Distribution = "Distribution";
-                public readonly string ForgotPassword = "ForgotPassword";
-                public readonly string Question = "Question";
-                public readonly string ReferralChanged = "ReferralChanged";
+                public readonly string PostGuarantyMail = "PostGuarantyMail";
+                public readonly string SuccessSend = "SuccessSend";
             }
-            public readonly string ConfirmRegistration = "~/Views/Mails/ConfirmRegistration.cshtml";
-            public readonly string ConfirmSubscription = "~/Views/Mails/ConfirmSubscription.cshtml";
-            public readonly string Contacts = "~/Views/Mails/Contacts.cshtml";
-            public readonly string Distribution = "~/Views/Mails/Distribution.cshtml";
-            public readonly string ForgotPassword = "~/Views/Mails/ForgotPassword.cshtml";
-            public readonly string Question = "~/Views/Mails/Question.cshtml";
-            public readonly string ReferralChanged = "~/Views/Mails/ReferralChanged.cshtml";
+            public readonly string PostGuarantyMail = "~/Views/Mails/PostGuarantyMail.cshtml";
+            public readonly string SuccessSend = "~/Views/Mails/SuccessSend.cshtml";
         }
     }
 
@@ -6836,6 +6994,509 @@ namespace MedIn.Web.Areas.Admin.Controllers
 
         [NonAction]
         public override System.Web.Mvc.ActionResult Edit(MedIn.Domain.Entities.Product entity, System.Web.Mvc.FormCollection collection, string editViewName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "editViewName", editViewName);
+            EditOverride(callInfo, entity, collection, editViewName);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SetVisibilityOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, bool visibilityToSet);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SetVisibility(int id, bool visibilityToSet)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetVisibility);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "visibilityToSet", visibilityToSet);
+            SetVisibilityOverride(callInfo, id, visibilityToSet);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SortListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? page, System.Web.Mvc.FormCollection collection);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SortList(int? page, System.Web.Mvc.FormCollection collection)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SortList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "page", page);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            SortListOverride(callInfo, page, collection);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UploadFileOverride(T4MVC_MedIn_OziCms_ViewModels_FineUploaderResult callInfo, MedIn.OziCms.ViewModels.FineUpload upload, int id, string propName);
+
+        [NonAction]
+        public override MedIn.OziCms.ViewModels.FineUploaderResult UploadFile(MedIn.OziCms.ViewModels.FineUpload upload, int id, string propName)
+        {
+            var callInfo = new T4MVC_MedIn_OziCms_ViewModels_FineUploaderResult(Area, Name, ActionNames.UploadFile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "upload", upload);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "propName", propName);
+            UploadFileOverride(callInfo, upload, id, propName);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteFileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, MedIn.Db.Entities.Mocks.CustomFileEntity model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DeleteFile(MedIn.Db.Entities.Mocks.CustomFileEntity model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteFile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            DeleteFileOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SaveOrderOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string model, int objId, string propName);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SaveOrder(string model, int objId, string propName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SaveOrder);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "objId", objId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "propName", propName);
+            SaveOrderOverride(callInfo, model, objId, propName);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SaveFileDataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, MedIn.Db.Entities.Mocks.CustomFileEntity model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SaveFileData(MedIn.Db.Entities.Mocks.CustomFileEntity model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SaveFileData);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            SaveFileDataOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SetLanguageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string l);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SetLanguage(string l)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetLanguage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "l", l);
+            SetLanguageOverride(callInfo, l);
+            return callInfo;
+        }
+
+    }
+}
+
+namespace MedIn.Web.Areas.Admin.Controllers
+{
+    public partial class ProjectsController
+    {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ProjectsController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected ProjectsController(Dummy d) { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UploadFileCollectionItem()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadFileCollectionItem);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Index()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Details()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Edit()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Delete()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SetVisibility()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetVisibility);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SortList()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SortList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual MedIn.OziCms.ViewModels.FineUploaderResult UploadFile()
+        {
+            return new T4MVC_MedIn_OziCms_ViewModels_FineUploaderResult(Area, Name, ActionNames.UploadFile);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult DeleteFile()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteFile);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SaveOrder()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SaveOrder);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SaveFileData()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SaveFileData);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SetLanguage()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetLanguage);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ProjectsController Actions { get { return MVC.Admin.Projects; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "Admin";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "Projects";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "Projects";
+
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string UploadFileCollectionItem = "UploadFileCollectionItem";
+            public readonly string Index = "Index";
+            public readonly string Details = "Details";
+            public readonly string Create = "Create";
+            public readonly string Edit = "Edit";
+            public readonly string Delete = "Delete";
+            public readonly string SetVisibility = "SetVisibility";
+            public readonly string SortList = "SortList";
+            public readonly string UploadFile = "UploadFile";
+            public readonly string DeleteFile = "DeleteFile";
+            public readonly string SaveOrder = "SaveOrder";
+            public readonly string SaveFileData = "SaveFileData";
+            public readonly string SetLanguage = "SetLanguage";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string UploadFileCollectionItem = "UploadFileCollectionItem";
+            public const string Index = "Index";
+            public const string Details = "Details";
+            public const string Create = "Create";
+            public const string Edit = "Edit";
+            public const string Delete = "Delete";
+            public const string SetVisibility = "SetVisibility";
+            public const string SortList = "SortList";
+            public const string UploadFile = "UploadFile";
+            public const string DeleteFile = "DeleteFile";
+            public const string SaveOrder = "SaveOrder";
+            public const string SaveFileData = "SaveFileData";
+            public const string SetLanguage = "SetLanguage";
+        }
+
+
+        static readonly ActionParamsClass_UploadFileCollectionItem s_params_UploadFileCollectionItem = new ActionParamsClass_UploadFileCollectionItem();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UploadFileCollectionItem UploadFileCollectionItemParams { get { return s_params_UploadFileCollectionItem; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UploadFileCollectionItem
+        {
+            public readonly string upload = "upload";
+            public readonly string id = "id";
+            public readonly string propName = "propName";
+            public readonly string parentId = "parentId";
+        }
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Index
+        {
+            public readonly string page = "page";
+            public readonly string order = "order";
+            public readonly string desc = "desc";
+        }
+        static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Details
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Edit
+        {
+            public readonly string id = "id";
+            public readonly string collection = "collection";
+            public readonly string entity = "entity";
+            public readonly string editViewName = "editViewName";
+        }
+        static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Delete DeleteParams { get { return s_params_Delete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Delete
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Create
+        {
+            public readonly string collection = "collection";
+        }
+        static readonly ActionParamsClass_SetVisibility s_params_SetVisibility = new ActionParamsClass_SetVisibility();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SetVisibility SetVisibilityParams { get { return s_params_SetVisibility; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SetVisibility
+        {
+            public readonly string id = "id";
+            public readonly string visibilityToSet = "visibilityToSet";
+        }
+        static readonly ActionParamsClass_SortList s_params_SortList = new ActionParamsClass_SortList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SortList SortListParams { get { return s_params_SortList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SortList
+        {
+            public readonly string page = "page";
+            public readonly string collection = "collection";
+        }
+        static readonly ActionParamsClass_UploadFile s_params_UploadFile = new ActionParamsClass_UploadFile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UploadFile UploadFileParams { get { return s_params_UploadFile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UploadFile
+        {
+            public readonly string upload = "upload";
+            public readonly string id = "id";
+            public readonly string propName = "propName";
+        }
+        static readonly ActionParamsClass_DeleteFile s_params_DeleteFile = new ActionParamsClass_DeleteFile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteFile DeleteFileParams { get { return s_params_DeleteFile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteFile
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_SaveOrder s_params_SaveOrder = new ActionParamsClass_SaveOrder();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SaveOrder SaveOrderParams { get { return s_params_SaveOrder; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SaveOrder
+        {
+            public readonly string model = "model";
+            public readonly string objId = "objId";
+            public readonly string propName = "propName";
+        }
+        static readonly ActionParamsClass_SaveFileData s_params_SaveFileData = new ActionParamsClass_SaveFileData();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SaveFileData SaveFileDataParams { get { return s_params_SaveFileData; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SaveFileData
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_SetLanguage s_params_SetLanguage = new ActionParamsClass_SetLanguage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SetLanguage SetLanguageParams { get { return s_params_SetLanguage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SetLanguage
+        {
+            public readonly string l = "l";
+        }
+        static readonly ViewsClass s_views = new ViewsClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ViewsClass Views { get { return s_views; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ViewsClass
+        {
+            static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+            public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+            public class _ViewNamesClass
+            {
+            }
+        }
+    }
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_ProjectsController : MedIn.Web.Areas.Admin.Controllers.ProjectsController
+    {
+        public T4MVC_ProjectsController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void UploadFileCollectionItemOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, MedIn.OziCms.ViewModels.FineUpload upload, int id, string propName, int parentId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UploadFileCollectionItem(MedIn.OziCms.ViewModels.FineUpload upload, int id, string propName, int parentId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadFileCollectionItem);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "upload", upload);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "propName", propName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "parentId", parentId);
+            UploadFileCollectionItemOverride(callInfo, upload, id, propName, parentId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? page, string order, string desc);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Index(int? page, string order, string desc)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "page", page);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "order", order);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "desc", desc);
+            IndexOverride(callInfo, page, order, desc);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Details(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DetailsOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            CreateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Edit(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EditOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Delete(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DeleteOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.Mvc.FormCollection collection);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create(System.Web.Mvc.FormCollection collection)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            CreateOverride(callInfo, collection);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, System.Web.Mvc.FormCollection collection);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Edit(int id, System.Web.Mvc.FormCollection collection)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            EditOverride(callInfo, id, collection);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, MedIn.Domain.Entities.Project entity, System.Web.Mvc.FormCollection collection, string editViewName);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Edit(MedIn.Domain.Entities.Project entity, System.Web.Mvc.FormCollection collection, string editViewName)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);

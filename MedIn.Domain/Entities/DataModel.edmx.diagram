@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="DataModel.Profile" Width="1.5" PointX="5.25" PointY="2.5" />
         <EntityTypeShape EntityType="DataModel.Question" Width="1.5" PointX="9.75" PointY="4.875" />
         <EntityTypeShape EntityType="DataModel.SiteSetting" Width="1.5" PointX="9.75" PointY="8.875" />
-        <EntityTypeShape EntityType="DataModel.UserEntity" Width="1.5" PointX="3" PointY="2.875" />
+        <EntityTypeShape EntityType="DataModel.User" Width="1.5" PointX="11.5" PointY="2.75" />
         <AssociationConnector Association="DataModel.UserApplication" />
         <AssociationConnector Association="DataModel.FK_Locations_Galleries" />
         <AssociationConnector Association="DataModel.FK_Locations_Locations" />
@@ -47,6 +47,9 @@
         <EntityTypeShape EntityType="DataModel.Catalog" Width="1.5" PointX="3" PointY="16.25" />
         <AssociationConnector Association="DataModel.FK_Catalogs_Files" />
         <AssociationConnector Association="DataModel.FK_Catalogs_Files1" />
+        <EntityTypeShape EntityType="DataModel.Project" Width="1.5" PointX="7.5" PointY="16.625" />
+        <AssociationConnector Association="DataModel.FK_Projects_Galleries" />
+        <EntityTypeShape EntityType="DataModel.DescGroup1" Width="1.5" PointX="12.375" PointY="7.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

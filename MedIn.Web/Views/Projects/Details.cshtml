@@ -1,0 +1,25 @@
+﻿@model ItemViewModel<Project>
+
+<h1 class="title" id="page-title">@Model.Item.Name</h1>
+
+<div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+        <div class="content">
+            <div id="node-131" class="node node-project clearfix" about="/proekty/pervyy-chastnyy-rodilnyy-dom-i-mnogoprofilnaya-klinika-v-ekaterinburge" typeof="sioc:Item foaf:Document">
+                <div class="content">
+                    @Html.Raw(Model.Item.Content)
+                    <h2 id="gal">Фотогалерея</h2>
+                    @foreach (var item in Model.Item.Gallery.Files)
+                    {
+                        <div class="slide">
+                            <a class="highslide" onclick="return hs.expand(this)" href="@item.Name">
+                                <div class="overlay"></div>
+                                <img typeof="foaf:Image" src="@Url.Content(item.Name)" width="149" height="96" alt="">
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,0 @@
-﻿@using MedIn.Web
-@model DoctorSubscriber
-@{
-    var url = Url.ActionAbsolute(MVC.Subscriptions.SubscriptionSuccess(Model.Key));
-}
-
-<p>Для подтверждения подписки на рассылку лабораторий «3Д Лаб» пройдите по ссылке — <a href="@url">@url</a></p>
-<p>Если вашу почту кто-то указал по ошибке, просто проигнорируйте это письмо.</p>

@@ -62,7 +62,7 @@ namespace MedIn.Web.Controllers
 						Subject = AppConfig.GetValue("FaqSubject"),
 						To = AppConfig.GetValue("FaqToEmail"),
 						ViewModel = model,
-						TemplateName = MVC.Mails.Views.Question
+                        //TemplateName = MVC.Mails.Views.Question
 					}, ControllerContext);
 					ModelState.Clear();
 					return PartialView(new FeedbackViewModel { ToastrMessage = L("MessageSent"), Success = true });
