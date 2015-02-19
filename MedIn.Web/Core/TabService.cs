@@ -40,6 +40,12 @@ namespace MedIn.Web.Core
                     Content = ViewHelpers.RenderPartialViewToString(MVC.Products.Views.TabPartialDetails._TechDetails, techViewData, context)
                 });
             }
+            var projectsViewData = new ViewDataDictionary(currentProduct.Projects.Where(x=>x.Visibility).ToArray());
+            res.Add(new ProductTabViewModel
+            {
+                Name = "Реализованные проекты",
+                Content = ViewHelpers.RenderPartialViewToString(MVC.Products.Views.TabPartialDetails._ProjectDetails, projectsViewData, context)
+            });
             return res;
         }
     }

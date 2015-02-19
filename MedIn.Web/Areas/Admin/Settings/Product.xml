@@ -35,6 +35,9 @@
     <select multiple="true" name="DescGroups" reference="DescGroups" optionTitel="Name" title="Табы с описаниями">
         <option>Нет</option>
     </select>
+      <select multiple="true" name="Projects" reference="Projects" optionTitel="Name" title="Связанные проекты">
+        <option>Нет</option>
+      </select>
     </tab>
     <tab name="Технические свойства">
       <collection name="TechProperties" >

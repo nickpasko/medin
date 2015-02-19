@@ -1889,6 +1889,12 @@ h2#gal {
     color: #2c2c2c;
 }
 
+.breadcrumbs-last {
+    color: #009387;
+    outline: none;
+    text-decoration: underline;
+}
+
 #ymaps-map-id_134511147652047595086 .ymaps-map.ymaps-i-ua_js_yes .ymaps-image {
     background: url(/Content/i/themes/custom/images/cloud.png) left top no-repeat !important;
     width: 118px !important;

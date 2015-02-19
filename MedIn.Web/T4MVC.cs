@@ -2196,9 +2196,11 @@ namespace MedIn.Web.Controllers
                 public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
                 public class _ViewNamesClass
                 {
+                    public readonly string _ProjectDetails = "_ProjectDetails";
                     public readonly string _ReviewDetails = "_ReviewDetails";
                     public readonly string _TechDetails = "_TechDetails";
                 }
+                public readonly string _ProjectDetails = "~/Views/Products/TabPartialDetails/_ProjectDetails.cshtml";
                 public readonly string _ReviewDetails = "~/Views/Products/TabPartialDetails/_ReviewDetails.cshtml";
                 public readonly string _TechDetails = "~/Views/Products/TabPartialDetails/_TechDetails.cshtml";
             }
@@ -2367,8 +2369,10 @@ namespace MedIn.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Details = "Details";
                 public readonly string Index = "Index";
             }
+            public readonly string Details = "~/Views/Projects/Details.cshtml";
             public readonly string Index = "~/Views/Projects/Index.cshtml";
         }
     }

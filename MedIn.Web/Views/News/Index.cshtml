@@ -24,7 +24,7 @@
                                 }
                                 if (i == lstNews.Count - 1)
                                 {
-                                    lastWord = "views-row-last";
+                                    lastWord = "views-row-last"; 
                                 }
                                 <li class="views-row @ByCondition(true, string.Format("views-row-{0}",i+1)) views-row-@ByCondition(i % 2 == 0,"even",i%2!=0, "odd") @lastWord">
                                     @*<div class="date">@item.PublishDate.ToString("D")</div>

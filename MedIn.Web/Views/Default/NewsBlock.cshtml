@@ -1,20 +1,57 @@
 ﻿@model IQueryable<News>
+@{
+    var lstNews = Model.ToList();
+}
 <div id="block-views-news-block" class="block block-views">
     <div class="content">
         <div class="view view-news view-id-news view-display-id-block view-dom-id-e4c4026d8c2c8446867e06fe86cc395e">
             <div class="view-content">
                 <div class="item-list">
                     <h2><span>Новости</span>@Html.ActionLink("Все новости", MVC.News.Index())</h2>
-                    @foreach (var item in Model)
-                    {
-                        <p class="news-main-date">@item.PublishDate.ToString("d")</p>
+                    
+                    <ul>
+                        @for (var i = 0; i < lstNews.Count; i++)
+                        {
 
-                        var text = item.Name ?? item.Teaser;
-                        <p>
-                            <a href="@Url.Action(MVC.News.Details(item.Id))">@Html.Raw(text)</a>
-                        </p>
-                    }
-                </div>
+                            string lastWord = string.Empty;
+                            if (i == 0)
+                            {
+                                lastWord = "views-row-first";
+                            }
+                            if (i == lstNews.Count - 1)
+                            {
+                                lastWord = "views-row-last";
+                            }
+                            <li class="views-row @ByCondition(true, string.Format("views-row-{0}",i+1)) views-row-@ByCondition(i % 2 == 0,"even",i%2!=0, "odd") @lastWord">
+                                @*<div class="date">@item.PublishDate.ToString("D")</div>
+                    <div class="link"><a href="@Url.Action(MVC.News.Details(item.Id))">@Html.Raw(item.Teaser)</a></div>*@
+
+                                <div class="views-field views-field-field-image">
+                                    <div class="field-content">
+                                        <a href="@Url.Action(MVC.News.Details(lstNews[i].Id))">
+                                            <img typeof="foaf:Image" src="@Url.Content(lstNews[i].File.Name)" width="215" height="140" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="views-field views-field-field-date">
+                                    <div class="field-content">
+                                        <span class="date-display-single" property="dc:date" datatype="xsd:dateTime" content="2014-11-24T00:00:00+03:00">@lstNews[i].PublishDate.ToString("D")</span>
+                                    </div>
+                                </div>
+                                <div class="views-field views-field-title">
+                                    <span class="field-content">
+                                        <a href="@Url.Action(MVC.News.Details(lstNews[i].Id))">@lstNews[i].Name</a>
+                                    </span>
+                                </div>
+                                <div class="views-field views-field-body">
+                                    <div class="field-content">
+                                        @Html.Raw(lstNews[i].Teaser)
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        </ul>
+                </div> 
             </div>
         </div>
     </div>

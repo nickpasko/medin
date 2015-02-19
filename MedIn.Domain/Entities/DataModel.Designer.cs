@@ -43,6 +43,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Catalogs_Files", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Catalog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Catalog), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Catalogs_Files1", "File", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.File), "Catalog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Catalog), true)]
 [assembly: EdmRelationshipAttribute("DataModel", "FK_Projects_Galleries", "Gallery", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MedIn.Domain.Entities.Gallery), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Project), true)]
+[assembly: EdmRelationshipAttribute("DataModel", "ProductProjects", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Product), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MedIn.Domain.Entities.Project))]
 
 #endregion
 
@@ -5368,6 +5369,28 @@ namespace MedIn.Domain.Entities
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "ProductProjects", "Project")]
+        public EntityCollection<Project> Projects
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("DataModel.ProductProjects", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("DataModel.ProductProjects", "Project", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -5913,6 +5936,28 @@ namespace MedIn.Domain.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Gallery>("DataModel.FK_Projects_Galleries", "Gallery", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DataModel", "ProductProjects", "Product")]
+        public EntityCollection<Product> Products
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Product>("DataModel.ProductProjects", "Product");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("DataModel.ProductProjects", "Product", value);
                 }
             }
         }

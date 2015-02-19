@@ -199,6 +199,14 @@
           <Property Name="MetaDescription" Type="nvarchar(max)" />
           <Property Name="FileId" Type="int" />
         </EntityType>
+        <EntityType Name="ProductProjects">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="Id" />
@@ -495,6 +503,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductProjects_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductProjects" Type="Self.ProductProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductProjects">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductProjects_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProductProjects" Type="Self.ProductProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductProjects">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Products_Categories">
           <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -684,6 +716,7 @@
           <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Memberships" EntityType="Self.Memberships" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductProjects" EntityType="Self.ProductProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
@@ -753,6 +786,14 @@
           <AssociationSet Name="FK_News_Files" Association="Self.FK_News_Files">
             <End Role="Files" EntitySet="Files" />
             <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductProjects_Products" Association="Self.FK_ProductProjects_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductProjects" EntitySet="ProductProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductProjects_Projects" Association="Self.FK_ProductProjects_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProductProjects" EntitySet="ProductProjects" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
             <End Role="Categories" EntitySet="Categories" />
@@ -933,6 +974,10 @@
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
           <EntitySet Name="DescGroups1" EntityType="DataModel.DescGroup1" />
+          <AssociationSet Name="ProductProjects" Association="DataModel.ProductProjects">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Application">
           <Key>
@@ -1218,6 +1263,7 @@
           <NavigationProperty Name="Category" Relationship="DataModel.FK_Products_Categories" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="TechProperties" Relationship="DataModel.FK_TechProperties_Products" FromRole="Product" ToRole="TechProperty" />
           <NavigationProperty Name="DescGroups" Relationship="DataModel.FK_DescGroup_Products" FromRole="Product" ToRole="DescGroup" />
+          <NavigationProperty Name="Projects" Relationship="DataModel.ProductProjects" FromRole="Product" ToRole="Project" />
         </EntityType>
         <Association Name="FK_Products_Galleries">
           <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="0..1" />
@@ -1512,6 +1558,7 @@
           <Property Name="Sort" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Gallery" Relationship="DataModel.FK_Projects_Galleries" FromRole="Project" ToRole="Gallery" />
           <Property Name="Teaser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="DataModel.ProductProjects" FromRole="Project" ToRole="Product" />
         </EntityType>
         <Association Name="FK_Projects_Galleries">
           <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="0..1" />
@@ -1536,6 +1583,10 @@
           <Property Name="Visibility" Type="Boolean" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <Association Name="ProductProjects">
+          <End Type="DataModel.Product" Role="Product" Multiplicity="*" />
+          <End Type="DataModel.Project" Role="Project" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1873,6 +1924,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="ProductProjects" TypeName="DataModel.ProductProjects" StoreEntitySet="ProductProjects">
+            <EndProperty Name="Project">
+              <ScalarProperty Name="Id" ColumnName="ProjectId" />
+            </EndProperty>
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="ProductId" />
+            </EndProperty>
+          </AssociationSetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

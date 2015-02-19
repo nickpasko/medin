@@ -24,7 +24,7 @@
         <AssociationConnector Association="DataModel.RoleApplication" />
         <AssociationConnector Association="DataModel.MembershipUser" />
         <AssociationConnector Association="DataModel.UsersInRoles" />
-        <EntityTypeShape EntityType="DataModel.Product" Width="1.5" PointX="5.625" PointY="11.125" />
+        <EntityTypeShape EntityType="DataModel.Product" Width="1.5" PointX="6.625" PointY="11.25" />
         <AssociationConnector Association="DataModel.FK_Products_Galleries" />
         <EntityTypeShape EntityType="DataModel.Category" Width="1.5" PointX="9.625" PointY="11.75" />
         <AssociationConnector Association="DataModel.FK_Categories_Categories" />
@@ -50,6 +50,7 @@
         <EntityTypeShape EntityType="DataModel.Project" Width="1.5" PointX="7.5" PointY="16.625" />
         <AssociationConnector Association="DataModel.FK_Projects_Galleries" />
         <EntityTypeShape EntityType="DataModel.DescGroup1" Width="1.5" PointX="12.375" PointY="7.75" />
+        <AssociationConnector Association="DataModel.ProductProjects" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

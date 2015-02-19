@@ -1,4 +1,4 @@
-﻿@{
+﻿@*@{
     // для начала проходим по всем страницам до корня
 
     var page = WebContext.Location;
@@ -17,9 +17,8 @@
     var cpath = "/";
 }
 
-<div id="breadcrumbs" class="breadcrumb">
-    <h2 class="element-invisible">Вы здесь</h2>
-    <div class="breadcrumb">
+<div >
+    <div >
         <a href="@cpath">Главная</a>
         @while (pages.Count != 0)
         {
@@ -47,7 +46,7 @@
         @:&nbsp;&rarr;&nbsp;
         if (lastCondition)
         {
-            <span>@name</span>
+            <span class="breadcrumbs-last">@name</span>
         }
         else
         {
@@ -55,4 +54,4 @@
             <a href="@url.Replace("//", "/")">@name</a>
         }
     }
-}
+}*@
