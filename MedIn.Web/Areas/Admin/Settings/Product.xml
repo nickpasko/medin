@@ -14,6 +14,7 @@
 
     <cols>
       <string name="Name" title="Название"/>
+      <string name="Alias" title="Псевдоним"/>
       <string name="CatalogPlace" title="Место в каталоге" /> 
     </cols>
 
@@ -30,12 +31,11 @@
         <option>Нет</option>
       </select>
       <select name="CategoryId" reference="Category" title="Категория">
-        <option>Нет</option>
       </select>
     <select multiple="true" name="DescGroups" reference="DescGroups" optionTitel="Name" title="Табы с описаниями">
         <option>Нет</option>
     </select>
-      <select multiple="true" name="Projects" reference="Projects" optionTitel="Name" title="Связанные проекты">
+      <select multiple="true" name="Projects" reference="Projects" optionTitel="Name" title="Связаная гуппа проектов">
         <option>Нет</option>
       </select>
     </tab>
@@ -46,6 +46,7 @@
       </collection>
     </tab>
     <tab name="Метаданные">
+      <string name="Alias" title="Псевдоним" info="Используется для генерации url" />
       <string name="MetaTitle" title="MetaTitle" />
       <string name="MetaKeywords" title="MetaKeywords" />
       <textarea name="MetaDescription" title="MetaDescription" />

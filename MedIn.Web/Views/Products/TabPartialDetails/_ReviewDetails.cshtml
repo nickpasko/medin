@@ -1,21 +1,25 @@
 ﻿@model ReviewDetailsViewModel
 
-<div id="gallery" class="content">
+<div id="gallery" class="content" >
     <div id="controls" class="controls"></div>
     <div class="slideshow-container">
         <div id="loading" class="loader"></div>
-        <div id="slideshow" class="slideshow"></div>
+        <div id="slideshow" class="slideshow" rel="prettyPhoto"></div>
     </div>
 </div>
-<div id="thumbs" class="navigation">
+<div class="clear"></div>
+<div id="thumbs" class="navigation" style="min-height:336px">
     <ul class="thumbs noscript">
-        @foreach (var file in Model.Files)
+        @if (Model.Files != null)
         {
-            <li>
-                <a class="thumb" name="leaf" href="@Url.Content(file.Name)" title="@file.Title">
-                    <img src="@Url.Content(file.Name)" alt="@file.Alt" width="112px" height="85px" />
-                </a>
-            </li>
+            foreach (var file in Model.Files)
+            {
+                <li>
+                    <a class="thumb" name="leaf" href="@Url.Content(file.Name)" title="@file.Title">
+                        <img src="@Url.Content(file.Name)" alt="@file.Alt" width="112px" height="85px" />
+                    </a>
+                </li>
+            }
         }
     </ul>
 </div>
@@ -23,16 +27,26 @@
 <br />
 <br />
 <br />
-@foreach (var item in Model.DescGroups)
+@if (Model.DescGroups != null)
 {
-    <div style="
+    foreach (var item in Model.DescGroups)
+    {
+        <div style="
     padding-left: 26px;
     font: bold 14px/21px Arial;
     color: #009387;
     padding-bottom: 10px;
     text-align:center;
     ">
-        <span>@Html.Raw(item.Name)</span>
-    </div>
-       @Html.Raw(item.Content)
+            <span>@Html.Raw(item.Name)</span>
+        </div>
+        @Html.Raw(item.Content)
+
+    }
 }
+
+@*<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        $("area[rel^='prettyPhoto']").prettyPhoto();
+    })
+</script>*@

@@ -2,7 +2,7 @@
 
 namespace MedIn.Domain.Entities
 {
-	partial class Gallery : ISortableEntity, IVisibleEntity, IHaveAliasEntity, IMetadataEntity
+	public partial class Gallery : ISortableEntity, IVisibleEntity, IHaveAliasEntity, IMetadataEntity
 	{
 	}
 }

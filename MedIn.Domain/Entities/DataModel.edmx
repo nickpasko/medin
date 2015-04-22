@@ -73,7 +73,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
           <Property Name="Sort" Type="int" Nullable="false" />
           <Property Name="Visibility" Type="bit" Nullable="false" />
           <Property Name="Content" Type="nvarchar(max)" />
@@ -199,19 +199,11 @@
           <Property Name="MetaDescription" Type="nvarchar(max)" />
           <Property Name="FileId" Type="int" />
         </EntityType>
-        <EntityType Name="ProductProjects">
-          <Key>
-            <PropertyRef Name="ProjectId" />
-            <PropertyRef Name="ProductId" />
-          </Key>
-          <Property Name="ProjectId" Type="int" Nullable="false" />
-          <Property Name="ProductId" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CatalogPlace" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -224,6 +216,14 @@
           <Property Name="MetaTitle" Type="nvarchar(max)" />
           <Property Name="MetaKeywords" Type="nvarchar(max)" />
           <Property Name="MetaDescription" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProductsProjects">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Profiles">
           <Key>
@@ -246,10 +246,10 @@
           <Property Name="MetaTitle" Type="nvarchar(max)" />
           <Property Name="MetaKeywords" Type="nvarchar(max)" />
           <Property Name="MetaDescription" Type="nvarchar(max)" />
-          <Property Name="GalleryId" Type="int" />
           <Property Name="Alias" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Sort" Type="int" Nullable="false" />
           <Property Name="Teaser" Type="nvarchar(max)" />
+          <Property Name="GalleryId" Type="int" />
         </EntityType>
         <EntityType Name="Questions">
           <Key>
@@ -298,7 +298,22 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserEntities">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="FileId" Type="int" />
+          <Property Name="Key" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -420,7 +435,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DescGroup_Products">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DescGroup" Type="Self.DescGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
@@ -503,30 +520,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductProjects_Products">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="ProductProjects" Type="Self.ProductProjects" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductProjects">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductProjects_Projects">
-          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
-          <End Role="ProductProjects" Type="Self.ProductProjects" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Projects">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductProjects">
-              <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Products_Categories">
           <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -548,6 +541,34 @@
             </Principal>
             <Dependent Role="Products">
               <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsProjects_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductsProjects" Type="Self.ProductsProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsProjects">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsProjects_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductsProjects" Type="Self.ProductsProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsProjects">
+              <PropertyRef Name="ProjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -588,7 +609,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TechProperties_Products">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
           <End Role="TechProperties" Type="Self.TechProperties" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
@@ -596,6 +617,30 @@
             </Principal>
             <Dependent Role="TechProperties">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserApplication">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="UserEntities" Type="Self.UserEntities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="UserEntities">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile">
+          <End Role="UserEntities" Type="Self.UserEntities" Multiplicity="1" />
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserEntities">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -716,8 +761,8 @@
           <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Memberships" EntityType="Self.Memberships" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductProjects" EntityType="Self.ProductProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsProjects" EntityType="Self.ProductsProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
@@ -725,6 +770,7 @@
           <EntitySet Name="Sertificates" EntityType="Self.Sertificates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiteSettings" EntityType="Self.SiteSettings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TechProperties" EntityType="Self.TechProperties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserEntities" EntityType="Self.UserEntities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersInRoles" EntityType="Self.UsersInRoles" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ArticleGalleries_Articles" Association="Self.FK_ArticleGalleries_Articles">
@@ -787,14 +833,6 @@
             <End Role="Files" EntitySet="Files" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductProjects_Products" Association="Self.FK_ProductProjects_Products">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="ProductProjects" EntitySet="ProductProjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductProjects_Projects" Association="Self.FK_ProductProjects_Projects">
-            <End Role="Projects" EntitySet="Projects" />
-            <End Role="ProductProjects" EntitySet="ProductProjects" />
-          </AssociationSet>
           <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
@@ -802,6 +840,14 @@
           <AssociationSet Name="FK_Products_Galleries" Association="Self.FK_Products_Galleries">
             <End Role="Galleries" EntitySet="Galleries" />
             <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsProjects_Products" Association="Self.FK_ProductsProjects_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductsProjects" EntitySet="ProductsProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsProjects_Projects" Association="Self.FK_ProductsProjects_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProductsProjects" EntitySet="ProductsProjects" />
           </AssociationSet>
           <AssociationSet Name="FK_Projects_Galleries" Association="Self.FK_Projects_Galleries">
             <End Role="Galleries" EntitySet="Galleries" />
@@ -818,6 +864,14 @@
           <AssociationSet Name="FK_TechProperties_Products" Association="Self.FK_TechProperties_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="TechProperties" EntitySet="TechProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserApplication" Association="Self.FK_UserApplication">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="UserEntities" EntitySet="UserEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile" Association="Self.FK_UserProfile">
+            <End Role="UserEntities" EntitySet="UserEntities" />
+            <End Role="Profiles" EntitySet="Profiles" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Files" Association="Self.FK_Users_Files">
             <End Role="Files" EntitySet="Files" />
@@ -858,32 +912,34 @@
       <Schema Namespace="DataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="DataModelContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applications" EntityType="DataModel.Application" />
+          <EntitySet Name="Articles" EntityType="DataModel.Article" />
+          <EntitySet Name="Catalogs" EntityType="DataModel.Catalog" />
+          <EntitySet Name="Categories" EntityType="DataModel.Category" />
+          <EntitySet Name="DescGroups1" EntityType="DataModel.DescGroup1" />
           <EntitySet Name="EmailLogs" EntityType="DataModel.EmailLog" />
-          <EntitySet Name="Galleries" EntityType="DataModel.Gallery" />
+          <EntitySet Name="Files" EntityType="DataModel.File" />
           <EntitySet Name="Locations" EntityType="DataModel.Location" />
+          <EntitySet Name="Memberships" EntityType="DataModel.Membership" />
           <EntitySet Name="News" EntityType="DataModel.News" />
           <EntitySet Name="Profiles" EntityType="DataModel.Profile" />
           <EntitySet Name="Questions" EntityType="DataModel.Question" />
-          <EntitySet Name="SiteSettings" EntityType="DataModel.SiteSetting" />
-          <EntitySet Name="Users" EntityType="DataModel.User" />
-          <AssociationSet Name="UserApplication" Association="DataModel.UserApplication">
-            <End Role="Application" EntitySet="Applications" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Locations_Galleries" Association="DataModel.FK_Locations_Galleries">
-            <End Role="Gallery" EntitySet="Galleries" />
-            <End Role="Location" EntitySet="Locations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Locations_Locations" Association="DataModel.FK_Locations_Locations">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="Location1" EntitySet="Locations" />
-          </AssociationSet>
-          <AssociationSet Name="UserProfile" Association="DataModel.UserProfile">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Profile" EntitySet="Profiles" />
-          </AssociationSet>
-          <EntitySet Name="Memberships" EntityType="DataModel.Membership" />
           <EntitySet Name="Roles" EntityType="DataModel.Role" />
+          <EntitySet Name="Sertificates" EntityType="DataModel.Sertificate" />
+          <EntitySet Name="SiteSettings" EntityType="DataModel.SiteSetting" />
+          <EntitySet Name="UserEntities" EntityType="DataModel.UserEntity" />
+          <EntitySet Name="Users" EntityType="DataModel.User" />
+          <AssociationSet Name="FK_MembershipApplication" Association="DataModel.FK_MembershipApplication">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="Membership" EntitySet="Memberships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleApplication" Association="DataModel.FK_RoleApplication">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserApplication" Association="DataModel.FK_UserApplication">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="UserEntity" EntitySet="UserEntities" />
+          </AssociationSet>
           <AssociationSet Name="MembershipApplication" Association="DataModel.MembershipApplication">
             <End Role="Application" EntitySet="Applications" />
             <End Role="Membership" EntitySet="Memberships" />
@@ -892,56 +948,10 @@
             <End Role="Application" EntitySet="Applications" />
             <End Role="Role" EntitySet="Roles" />
           </AssociationSet>
-          <AssociationSet Name="MembershipUser" Association="DataModel.MembershipUser">
-            <End Role="UserEntity" EntitySet="Users" />
-            <End Role="Membership" EntitySet="Memberships" />
+          <AssociationSet Name="UserApplication" Association="DataModel.UserApplication">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="UsersInRoles" Association="DataModel.UsersInRoles">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="UserEntity" EntitySet="Users" />
-          </AssociationSet>
-          <EntitySet Name="Products" EntityType="DataModel.Product" />
-          <AssociationSet Name="FK_Products_Galleries" Association="DataModel.FK_Products_Galleries">
-            <End Role="Gallery" EntitySet="Galleries" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <EntitySet Name="Categories" EntityType="DataModel.Category" />
-          <AssociationSet Name="FK_Categories_Categories" Association="DataModel.FK_Categories_Categories">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Category1" EntitySet="Categories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Categories_Galleries" Association="DataModel.FK_Categories_Galleries">
-            <End Role="Gallery" EntitySet="Galleries" />
-            <End Role="Category" EntitySet="Categories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Products_Categories" Association="DataModel.FK_Products_Categories">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <EntitySet Name="TechProperties" EntityType="DataModel.TechProperty" />
-          <AssociationSet Name="FK_TechProperties_Products" Association="DataModel.FK_TechProperties_Products">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="TechProperty" EntitySet="TechProperties" />
-          </AssociationSet>
-          <EntitySet Name="DescGroups" EntityType="DataModel.DescGroup" />
-          <AssociationSet Name="FK_DescGroup_Products" Association="DataModel.FK_DescGroup_Products">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="DescGroup" EntitySet="DescGroups" />
-          </AssociationSet>
-          <EntitySet Name="Files" EntityType="DataModel.File" />
-          <AssociationSet Name="FK_News_Files" Association="DataModel.FK_News_Files">
-            <End Role="File" EntitySet="Files" />
-            <End Role="News" EntitySet="News" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Files" Association="DataModel.FK_Users_Files">
-            <End Role="File" EntitySet="Files" />
-            <End Role="UserEntity" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="GalleryFiles" Association="DataModel.GalleryFiles">
-            <End Role="File" EntitySet="Files" />
-            <End Role="Gallery" EntitySet="Galleries" />
-          </AssociationSet>
-          <EntitySet Name="Articles" EntityType="DataModel.Article" />
           <AssociationSet Name="FK_Articles_Files" Association="DataModel.FK_Articles_Files">
             <End Role="File" EntitySet="Files" />
             <End Role="Article" EntitySet="Articles" />
@@ -950,16 +960,6 @@
             <End Role="File" EntitySet="Files" />
             <End Role="Article" EntitySet="Articles" />
           </AssociationSet>
-          <AssociationSet Name="ArticleGalleries" Association="DataModel.ArticleGalleries">
-            <End Role="Article" EntitySet="Articles" />
-            <End Role="Gallery" EntitySet="Galleries" />
-          </AssociationSet>
-          <EntitySet Name="Sertificates" EntityType="DataModel.Sertificate" />
-          <AssociationSet Name="FK_Sertificates_Files" Association="DataModel.FK_Sertificates_Files">
-            <End Role="File" EntitySet="Files" />
-            <End Role="Sertificate" EntitySet="Sertificates" />
-          </AssociationSet>
-          <EntitySet Name="Catalogs" EntityType="DataModel.Catalog" />
           <AssociationSet Name="FK_Catalogs_Files" Association="DataModel.FK_Catalogs_Files">
             <End Role="File" EntitySet="Files" />
             <End Role="Catalog" EntitySet="Catalogs" />
@@ -968,13 +968,84 @@
             <End Role="File" EntitySet="Files" />
             <End Role="Catalog" EntitySet="Catalogs" />
           </AssociationSet>
+          <AssociationSet Name="FK_Categories_Categories" Association="DataModel.FK_Categories_Categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Category1" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_News_Files" Association="DataModel.FK_News_Files">
+            <End Role="File" EntitySet="Files" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sertificates_Files" Association="DataModel.FK_Sertificates_Files">
+            <End Role="File" EntitySet="Files" />
+            <End Role="Sertificate" EntitySet="Sertificates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Files" Association="DataModel.FK_Users_Files">
+            <End Role="File" EntitySet="Files" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locations_Locations" Association="DataModel.FK_Locations_Locations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Location1" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="MembershipUser" Association="DataModel.MembershipUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Membership" EntitySet="Memberships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile" Association="DataModel.FK_UserProfile">
+            <End Role="UserEntity" EntitySet="UserEntities" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="UserProfile" Association="DataModel.UserProfile">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="UsersInRoles" Association="DataModel.UsersInRoles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Galleries" EntityType="DataModel.Gallery" />
           <EntitySet Name="Projects" EntityType="DataModel.Project" />
+          <AssociationSet Name="FK_Categories_Galleries" Association="DataModel.FK_Categories_Galleries">
+            <End Role="Gallery" EntitySet="Galleries" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locations_Galleries" Association="DataModel.FK_Locations_Galleries">
+            <End Role="Gallery" EntitySet="Galleries" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
           <AssociationSet Name="FK_Projects_Galleries" Association="DataModel.FK_Projects_Galleries">
             <End Role="Gallery" EntitySet="Galleries" />
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
-          <EntitySet Name="DescGroups1" EntityType="DataModel.DescGroup1" />
-          <AssociationSet Name="ProductProjects" Association="DataModel.ProductProjects">
+          <AssociationSet Name="ArticleGalleries" Association="DataModel.ArticleGalleries">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Gallery" EntitySet="Galleries" />
+          </AssociationSet>
+          <AssociationSet Name="GalleryFiles" Association="DataModel.GalleryFiles">
+            <End Role="File" EntitySet="Files" />
+            <End Role="Gallery" EntitySet="Galleries" />
+          </AssociationSet>
+          <EntitySet Name="DescGroups" EntityType="DataModel.DescGroup" />
+          <EntitySet Name="Products" EntityType="DataModel.Product" />
+          <EntitySet Name="TechProperties" EntityType="DataModel.TechProperty" />
+          <AssociationSet Name="FK_Products_Categories" Association="DataModel.FK_Products_Categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DescGroup_Products" Association="DataModel.FK_DescGroup_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="DescGroup" EntitySet="DescGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Galleries" Association="DataModel.FK_Products_Galleries">
+            <End Role="Gallery" EntitySet="Galleries" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TechProperties_Products" Association="DataModel.FK_TechProperties_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="TechProperty" EntitySet="TechProperties" />
+          </AssociationSet>
+          <AssociationSet Name="ProductsProjects" Association="DataModel.ProductsProjects">
             <End Role="Product" EntitySet="Products" />
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
@@ -986,9 +1057,78 @@
           <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="235" FixedLength="false" Unicode="true" />
           <Property Name="ApplicationId" Type="Guid" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Memberships" Relationship="DataModel.FK_MembershipApplication" FromRole="Application" ToRole="Membership" />
+          <NavigationProperty Name="Roles" Relationship="DataModel.FK_RoleApplication" FromRole="Application" ToRole="Role" />
+          <NavigationProperty Name="UserEntities" Relationship="DataModel.FK_UserApplication" FromRole="Application" ToRole="UserEntity" />
+          <NavigationProperty Name="Memberships1" Relationship="DataModel.MembershipApplication" FromRole="Application" ToRole="Membership" />
+          <NavigationProperty Name="Roles1" Relationship="DataModel.RoleApplication" FromRole="Application" ToRole="Role" />
           <NavigationProperty Name="Users" Relationship="DataModel.UserApplication" FromRole="Application" ToRole="User" />
-          <NavigationProperty Name="Memberships" Relationship="DataModel.MembershipApplication" FromRole="Application" ToRole="Membership" />
-          <NavigationProperty Name="Roles" Relationship="DataModel.RoleApplication" FromRole="Application" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Teaser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AvatarId" Type="Int32" />
+          <NavigationProperty Name="File" Relationship="DataModel.FK_Articles_Files" FromRole="Article" ToRole="File" />
+          <NavigationProperty Name="File1" Relationship="DataModel.FK_Articles_Files1" FromRole="Article" ToRole="File" />
+          <NavigationProperty Name="Galleries" Relationship="DataModel.ArticleGalleries" FromRole="Article" ToRole="Gallery" />
+        </EntityType>
+        <EntityType Name="Catalog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="FileId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AvatarId" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="File" Relationship="DataModel.FK_Catalogs_Files" FromRole="Catalog" ToRole="File" />
+          <NavigationProperty Name="File1" Relationship="DataModel.FK_Catalogs_Files1" FromRole="Catalog" ToRole="File" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Alias" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GalleryId" Type="Int32" />
+          <Property Name="Teaser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Categories1" Relationship="DataModel.FK_Categories_Categories" FromRole="Category" ToRole="Category1" />
+          <NavigationProperty Name="Category1" Relationship="DataModel.FK_Categories_Categories" FromRole="Category1" ToRole="Category" />
+          <NavigationProperty Name="Gallery" Relationship="DataModel.FK_Categories_Galleries" FromRole="Category" ToRole="Gallery" />
+          <NavigationProperty Name="Products" Relationship="DataModel.FK_Products_Categories" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="DescGroup1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EmailLog">
           <Key>
@@ -1005,25 +1145,28 @@
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Gallery">
+        <EntityType Name="File">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Alias" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="SourceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Locations" Relationship="DataModel.FK_Locations_Galleries" FromRole="Gallery" ToRole="Location" />
-          <NavigationProperty Name="Products" Relationship="DataModel.FK_Products_Galleries" FromRole="Gallery" ToRole="Product" />
-          <NavigationProperty Name="Categories" Relationship="DataModel.FK_Categories_Galleries" FromRole="Gallery" ToRole="Category" />
-          <NavigationProperty Name="Files" Relationship="DataModel.GalleryFiles" FromRole="Gallery" ToRole="File" />
-          <NavigationProperty Name="Articles" Relationship="DataModel.ArticleGalleries" FromRole="Gallery" ToRole="Article" />
-          <NavigationProperty Name="Projects" Relationship="DataModel.FK_Projects_Galleries" FromRole="Gallery" ToRole="Project" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Size" Type="Int64" />
+          <Property Name="Alt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Articles" Relationship="DataModel.FK_Articles_Files" FromRole="File" ToRole="Article" />
+          <NavigationProperty Name="Articles1" Relationship="DataModel.FK_Articles_Files1" FromRole="File" ToRole="Article" />
+          <NavigationProperty Name="Catalogs" Relationship="DataModel.FK_Catalogs_Files" FromRole="File" ToRole="Catalog" />
+          <NavigationProperty Name="Catalogs1" Relationship="DataModel.FK_Catalogs_Files1" FromRole="File" ToRole="Catalog" />
+          <NavigationProperty Name="News" Relationship="DataModel.FK_News_Files" FromRole="File" ToRole="News" />
+          <NavigationProperty Name="Sertificates" Relationship="DataModel.FK_Sertificates_Files" FromRole="File" ToRole="Sertificate" />
+          <NavigationProperty Name="Users" Relationship="DataModel.FK_Users_Files" FromRole="File" ToRole="User" />
+          <NavigationProperty Name="Galleries" Relationship="DataModel.GalleryFiles" FromRole="File" ToRole="Gallery" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -1043,9 +1186,36 @@
           <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ShowInMenu" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Gallery" Relationship="DataModel.FK_Locations_Galleries" FromRole="Location" ToRole="Gallery" />
           <NavigationProperty Name="Locations1" Relationship="DataModel.FK_Locations_Locations" FromRole="Location" ToRole="Location1" />
           <NavigationProperty Name="Location1" Relationship="DataModel.FK_Locations_Locations" FromRole="Location1" ToRole="Location" />
+          <NavigationProperty Name="Gallery" Relationship="DataModel.FK_Locations_Galleries" FromRole="Location" ToRole="Gallery" />
+        </EntityType>
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Application" Relationship="DataModel.FK_MembershipApplication" FromRole="Membership" ToRole="Application" />
+          <NavigationProperty Name="Application1" Relationship="DataModel.MembershipApplication" FromRole="Membership" ToRole="Application" />
+          <NavigationProperty Name="User" Relationship="DataModel.MembershipUser" FromRole="Membership" ToRole="User" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -1072,6 +1242,7 @@
           <Property Name="PropertyValueStrings" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="PropertyValueBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserEntity" Relationship="DataModel.FK_UserProfile" FromRole="Profile" ToRole="UserEntity" />
           <NavigationProperty Name="User" Relationship="DataModel.UserProfile" FromRole="Profile" ToRole="User" />
         </EntityType>
         <EntityType Name="Question">
@@ -1086,6 +1257,29 @@
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Visibility" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Application" Relationship="DataModel.FK_RoleApplication" FromRole="Role" ToRole="Application" />
+          <NavigationProperty Name="Application1" Relationship="DataModel.RoleApplication" FromRole="Role" ToRole="Application" />
+          <NavigationProperty Name="Users" Relationship="DataModel.UsersInRoles" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Sertificate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="FileId" Type="Int32" />
+          <NavigationProperty Name="File" Relationship="DataModel.FK_Sertificates_Files" FromRole="Sertificate" ToRole="File" />
+        </EntityType>
         <EntityType Name="SiteSetting">
           <Key>
             <PropertyRef Name="Id" />
@@ -1094,6 +1288,23 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserEntity">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileId" Type="Int32" />
+          <Property Name="Key" Type="Guid" />
+          <NavigationProperty Name="Application" Relationship="DataModel.FK_UserApplication" FromRole="UserEntity" ToRole="Application" />
+          <NavigationProperty Name="Profile" Relationship="DataModel.FK_UserProfile" FromRole="UserEntity" ToRole="Profile" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -1110,96 +1321,47 @@
           <Property Name="FileId" Type="Int32" />
           <Property Name="Key" Type="Guid" />
           <NavigationProperty Name="Application" Relationship="DataModel.UserApplication" FromRole="User" ToRole="Application" />
+          <NavigationProperty Name="File" Relationship="DataModel.FK_Users_Files" FromRole="User" ToRole="File" />
+          <NavigationProperty Name="Membership" Relationship="DataModel.MembershipUser" FromRole="User" ToRole="Membership" />
           <NavigationProperty Name="Profile" Relationship="DataModel.UserProfile" FromRole="User" ToRole="Profile" />
-          <NavigationProperty Name="Membership" Relationship="DataModel.MembershipUser" FromRole="UserEntity" ToRole="Membership" />
-          <NavigationProperty Name="Roles" Relationship="DataModel.UsersInRoles" FromRole="UserEntity" ToRole="Role" />
-          <NavigationProperty Name="File" Relationship="DataModel.FK_Users_Files" FromRole="UserEntity" ToRole="File" />
+          <NavigationProperty Name="Roles" Relationship="DataModel.UsersInRoles" FromRole="User" ToRole="Role" />
         </EntityType>
-        <Association Name="UserApplication">
+        <Association Name="FK_MembershipApplication">
           <End Type="DataModel.Application" Role="Application" Multiplicity="1" />
-          <End Type="DataModel.User" Role="User" Multiplicity="*" />
+          <End Type="DataModel.Membership" Role="Membership" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Application">
               <PropertyRef Name="ApplicationId" />
             </Principal>
-            <Dependent Role="User">
+            <Dependent Role="Membership">
               <PropertyRef Name="ApplicationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Locations_Galleries">
-          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="0..1" />
-          <End Type="DataModel.Location" Role="Location" Multiplicity="*" />
+        <Association Name="FK_RoleApplication">
+          <End Type="DataModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="DataModel.Role" Role="Role" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Gallery">
-              <PropertyRef Name="Id" />
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
             </Principal>
-            <Dependent Role="Location">
-              <PropertyRef Name="GalleryId" />
+            <Dependent Role="Role">
+              <PropertyRef Name="ApplicationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Locations_Locations">
-          <End Type="DataModel.Location" Role="Location" Multiplicity="0..1" />
-          <End Type="DataModel.Location" Role="Location1" Multiplicity="*" />
+        <Association Name="FK_UserApplication">
+          <End Type="DataModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="DataModel.UserEntity" Role="UserEntity" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="Id" />
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
             </Principal>
-            <Dependent Role="Location1">
-              <PropertyRef Name="ParentId" />
+            <Dependent Role="UserEntity">
+              <PropertyRef Name="ApplicationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserProfile">
-          <End Type="DataModel.User" Role="User" Multiplicity="1" />
-          <End Type="DataModel.Profile" Role="Profile" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Profile">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Membership">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
-          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="PasswordQuestion" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="PasswordAnswer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
-          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
-          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Comment" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Application" Relationship="DataModel.MembershipApplication" FromRole="Membership" ToRole="Application" />
-          <NavigationProperty Name="User" Relationship="DataModel.MembershipUser" FromRole="Membership" ToRole="UserEntity" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-          <Property Name="RoleId" Type="Guid" Nullable="false" />
-          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Application" Relationship="DataModel.RoleApplication" FromRole="Role" ToRole="Application" />
-          <NavigationProperty Name="Users" Relationship="DataModel.UsersInRoles" FromRole="Role" ToRole="UserEntity" />
-        </EntityType>
         <Association Name="MembershipApplication">
           <End Type="DataModel.Application" Role="Application" Multiplicity="1" />
           <End Type="DataModel.Membership" Role="Membership" Multiplicity="*" />
@@ -1224,232 +1386,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MembershipUser">
-          <End Type="DataModel.User" Role="UserEntity" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="DataModel.Membership" Role="Membership" Multiplicity="0..1" />
+        <Association Name="UserApplication">
+          <End Type="DataModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="DataModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserEntity">
-              <PropertyRef Name="UserId" />
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
             </Principal>
-            <Dependent Role="Membership">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="User">
+              <PropertyRef Name="ApplicationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UsersInRoles">
-          <End Type="DataModel.Role" Role="Role" Multiplicity="*" />
-          <End Type="DataModel.User" Role="UserEntity" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CatalogPlace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Kit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GalleryId" Type="Int32" />
-          <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <Property Name="Alias" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Gallery" Relationship="DataModel.FK_Products_Galleries" FromRole="Product" ToRole="Gallery" />
-          <NavigationProperty Name="Category" Relationship="DataModel.FK_Products_Categories" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="TechProperties" Relationship="DataModel.FK_TechProperties_Products" FromRole="Product" ToRole="TechProperty" />
-          <NavigationProperty Name="DescGroups" Relationship="DataModel.FK_DescGroup_Products" FromRole="Product" ToRole="DescGroup" />
-          <NavigationProperty Name="Projects" Relationship="DataModel.ProductProjects" FromRole="Product" ToRole="Project" />
-        </EntityType>
-        <Association Name="FK_Products_Galleries">
-          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="0..1" />
-          <End Type="DataModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gallery">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="GalleryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ParentId" Type="Int32" />
-          <Property Name="Alias" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GalleryId" Type="Int32" />
-          <Property Name="Teaser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Categories1" Relationship="DataModel.FK_Categories_Categories" FromRole="Category" ToRole="Category1" />
-          <NavigationProperty Name="Category1" Relationship="DataModel.FK_Categories_Categories" FromRole="Category1" ToRole="Category" />
-          <NavigationProperty Name="Gallery" Relationship="DataModel.FK_Categories_Galleries" FromRole="Category" ToRole="Gallery" />
-          <NavigationProperty Name="Products" Relationship="DataModel.FK_Products_Categories" FromRole="Category" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK_Categories_Categories">
-          <End Type="DataModel.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="DataModel.Category" Role="Category1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Category1">
-              <PropertyRef Name="ParentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Categories_Galleries">
-          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="0..1" />
-          <End Type="DataModel.Category" Role="Category" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gallery">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Category">
-              <PropertyRef Name="GalleryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Products_Categories">
-          <End Type="DataModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="DataModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="TechProperty">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="DataModel.FK_TechProperties_Products" FromRole="TechProperty" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK_TechProperties_Products">
-          <End Type="DataModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="DataModel.TechProperty" Role="TechProperty" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TechProperty">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="DescGroup">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product" Relationship="DataModel.FK_DescGroup_Products" FromRole="DescGroup" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK_DescGroup_Products">
-          <End Type="DataModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="DataModel.DescGroup" Role="DescGroup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DescGroup">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="File">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SourceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Size" Type="Int64" />
-          <Property Name="Alt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="News" Relationship="DataModel.FK_News_Files" FromRole="File" ToRole="News" />
-          <NavigationProperty Name="Users" Relationship="DataModel.FK_Users_Files" FromRole="File" ToRole="UserEntity" />
-          <NavigationProperty Name="Galleries" Relationship="DataModel.GalleryFiles" FromRole="File" ToRole="Gallery" />
-          <NavigationProperty Name="Articles" Relationship="DataModel.FK_Articles_Files" FromRole="File" ToRole="Article" />
-          <NavigationProperty Name="Articles1" Relationship="DataModel.FK_Articles_Files1" FromRole="File" ToRole="Article" />
-          <NavigationProperty Name="Sertificates" Relationship="DataModel.FK_Sertificates_Files" FromRole="File" ToRole="Sertificate" />
-          <NavigationProperty Name="Catalogs" Relationship="DataModel.FK_Catalogs_Files" FromRole="File" ToRole="Catalog" />
-          <NavigationProperty Name="Catalogs1" Relationship="DataModel.FK_Catalogs_Files1" FromRole="File" ToRole="Catalog" />
-        </EntityType>
-        <Association Name="FK_News_Files">
-          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
-          <End Type="DataModel.News" Role="News" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="File">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="News">
-              <PropertyRef Name="FileId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Users_Files">
-          <End Type="DataModel.File" Role="File" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="DataModel.User" Role="UserEntity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="File">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserEntity">
-              <PropertyRef Name="FileId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="GalleryFiles">
-          <End Type="DataModel.File" Role="File" Multiplicity="*" />
-          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Article">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileId" Type="Int32" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Teaser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AvatarId" Type="Int32" />
-          <NavigationProperty Name="File" Relationship="DataModel.FK_Articles_Files" FromRole="Article" ToRole="File" />
-          <NavigationProperty Name="File1" Relationship="DataModel.FK_Articles_Files1" FromRole="Article" ToRole="File" />
-          <NavigationProperty Name="Galleries" Relationship="DataModel.ArticleGalleries" FromRole="Article" ToRole="Gallery" />
-        </EntityType>
         <Association Name="FK_Articles_Files">
           <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
           <End Type="DataModel.Article" Role="Article" Multiplicity="*" />
@@ -1474,50 +1422,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ArticleGalleries">
-          <End Type="DataModel.Article" Role="Article" Multiplicity="*" />
-          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Sertificate">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="FileId" Type="Int32" />
-          <NavigationProperty Name="File" Relationship="DataModel.FK_Sertificates_Files" FromRole="Sertificate" ToRole="File" />
-        </EntityType>
-        <Association Name="FK_Sertificates_Files">
-          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
-          <End Type="DataModel.Sertificate" Role="Sertificate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="File">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Sertificate">
-              <PropertyRef Name="FileId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Catalog">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="FileId" Type="Int32" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="Sort" Type="Int32" Nullable="false" />
-          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AvatarId" Type="Int32" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="File" Relationship="DataModel.FK_Catalogs_Files" FromRole="Catalog" ToRole="File" />
-          <NavigationProperty Name="File1" Relationship="DataModel.FK_Catalogs_Files1" FromRole="Catalog" ToRole="File" />
-        </EntityType>
         <Association Name="FK_Catalogs_Files">
           <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
           <End Type="DataModel.Catalog" Role="Catalog" Multiplicity="*" />
@@ -1542,6 +1446,130 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Categories_Categories">
+          <End Type="DataModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="DataModel.Category" Role="Category1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Category1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_News_Files">
+          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
+          <End Type="DataModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sertificates_Files">
+          <End Type="DataModel.File" Role="File" Multiplicity="0..1" />
+          <End Type="DataModel.Sertificate" Role="Sertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sertificate">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Files">
+          <End Type="DataModel.File" Role="File" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locations_Locations">
+          <End Type="DataModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="DataModel.Location" Role="Location1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MembershipUser">
+          <End Type="DataModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.Membership" Role="Membership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile">
+          <End Type="DataModel.UserEntity" Role="UserEntity" Multiplicity="1" />
+          <End Type="DataModel.Profile" Role="Profile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserEntity">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserProfile">
+          <End Type="DataModel.User" Role="User" Multiplicity="1" />
+          <End Type="DataModel.Profile" Role="Profile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersInRoles">
+          <End Type="DataModel.Role" Role="Role" Multiplicity="*" />
+          <End Type="DataModel.User" Role="User" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Gallery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Alias" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Categories" Relationship="DataModel.FK_Categories_Galleries" FromRole="Gallery" ToRole="Category" />
+          <NavigationProperty Name="Locations" Relationship="DataModel.FK_Locations_Galleries" FromRole="Gallery" ToRole="Location" />
+          <NavigationProperty Name="Projects" Relationship="DataModel.FK_Projects_Galleries" FromRole="Gallery" ToRole="Project" />
+          <NavigationProperty Name="Articles" Relationship="DataModel.ArticleGalleries" FromRole="Gallery" ToRole="Article" />
+          <NavigationProperty Name="Files" Relationship="DataModel.GalleryFiles" FromRole="Gallery" ToRole="File" />
+          <NavigationProperty Name="Products" Relationship="DataModel.FK_Products_Galleries" FromRole="Gallery" ToRole="Product" />
+        </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="Id" />
@@ -1553,13 +1581,37 @@
           <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GalleryId" Type="Int32" />
           <Property Name="Alias" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Sort" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Gallery" Relationship="DataModel.FK_Projects_Galleries" FromRole="Project" ToRole="Gallery" />
           <Property Name="Teaser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="DataModel.ProductProjects" FromRole="Project" ToRole="Product" />
+          <Property Name="GalleryId" Type="Int32" />
+          <NavigationProperty Name="Gallery" Relationship="DataModel.FK_Projects_Galleries" FromRole="Project" ToRole="Gallery" />
+          <NavigationProperty Name="Products" Relationship="DataModel.ProductsProjects" FromRole="Project" ToRole="Product" />
         </EntityType>
+        <Association Name="FK_Categories_Galleries">
+          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="0..1" />
+          <End Type="DataModel.Category" Role="Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gallery">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locations_Galleries">
+          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="0..1" />
+          <End Type="DataModel.Location" Role="Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gallery">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Projects_Galleries">
           <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="0..1" />
           <End Type="DataModel.Project" Role="Project" Multiplicity="*" />
@@ -1572,18 +1624,110 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="DescGroup1">
+        <Association Name="ArticleGalleries">
+          <End Type="DataModel.Article" Role="Article" Multiplicity="*" />
+          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="*" />
+        </Association>
+        <Association Name="GalleryFiles">
+          <End Type="DataModel.File" Role="File" Multiplicity="*" />
+          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="*" />
+        </Association>
+        <EntityType Name="DescGroup">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" />
           <Property Name="Sort" Type="Int32" Nullable="false" />
           <Property Name="Visibility" Type="Boolean" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="DataModel.FK_DescGroup_Products" FromRole="DescGroup" ToRole="Product" />
         </EntityType>
-        <Association Name="ProductProjects">
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CatalogPlace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Kit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GalleryId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Alias" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="DataModel.FK_Products_Categories" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="DescGroups" Relationship="DataModel.FK_DescGroup_Products" FromRole="Product" ToRole="DescGroup" />
+          <NavigationProperty Name="Gallery" Relationship="DataModel.FK_Products_Galleries" FromRole="Product" ToRole="Gallery" />
+          <NavigationProperty Name="TechProperties" Relationship="DataModel.FK_TechProperties_Products" FromRole="Product" ToRole="TechProperty" />
+          <NavigationProperty Name="Projects" Relationship="DataModel.ProductsProjects" FromRole="Product" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="TechProperty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductId" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="DataModel.FK_TechProperties_Products" FromRole="TechProperty" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Products_Categories">
+          <End Type="DataModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="DataModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DescGroup_Products">
+          <End Type="DataModel.Product" Role="Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.DescGroup" Role="DescGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DescGroup">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Galleries">
+          <End Type="DataModel.Gallery" Role="Gallery" Multiplicity="0..1" />
+          <End Type="DataModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gallery">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TechProperties_Products">
+          <End Type="DataModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="DataModel.TechProperty" Role="TechProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TechProperty">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductsProjects">
           <End Type="DataModel.Product" Role="Product" Multiplicity="*" />
           <End Type="DataModel.Project" Role="Project" Multiplicity="*" />
         </Association>
@@ -1599,6 +1743,67 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
                 <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="DataModel.Article">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="AvatarId" ColumnName="AvatarId" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Teaser" ColumnName="Teaser" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catalogs">
+            <EntityTypeMapping TypeName="DataModel.Catalog">
+              <MappingFragment StoreEntitySet="Catalogs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AvatarId" ColumnName="AvatarId" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="DataModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Teaser" ColumnName="Teaser" />
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DescGroups1">
+            <EntityTypeMapping TypeName="DataModel.DescGroup1">
+              <MappingFragment StoreEntitySet="DescGroups">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1618,16 +1823,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Galleries">
-            <EntityTypeMapping TypeName="DataModel.Gallery">
-              <MappingFragment StoreEntitySet="Galleries">
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="DataModel.File">
+              <MappingFragment StoreEntitySet="Files">
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Alt" ColumnName="Alt" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -1650,6 +1856,31 @@
                 <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memberships">
+            <EntityTypeMapping TypeName="DataModel.Membership">
+              <MappingFragment StoreEntitySet="Memberships">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowsStart" ColumnName="FailedPasswordAnswerAttemptWindowsStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1693,6 +1924,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="DataModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sertificates">
+            <EntityTypeMapping TypeName="DataModel.Sertificate">
+              <MappingFragment StoreEntitySet="Sertificates">
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SiteSettings">
             <EntityTypeMapping TypeName="DataModel.SiteSetting">
               <MappingFragment StoreEntitySet="SiteSettings">
@@ -1700,6 +1952,22 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEntities">
+            <EntityTypeMapping TypeName="DataModel.UserEntity">
+              <MappingFragment StoreEntitySet="UserEntities">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1719,49 +1987,74 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Memberships">
-            <EntityTypeMapping TypeName="DataModel.Membership">
-              <MappingFragment StoreEntitySet="Memberships">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowsStart" ColumnName="FailedPasswordAnswerAttemptWindowsStart" />
-                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
-                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
-                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
-                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
-                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
-                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
-                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
-                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
-                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="DataModel.Role">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="UsersInRoles" TypeName="DataModel.UsersInRoles" StoreEntitySet="UsersInRoles">
-            <EndProperty Name="UserEntity">
+            <EndProperty Name="User">
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
             <EndProperty Name="Role">
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Galleries">
+            <EntityTypeMapping TypeName="DataModel.Gallery">
+              <MappingFragment StoreEntitySet="Galleries">
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="DataModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="Teaser" ColumnName="Teaser" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ArticleGalleries" TypeName="DataModel.ArticleGalleries" StoreEntitySet="ArticleGalleries">
+            <EndProperty Name="Gallery">
+              <ScalarProperty Name="Id" ColumnName="GalleryId" />
+            </EndProperty>
+            <EndProperty Name="Article">
+              <ScalarProperty Name="Id" ColumnName="ArticleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="GalleryFiles" TypeName="DataModel.GalleryFiles" StoreEntitySet="GalleryFiles">
+            <EndProperty Name="Gallery">
+              <ScalarProperty Name="Id" ColumnName="GalleryId" />
+            </EndProperty>
+            <EndProperty Name="File">
+              <ScalarProperty Name="Id" ColumnName="FileId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="DescGroups">
+            <EntityTypeMapping TypeName="DataModel.DescGroup">
+              <MappingFragment StoreEntitySet="DescGroup">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="DataModel.Product">
               <MappingFragment StoreEntitySet="Products">
@@ -1781,23 +2074,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="DataModel.Category">
-              <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="Teaser" ColumnName="Teaser" />
-                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="Alias" ColumnName="Alias" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TechProperties">
             <EntityTypeMapping TypeName="DataModel.TechProperty">
               <MappingFragment StoreEntitySet="TechProperties">
@@ -1808,123 +2084,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DescGroups">
-            <EntityTypeMapping TypeName="DataModel.DescGroup">
-              <MappingFragment StoreEntitySet="DescGroup">
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Files">
-            <EntityTypeMapping TypeName="DataModel.File">
-              <MappingFragment StoreEntitySet="Files">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Alt" ColumnName="Alt" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="GalleryFiles" TypeName="DataModel.GalleryFiles" StoreEntitySet="GalleryFiles">
-            <EndProperty Name="Gallery">
-              <ScalarProperty Name="Id" ColumnName="GalleryId" />
-            </EndProperty>
-            <EndProperty Name="File">
-              <ScalarProperty Name="Id" ColumnName="FileId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="DataModel.Article">
-              <MappingFragment StoreEntitySet="Articles">
-                <ScalarProperty Name="AvatarId" ColumnName="AvatarId" />
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="Teaser" ColumnName="Teaser" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="FileId" ColumnName="FileId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="ArticleGalleries" TypeName="DataModel.ArticleGalleries" StoreEntitySet="ArticleGalleries">
-            <EndProperty Name="Gallery">
-              <ScalarProperty Name="Id" ColumnName="GalleryId" />
-            </EndProperty>
-            <EndProperty Name="Article">
-              <ScalarProperty Name="Id" ColumnName="ArticleId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="Sertificates">
-            <EntityTypeMapping TypeName="DataModel.Sertificate">
-              <MappingFragment StoreEntitySet="Sertificates">
-                <ScalarProperty Name="FileId" ColumnName="FileId" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Catalogs">
-            <EntityTypeMapping TypeName="DataModel.Catalog">
-              <MappingFragment StoreEntitySet="Catalogs">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="AvatarId" ColumnName="AvatarId" />
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="FileId" ColumnName="FileId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="DataModel.Project">
-              <MappingFragment StoreEntitySet="Projects">
-                <ScalarProperty Name="Teaser" ColumnName="Teaser" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Alias" ColumnName="Alias" />
-                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DescGroups1">
-            <EntityTypeMapping TypeName="DataModel.DescGroup1">
-              <MappingFragment StoreEntitySet="DescGroups">
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="ProductProjects" TypeName="DataModel.ProductProjects" StoreEntitySet="ProductProjects">
+          <AssociationSetMapping Name="ProductsProjects" TypeName="DataModel.ProductsProjects" StoreEntitySet="ProductsProjects">
             <EndProperty Name="Project">
               <ScalarProperty Name="Id" ColumnName="ProjectId" />
             </EndProperty>

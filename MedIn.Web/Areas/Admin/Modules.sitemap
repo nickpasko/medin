@@ -10,6 +10,7 @@
     <siteMapNode title="Продукты" controller="Products" action="" />
     <siteMapNode title="Каталоги" controller="Catalogs" action="" />
     <siteMapNode title="Сертификаты" controller="Sertificates" action="" />
+    <!--<siteMapNode title="Группы Проектов" controller="ProjectGroups" action="" />-->
     <siteMapNode title="Проекты" controller="Projects" action="" />
 	</siteMapNode>
 	<siteMapNode title="Обратная связь">

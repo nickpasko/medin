@@ -19,7 +19,7 @@
             string lastWord = string.Empty;
             if (i == 0)
             {
-                lastWord = "views-row-first";
+                lastWord = "views-row-first"; 
             }
             if (i == categories.Count - 1)
             {
@@ -29,11 +29,14 @@
 
                 <div class="views-list-latest"></div>
                 <div class="views-field views-field-field-img-preview">
-                    <div class="field-content">
-                        <a href="@products[i].Url">
-                            <img typeof="foaf:Image" src="@Url.Content(products[i].Gallery.With(x => x.Files.FirstOrDefault().With(file=>file.ToString())))" width="209" height="134" alt="">
-                        </a>
-                    </div>
+                    @if (products[i].Gallery != null)
+                    {
+                        <div class="field-content">
+                            <a href="@products[i].Url">
+                                <img typeof="foaf:Image" src="@Url.Content(products[i].Gallery.With(x => x.Files.FirstOrDefault().With(file=>file.ToString())))" width="209" height="134" alt="">
+                            </a>
+                        </div>
+                    }
                 </div>
                 <div class="views-field views-field-title">
                     <span class="field-content">
@@ -41,7 +44,7 @@
                     </span>
                 </div>
                 <div class="views-field views-field-field-number">
-                    <div class="field-content">Каталожный №: 101.602 и 101.603 </div>
+                    <div class="field-content">Каталожный №: @products[i].CatalogPlace </div>
                 </div>
             </div>
         }

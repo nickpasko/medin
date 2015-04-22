@@ -7,16 +7,19 @@
                 <tbody>
                     @for (var i = 0; i < Model.Length; i++)
                     {
-                        if (i % 2 == 0)
+                        if (i % 2 == 0) 
                         {
                             @:<tr class="row-@(i+1) @ByCondition(i == 0, "row-first", i == Model.Count(), "row-last")">
                          }
                                 <td class="col-@ByCondition(i % 2 == 0, "2 col-last", i % 2 != 0, "1 col-first") ">
                                     <div class="views-field">
                                         <div class="field-content">
-                                            <a href="@Url.Action(MVC.Projects.Details(Model[i].Alias))">
-                                                <img typeof="foaf:Image" src="@Url.Content(Model[i].Gallery.Files.First().Name)" width="149" height="96" alt="">
-                                            </a>
+                                            @if (Model[i].Gallery != null && Model[i].Gallery.Files.Any())
+                                            { 
+                                                <a href="@Url.Action(MVC.Projects.Details(Model[i].Alias))">
+                                                    <img typeof="foaf:Image" src="@Url.Content(Model[i].Gallery.Files.First().Name)" width="149" height="96" alt="">
+                                                </a>
+                                            }
                                         </div>
                                     </div>
                                     

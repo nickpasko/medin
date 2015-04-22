@@ -64,6 +64,7 @@
     <Compile Include="Entities\News.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Project.cs" />
+    <Compile Include="Entities\ProjectGroup.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\Sertificate.cs" />
     <Compile Include="Entities\TechProperty.cs" />

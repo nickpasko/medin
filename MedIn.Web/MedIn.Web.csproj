@@ -200,6 +200,7 @@
     <Compile Include="Areas\Admin\Controllers\LocationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsItemsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProjectGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SertificatesController.cs" />
@@ -343,6 +344,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Admin\Settings\Project.xml" />
+    <Content Include="Areas\Admin\Settings\ProjectGroup.xml" />
     <Content Include="Areas\Admin\Settings\Question.xml" />
     <Content Include="Areas\Admin\Settings\Sertificate.xml" />
     <Content Include="Areas\Admin\Styles\Default\Default.css" />
@@ -473,6 +475,7 @@
     <Content Include="Scripts\jquery.lightbox.js" />
     <Content Include="Scripts\jquery.opacityrollover.js" />
     <Content Include="Scripts\jquery.pjax.js" />
+    <Content Include="Scripts\jquery.prettyPhoto.js" />
     <Content Include="Scripts\jquery.ui.core.min.js" />
     <Content Include="Scripts\jquery.ui.rcarousel.min.js" />
     <Content Include="Scripts\jquery.ui.widget.min.js" />
@@ -498,6 +501,7 @@
     <Content Include="Styles\Galleriffic.css" />
     <Content Include="Styles\jquery-ui.css" />
     <Content Include="Styles\lightbox.css" />
+    <Content Include="Styles\prettyPhoto.css" />
     <Content Include="Styles\print.css" />
     <Content Include="Styles\rcarousel.css" />
     <Content Include="Styles\reset.css" />

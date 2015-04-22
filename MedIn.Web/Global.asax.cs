@@ -45,7 +45,7 @@ namespace MedIn.Web
             if (admin != null) admin.UnlockUser();
 #if DEBUG
             var p = admin.ResetPassword();
-            admin.ChangePassword(p, "lofiquv^");
+            admin.ChangePassword(p, "admin");
 #endif
         }
     }

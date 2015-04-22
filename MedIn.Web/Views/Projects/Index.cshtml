@@ -21,11 +21,14 @@
                                  }
                                         <td class="col-@ByCondition(i % 2 == 0, "2 col-last", i % 2 != 0, "1 col-first") ">
                                             <div class="views-field views-field-field-image">
-                                                <div class="field-content">
-                                                    <a href="@Url.Action(MVC.Projects.Details(items[i].Alias))">
-                                                        <img typeof="foaf:Image" src="@Url.Content(items[i].Gallery.Files.First().Name)" width="149" height="96" alt="">
-                                                    </a>
-                                                </div>
+                                                @if (items[i].Gallery != null && items[i].Gallery.Files.Any())
+                                                {
+                                                    <div class="field-content">
+                                                        <a href="@Url.Action(MVC.Projects.Details(items[i].Alias))">
+                                                            <img typeof="foaf:Image" src="@Url.Content(items[i].Gallery.Files.First().Name)" width="149" height="96" alt="">
+                                                        </a>
+                                                    </div>
+                                                }
                                             </div>
                                             <div class="views-field views-field-title">
                                                 <span class="field-content">
@@ -36,7 +39,7 @@
                                             <div class="views-field views-field-body">
                                                 <div class="field-content">
                                                     @if (items[i].Teaser != null)
-                                                    {
+                                                    { 
                                                         <p>@Html.Raw(items[i].Teaser)</p>
                                                     }
                                                 </div>

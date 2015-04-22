@@ -283,7 +283,8 @@ namespace MedIn.OziCms.Controllers
 			//{
 			//	Binders.Add(typeof(TEntity), new OziModelBinder());
 			//}
-			TryUpdateModel(entity, collection);
+		    
+                TryUpdateModel(entity, collection);
 			//var bindingContext = new ModelBindingContext
 			//{
 			//	ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(() => entity, typeof(TEntity)),
@@ -303,8 +304,8 @@ namespace MedIn.OziCms.Controllers
 			{
 				OnEntityEdited(entity, collection);
 
-
 				Repository.Save();
+
 				OnEditComplete(entity);
 				result = collection.GetValue(FieldsNames.SaveButton) != null ?
 							RedirectToAction(IndexViewName) :

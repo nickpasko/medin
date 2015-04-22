@@ -5,52 +5,57 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e033d610531d47619952ec99daa99bfe" Name="Diagram1" ZoomLevel="78">
-        <EntityTypeShape EntityType="DataModel.Application" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DataModel.EmailLog" Width="1.5" PointX="7.75" PointY="0.875" />
-        <EntityTypeShape EntityType="DataModel.Gallery" Width="1.5" PointX="5.25" PointY="6.25" />
-        <EntityTypeShape EntityType="DataModel.Location" Width="1.5" PointX="7.5" PointY="5.75" />
-        <EntityTypeShape EntityType="DataModel.News" Width="1.5" PointX="9.75" PointY="0.875" />
-        <EntityTypeShape EntityType="DataModel.Profile" Width="1.5" PointX="5.25" PointY="2.5" />
-        <EntityTypeShape EntityType="DataModel.Question" Width="1.5" PointX="9.75" PointY="4.875" />
-        <EntityTypeShape EntityType="DataModel.SiteSetting" Width="1.5" PointX="9.75" PointY="8.875" />
-        <EntityTypeShape EntityType="DataModel.User" Width="1.5" PointX="11.5" PointY="2.75" />
-        <AssociationConnector Association="DataModel.UserApplication" />
-        <AssociationConnector Association="DataModel.FK_Locations_Galleries" />
-        <AssociationConnector Association="DataModel.FK_Locations_Locations" />
-        <AssociationConnector Association="DataModel.UserProfile" />
-        <EntityTypeShape EntityType="DataModel.Membership" Width="1.5" PointX="5.25" PointY="0.75" />
-        <EntityTypeShape EntityType="DataModel.Role" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="DataModel.Application" Width="1.5" PointX="3.75" PointY="32.75" />
+        <EntityTypeShape EntityType="DataModel.Article" Width="1.5" PointX="3" PointY="27.875" />
+        <EntityTypeShape EntityType="DataModel.Catalog" Width="1.5" PointX="3" PointY="23.75" />
+        <EntityTypeShape EntityType="DataModel.Category" Width="1.5" PointX="6.375" PointY="27.375" />
+        <EntityTypeShape EntityType="DataModel.DescGroup1" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DataModel.EmailLog" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DataModel.File" Width="1.5" PointX="0.75" PointY="17.25" />
+        <EntityTypeShape EntityType="DataModel.Location" Width="1.5" PointX="8.125" PointY="22.875" />
+        <EntityTypeShape EntityType="DataModel.Membership" Width="1.5" PointX="8.25" PointY="16.875" />
+        <EntityTypeShape EntityType="DataModel.News" Width="1.5" PointX="3" PointY="12.375" />
+        <EntityTypeShape EntityType="DataModel.Profile" Width="1.5" PointX="11.25" PointY="18.375" />
+        <EntityTypeShape EntityType="DataModel.Question" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DataModel.Role" Width="1.5" PointX="3.75" PointY="8.625" />
+        <EntityTypeShape EntityType="DataModel.Sertificate" Width="1.5" PointX="3" PointY="16.25" />
+        <EntityTypeShape EntityType="DataModel.SiteSetting" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DataModel.UserEntity" Width="1.5" PointX="9" PointY="11.875" />
+        <EntityTypeShape EntityType="DataModel.User" Width="1.5" PointX="6" PointY="17.625" />
+        <AssociationConnector Association="DataModel.FK_MembershipApplication" />
+        <AssociationConnector Association="DataModel.FK_RoleApplication" />
+        <AssociationConnector Association="DataModel.FK_UserApplication" />
         <AssociationConnector Association="DataModel.MembershipApplication" />
         <AssociationConnector Association="DataModel.RoleApplication" />
-        <AssociationConnector Association="DataModel.MembershipUser" />
-        <AssociationConnector Association="DataModel.UsersInRoles" />
-        <EntityTypeShape EntityType="DataModel.Product" Width="1.5" PointX="6.625" PointY="11.25" />
-        <AssociationConnector Association="DataModel.FK_Products_Galleries" />
-        <EntityTypeShape EntityType="DataModel.Category" Width="1.5" PointX="9.625" PointY="11.75" />
-        <AssociationConnector Association="DataModel.FK_Categories_Categories" />
-        <AssociationConnector Association="DataModel.FK_Categories_Galleries" />
-        <AssociationConnector Association="DataModel.FK_Products_Categories" />
-        <EntityTypeShape EntityType="DataModel.TechProperty" Width="1.5" PointX="2.75" PointY="12.5" />
-        <AssociationConnector Association="DataModel.FK_TechProperties_Products" />
-        <EntityTypeShape EntityType="DataModel.DescGroup" Width="1.5" PointX="0.625" PointY="10.625" />
-        <AssociationConnector Association="DataModel.FK_DescGroup_Products" />
-        <EntityTypeShape EntityType="DataModel.File" Width="1.5" PointX="0.75" PointY="5.625" />
-        <AssociationConnector Association="DataModel.FK_News_Files" />
-        <AssociationConnector Association="DataModel.FK_Users_Files" />
-        <AssociationConnector Association="DataModel.GalleryFiles" />
-        <EntityTypeShape EntityType="DataModel.Article" Width="1.5" PointX="3" PointY="7.875" />
+        <AssociationConnector Association="DataModel.UserApplication" />
         <AssociationConnector Association="DataModel.FK_Articles_Files" />
         <AssociationConnector Association="DataModel.FK_Articles_Files1" />
-        <AssociationConnector Association="DataModel.ArticleGalleries" />
-        <EntityTypeShape EntityType="DataModel.Sertificate" Width="1.5" PointX="3" PointY="0.75" />
-        <AssociationConnector Association="DataModel.FK_Sertificates_Files" />
-        <EntityTypeShape EntityType="DataModel.Catalog" Width="1.5" PointX="3" PointY="16.25" />
         <AssociationConnector Association="DataModel.FK_Catalogs_Files" />
         <AssociationConnector Association="DataModel.FK_Catalogs_Files1" />
-        <EntityTypeShape EntityType="DataModel.Project" Width="1.5" PointX="7.5" PointY="16.625" />
+        <AssociationConnector Association="DataModel.FK_Categories_Categories" />
+        <AssociationConnector Association="DataModel.FK_News_Files" />
+        <AssociationConnector Association="DataModel.FK_Sertificates_Files" />
+        <AssociationConnector Association="DataModel.FK_Users_Files" />
+        <AssociationConnector Association="DataModel.FK_Locations_Locations" />
+        <AssociationConnector Association="DataModel.MembershipUser" />
+        <AssociationConnector Association="DataModel.FK_UserProfile" />
+        <AssociationConnector Association="DataModel.UserProfile" />
+        <AssociationConnector Association="DataModel.UsersInRoles" />
+        <EntityTypeShape EntityType="DataModel.Gallery" Width="1.5" PointX="5.25" PointY="22.375" />
+        <EntityTypeShape EntityType="DataModel.Project" Width="1.5" PointX="11.875" PointY="22.875" />
+        <AssociationConnector Association="DataModel.FK_Categories_Galleries" />
+        <AssociationConnector Association="DataModel.FK_Locations_Galleries" />
         <AssociationConnector Association="DataModel.FK_Projects_Galleries" />
-        <EntityTypeShape EntityType="DataModel.DescGroup1" Width="1.5" PointX="12.375" PointY="7.75" />
-        <AssociationConnector Association="DataModel.ProductProjects" />
+        <AssociationConnector Association="DataModel.ArticleGalleries" />
+        <AssociationConnector Association="DataModel.GalleryFiles" />
+        <EntityTypeShape EntityType="DataModel.DescGroup" Width="1.5" PointX="10.875" PointY="32.625" />
+        <EntityTypeShape EntityType="DataModel.Product" Width="1.5" PointX="8.625" PointY="28.625" />
+        <EntityTypeShape EntityType="DataModel.TechProperty" Width="1.5" PointX="10.875" PointY="29.875" />
+        <AssociationConnector Association="DataModel.FK_Products_Categories" />
+        <AssociationConnector Association="DataModel.FK_DescGroup_Products" />
+        <AssociationConnector Association="DataModel.FK_Products_Galleries" />
+        <AssociationConnector Association="DataModel.FK_TechProperties_Products" />
+        <AssociationConnector Association="DataModel.ProductsProjects" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

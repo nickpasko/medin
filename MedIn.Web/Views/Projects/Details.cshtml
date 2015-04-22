@@ -9,14 +9,17 @@
                 <div class="content">
                     @Html.Raw(Model.Item.Content)
                     <h2 id="gal">Фотогалерея</h2>
-                    @foreach (var item in Model.Item.Gallery.Files)
+                    @if (Model.Item.Gallery != null)
                     {
-                        <div class="slide">
-                            <a class="highslide" onclick="return hs.expand(this)" href="@item.Name">
-                                <div class="overlay"></div>
-                                <img typeof="foaf:Image" src="@Url.Content(item.Name)" width="149" height="96" alt="">
-                            </a>
-                        </div>
+                        foreach (var item in Model.Item.Gallery.Files)
+                        {
+                            <div class="slide">
+                                <a class="highslide" onclick="return hs.expand(this)" href="@item.Name">
+                                    <div class="overlay"></div>
+                                    <img typeof="foaf:Image" src="@Url.Content(item.Name)" width="149" height="96" alt="">
+                                </a>
+                            </div>
+                        }
                     }
                 </div>
             </div>
