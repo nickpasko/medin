@@ -2,9 +2,18 @@
 @model IList<Category>
 @{
     var root = "/products";
+    var currentCategory = (Category)WebContext.ViewBag.CurrentCategory;
 }
 
-<h1 class="title" id="page-title">@WebContext.Location.Name</h1>
+@if (String.IsNullOrEmpty(currentCategory.Teaser))
+{
+    <h1 class="title" id="page-title">@WebContext.Location.Name</h1>
+}
+else
+{
+    @Html.Raw(currentCategory.Teaser);
+}
+
 
 <div class="region region-content">
     <div id="block-system-main" class="block block-system">
