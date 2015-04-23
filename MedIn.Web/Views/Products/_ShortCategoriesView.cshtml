@@ -5,14 +5,19 @@
     var currentCategory = (Category)WebContext.ViewBag.CurrentCategory;
 }
 
-@if (String.IsNullOrEmpty(currentCategory.Teaser))
+@if (currentCategory != null && !String.IsNullOrEmpty(currentCategory.Name))
 {
-    <h1 class="title" id="page-title">@WebContext.Location.Name</h1>
+    <h1 class="title" id="page-title">@currentCategory.Name</h1>
+    if (!String.IsNullOrEmpty(currentCategory.Teaser))
+    {
+        @Html.Raw(currentCategory.Teaser);
+    }
 }
 else
 {
-    @Html.Raw(currentCategory.Teaser);
+    <h1 class="title" id="page-title">@WebContext.Location.Name</h1>
 }
+
 
 
 <div class="region region-content">
