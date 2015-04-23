@@ -31,7 +31,7 @@
 {
     foreach (var item in Model.DescGroups)
     {
-        <div style="
+        @*<div style="
     padding-left: 26px;
     font: bold 14px/21px Arial;
     color: #009387;
@@ -39,7 +39,7 @@
     text-align:center;
     ">
             <span>@Html.Raw(item.Name)</span>
-        </div>
+        </div>*@
         @Html.Raw(item.Content)
 
     }
