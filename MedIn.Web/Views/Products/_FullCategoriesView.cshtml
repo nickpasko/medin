@@ -40,7 +40,7 @@
                 </div>
                 <div class="views-field views-field-title">
                     <span class="field-content">
-                        <a href="@products[i].Url">@products[i].Name</a>
+                        <a href="@String.Format("/products/{0}",products[i].Url)">@products[i].Name</a>
                     </span>
                 </div>
                 <div class="views-field views-field-field-number">
